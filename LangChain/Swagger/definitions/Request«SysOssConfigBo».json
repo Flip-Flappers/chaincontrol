@@ -1,0 +1,15 @@
+{
+  "type": "object",
+  "properties": {
+    "data": {
+      "$ref": "#/definitions/SysOssConfigBo",
+      "originalRef": "SysOssConfigBo",
+      "refType": "SysOssConfigBo"
+    },
+    "requestId": {
+      "type": "string",
+      "refType": null
+    }
+  },
+  "title": "Request«SysOssConfigBo»"
+}

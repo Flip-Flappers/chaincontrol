@@ -1,0 +1,5 @@
+Property Name,Type,Format
+appid,string,
+identifier,string,
+tenantId,integer,int64
+timestamp,string,

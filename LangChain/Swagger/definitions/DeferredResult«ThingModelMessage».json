@@ -1,0 +1,12 @@
+{
+  "type": "object",
+  "properties": {
+    "result": {
+      "type": "object"
+    },
+    "setOrExpired": {
+      "type": "boolean"
+    }
+  },
+  "title": "DeferredResult«ThingModelMessage»"
+}

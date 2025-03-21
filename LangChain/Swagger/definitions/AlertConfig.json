@@ -1,0 +1,75 @@
+{
+  "type": "object",
+  "properties": {
+    "createAt": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "createBy": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "createDept": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "createTime": {
+      "type": "string",
+      "format": "date-time",
+      "refType": null
+    },
+    "description": {
+      "type": "string",
+      "refType": null
+    },
+    "enable": {
+      "type": "boolean",
+      "refType": null
+    },
+    "id": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "level": {
+      "type": "string",
+      "refType": null
+    },
+    "messageTemplateId": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "name": {
+      "type": "string",
+      "refType": null
+    },
+    "ruleInfoId": {
+      "type": "string",
+      "refType": null
+    },
+    "tenantId": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "uid": {
+      "type": "string",
+      "refType": null
+    },
+    "updateBy": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "updateTime": {
+      "type": "string",
+      "format": "date-time",
+      "refType": null
+    }
+  },
+  "title": "AlertConfig"
+}

@@ -1,0 +1,39 @@
+{
+  "type": "object",
+  "properties": {
+    "browser": {
+      "type": "string",
+      "refType": null
+    },
+    "deptName": {
+      "type": "string",
+      "refType": null
+    },
+    "ipaddr": {
+      "type": "string",
+      "refType": null
+    },
+    "loginLocation": {
+      "type": "string",
+      "refType": null
+    },
+    "loginTime": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "os": {
+      "type": "string",
+      "refType": null
+    },
+    "tokenId": {
+      "type": "string",
+      "refType": null
+    },
+    "userName": {
+      "type": "string",
+      "refType": null
+    }
+  },
+  "title": "SysUserOnline"
+}

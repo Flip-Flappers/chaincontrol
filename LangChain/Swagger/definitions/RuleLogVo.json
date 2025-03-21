@@ -1,0 +1,32 @@
+{
+  "type": "object",
+  "properties": {
+    "content": {
+      "type": "string",
+      "description": "内容",
+      "refType": null
+    },
+    "logAt": {
+      "type": "integer",
+      "format": "int64",
+      "description": "时间",
+      "refType": null
+    },
+    "ruleId": {
+      "type": "string",
+      "description": "规则id",
+      "refType": null
+    },
+    "state": {
+      "type": "string",
+      "description": "状态",
+      "refType": null
+    },
+    "success": {
+      "type": "boolean",
+      "description": "是否成功",
+      "refType": null
+    }
+  },
+  "title": "RuleLogVo"
+}

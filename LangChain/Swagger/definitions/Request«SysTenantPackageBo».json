@@ -1,0 +1,15 @@
+{
+  "type": "object",
+  "properties": {
+    "data": {
+      "$ref": "#/definitions/SysTenantPackageBo",
+      "originalRef": "SysTenantPackageBo",
+      "refType": "SysTenantPackageBo"
+    },
+    "requestId": {
+      "type": "string",
+      "refType": null
+    }
+  },
+  "title": "Request«SysTenantPackageBo»"
+}

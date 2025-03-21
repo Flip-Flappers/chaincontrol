@@ -1,0 +1,19 @@
+{
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "format": "int64",
+      "description": "id"
+    },
+    "typeDescribe": {
+      "type": "string",
+      "description": "分类描述"
+    },
+    "typeName": {
+      "type": "string",
+      "description": "分类名称"
+    }
+  },
+  "title": "IconTypeVo"
+}

@@ -1,0 +1,15 @@
+{
+  "type": "object",
+  "properties": {
+    "data": {
+      "$ref": "#/definitions/DeviceSaveScriptBo",
+      "originalRef": "DeviceSaveScriptBo",
+      "refType": "DeviceSaveScriptBo"
+    },
+    "requestId": {
+      "type": "string",
+      "refType": null
+    }
+  },
+  "title": "Request«DeviceSaveScriptBo»"
+}

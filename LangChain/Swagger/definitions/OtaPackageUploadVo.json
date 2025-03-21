@@ -1,0 +1,23 @@
+{
+  "type": "object",
+  "properties": {
+    "md5": {
+      "type": "string"
+    },
+    "originalName": {
+      "type": "string"
+    },
+    "ossId": {
+      "type": "integer",
+      "format": "int64"
+    },
+    "size": {
+      "type": "integer",
+      "format": "int64"
+    },
+    "url": {
+      "type": "string"
+    }
+  },
+  "title": "OtaPackageUploadVo"
+}

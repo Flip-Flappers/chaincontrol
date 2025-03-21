@@ -1,0 +1,5 @@
+Property Name,Type,Format
+identifier,string,
+inputData,array,
+name,string,
+outputData,array,

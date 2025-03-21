@@ -1,0 +1,50 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Swagger API Doc",
+    "title": "Swagger API",
+    "termsOfService": "http://ip:port/**"
+  },
+  "paths": {
+    "/product/icon/getAllIconType": {
+      "post": {
+        "tags": [
+          "产品"
+        ],
+        "summary": "图标分类列表",
+        "operationId": "getAllIconTypeUsingPOST_1",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/IconTypeVo",
+                "originalRef": "IconTypeVo"
+              }
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    }
+  }
+}

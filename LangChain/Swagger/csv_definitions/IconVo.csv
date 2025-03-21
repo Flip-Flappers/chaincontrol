@@ -1,0 +1,8 @@
+Property Name,Type,Format
+iconContent,string,
+iconName,string,
+iconTypeId,integer,int64
+id,integer,int64
+version,string,
+viewBox,string,
+xmlns,string,

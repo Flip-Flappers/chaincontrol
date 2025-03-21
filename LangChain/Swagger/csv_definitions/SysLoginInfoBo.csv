@@ -1,0 +1,12 @@
+Property Name,Type,Format
+browser,string,
+id,integer,int64
+ipaddr,string,
+loginLocation,string,
+loginTime,string,date-time
+msg,string,
+os,string,
+params,object,
+status,string,
+tenantId,integer,int64
+userName,string,

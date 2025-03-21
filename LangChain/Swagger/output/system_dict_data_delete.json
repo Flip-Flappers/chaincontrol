@@ -1,0 +1,56 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Swagger API Doc",
+    "title": "Swagger API",
+    "termsOfService": "http://ip:port/**"
+  },
+  "paths": {
+    "/system/dict/data/delete": {
+      "post": {
+        "tags": [
+          "sys-dict-data-controller"
+        ],
+        "summary": "删除字典类型",
+        "description": "删除字典类型",
+        "operationId": "removeUsingPOST_19",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "bo",
+            "description": "bo",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Request«Array«long»»",
+              "originalRef": "Request«Array«long»»"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    }
+  }
+}

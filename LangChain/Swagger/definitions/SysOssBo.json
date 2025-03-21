@@ -1,0 +1,56 @@
+{
+  "type": "object",
+  "properties": {
+    "createBy": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "createDept": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "createTime": {
+      "type": "string",
+      "format": "date-time",
+      "refType": null
+    },
+    "fileName": {
+      "type": "string",
+      "refType": null
+    },
+    "fileSuffix": {
+      "type": "string",
+      "refType": null
+    },
+    "id": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "originalName": {
+      "type": "string",
+      "refType": null
+    },
+    "service": {
+      "type": "string",
+      "refType": null
+    },
+    "updateBy": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "updateTime": {
+      "type": "string",
+      "format": "date-time",
+      "refType": null
+    },
+    "url": {
+      "type": "string",
+      "refType": null
+    }
+  },
+  "title": "SysOssBo"
+}

@@ -1,0 +1,66 @@
+{
+  "type": "object",
+  "properties": {
+    "actions": {
+      "type": "array",
+      "description": "任务输出",
+      "items": {
+        "$ref": "#/definitions/RuleAction",
+        "originalRef": "RuleAction"
+      },
+      "refType": "RuleAction"
+    },
+    "createAt": {
+      "type": "integer",
+      "format": "int64",
+      "description": "创建时间",
+      "refType": null
+    },
+    "desc": {
+      "type": "string",
+      "description": "描述",
+      "refType": null
+    },
+    "expression": {
+      "type": "string",
+      "description": "表达式",
+      "refType": null
+    },
+    "id": {
+      "type": "string",
+      "description": "主键",
+      "refType": null
+    },
+    "name": {
+      "type": "string",
+      "description": "任务名称",
+      "refType": null
+    },
+    "reason": {
+      "type": "string",
+      "description": "操作备注",
+      "refType": null
+    },
+    "seconds": {
+      "type": "integer",
+      "format": "int32",
+      "refType": null
+    },
+    "state": {
+      "type": "string",
+      "description": "任务状态",
+      "refType": null
+    },
+    "type": {
+      "type": "string",
+      "description": "任务类型",
+      "refType": null
+    },
+    "uid": {
+      "type": "string",
+      "description": "创建者",
+      "refType": null
+    }
+  },
+  "title": "TaskInfoVo"
+}

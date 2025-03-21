@@ -1,0 +1,59 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Swagger API Doc",
+    "title": "Swagger API",
+    "termsOfService": "http://ip:port/**"
+  },
+  "paths": {
+    "/notify/channel/config/getById": {
+      "post": {
+        "tags": [
+          "消息通知"
+        ],
+        "summary": "根据ID获取通道配置",
+        "operationId": "getChannelConfigByIdUsingPOST_1",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "description": "request",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Request«long»",
+              "originalRef": "Request«long»"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ChannelConfig",
+              "originalRef": "ChannelConfig"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    }
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "type": "object",
+  "properties": {
+    "data": {
+      "$ref": "#/definitions/AlertConfig",
+      "originalRef": "AlertConfig",
+      "refType": "AlertConfig"
+    },
+    "pageNum": {
+      "type": "integer",
+      "format": "int32",
+      "refType": null
+    },
+    "pageSize": {
+      "type": "integer",
+      "format": "int32",
+      "refType": null
+    },
+    "requestId": {
+      "type": "string",
+      "refType": null
+    },
+    "sortMap": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      },
+      "refType": null
+    }
+  },
+  "title": "PageRequest«AlertConfig»"
+}

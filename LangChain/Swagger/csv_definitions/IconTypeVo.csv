@@ -1,0 +1,4 @@
+Property Name,Type,Format
+id,integer,int64
+typeDescribe,string,
+typeName,string,

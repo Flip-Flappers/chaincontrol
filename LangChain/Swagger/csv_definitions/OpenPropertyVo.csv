@@ -1,0 +1,9 @@
+Property Name,Type,Format
+accessMode,string,
+dataType,Unknown,
+description,string,
+identifier,string,
+name,string,
+time,string,
+unit,string,
+value,string,

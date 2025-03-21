@@ -1,0 +1,17 @@
+{
+  "type": "object",
+  "properties": {
+    "rows": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/SysPostVo",
+        "originalRef": "SysPostVo"
+      }
+    },
+    "total": {
+      "type": "integer",
+      "format": "int64"
+    }
+  },
+  "title": "Paging«SysPostVo»"
+}

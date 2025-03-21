@@ -1,0 +1,70 @@
+{
+  "type": "object",
+  "required": [
+    "appId",
+    "appName",
+    "appSecret",
+    "appType",
+    "id",
+    "remark"
+  ],
+  "properties": {
+    "appId": {
+      "type": "string",
+      "description": "appId",
+      "refType": null
+    },
+    "appName": {
+      "type": "string",
+      "description": "应用名称",
+      "refType": null
+    },
+    "appSecret": {
+      "type": "string",
+      "description": "appSecret",
+      "refType": null
+    },
+    "appType": {
+      "type": "string",
+      "description": "应用类型",
+      "refType": null
+    },
+    "createBy": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "createDept": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "createTime": {
+      "type": "string",
+      "format": "date-time",
+      "refType": null
+    },
+    "id": {
+      "type": "integer",
+      "format": "int64",
+      "description": "id",
+      "refType": null
+    },
+    "remark": {
+      "type": "string",
+      "description": "备注",
+      "refType": null
+    },
+    "updateBy": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "updateTime": {
+      "type": "string",
+      "format": "date-time",
+      "refType": null
+    }
+  },
+  "title": "SysAppBo"
+}

@@ -1,0 +1,60 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Swagger API Doc",
+    "title": "Swagger API",
+    "termsOfService": "http://ip:port/**"
+  },
+  "paths": {
+    "/resource/oss/config/list": {
+      "post": {
+        "tags": [
+          "sys-oss-config-controller"
+        ],
+        "summary": "查询对象存储配置列表",
+        "description": "查询对象存储配置列表",
+        "operationId": "listUsingPOST_28",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "query",
+            "description": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/PageRequest«SysOssConfigBo»",
+              "originalRef": "PageRequest«SysOssConfigBo»"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Paging«SysOssConfigVo»",
+              "originalRef": "Paging«SysOssConfigVo»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    }
+  }
+}

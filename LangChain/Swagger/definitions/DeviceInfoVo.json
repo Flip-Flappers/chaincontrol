@@ -1,0 +1,84 @@
+{
+  "type": "object",
+  "properties": {
+    "createAt": {
+      "type": "integer",
+      "format": "int64",
+      "description": "创建时间",
+      "refType": null
+    },
+    "deviceId": {
+      "type": "string",
+      "description": "设备id",
+      "refType": null
+    },
+    "deviceName": {
+      "type": "string",
+      "description": "设备名称",
+      "refType": null
+    },
+    "group": {
+      "type": "object",
+      "description": "所属分组",
+      "additionalProperties": {
+        "$ref": "#/definitions/Group",
+        "originalRef": "Group"
+      },
+      "refType": "Group"
+    },
+    "id": {
+      "type": "string",
+      "refType": null
+    },
+    "locate": {
+      "description": "位置信息",
+      "$ref": "#/definitions/Locate",
+      "originalRef": "Locate",
+      "refType": "Locate"
+    },
+    "model": {
+      "type": "string",
+      "description": "设备类型",
+      "refType": null
+    },
+    "offlineTime": {
+      "type": "integer",
+      "format": "int64",
+      "description": "设备离线时间",
+      "refType": null
+    },
+    "online": {
+      "type": "boolean",
+      "description": "设备状态",
+      "refType": null
+    },
+    "onlineTime": {
+      "type": "integer",
+      "format": "int64",
+      "description": "设备在线时间",
+      "refType": null
+    },
+    "parentId": {
+      "type": "string",
+      "description": "父级id",
+      "refType": null
+    },
+    "product": {
+      "description": "所属产品信息",
+      "$ref": "#/definitions/Product",
+      "originalRef": "Product",
+      "refType": "Product"
+    },
+    "productKey": {
+      "type": "string",
+      "description": "产品key",
+      "refType": null
+    },
+    "secret": {
+      "type": "string",
+      "description": "设备描述",
+      "refType": null
+    }
+  },
+  "title": "DeviceInfoVo"
+}

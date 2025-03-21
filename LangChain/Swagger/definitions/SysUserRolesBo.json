@@ -1,0 +1,44 @@
+{
+  "type": "object",
+  "properties": {
+    "createBy": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "createDept": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "createTime": {
+      "type": "string",
+      "format": "date-time",
+      "refType": null
+    },
+    "roleIds": {
+      "type": "array",
+      "items": {
+        "type": "integer",
+        "format": "int64"
+      },
+      "refType": "integer"
+    },
+    "updateBy": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "updateTime": {
+      "type": "string",
+      "format": "date-time",
+      "refType": null
+    },
+    "userId": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    }
+  },
+  "title": "SysUserRolesBo"
+}

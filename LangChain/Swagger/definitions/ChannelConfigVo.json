@@ -1,0 +1,33 @@
+{
+  "type": "object",
+  "properties": {
+    "channelId": {
+      "type": "string",
+      "description": "通道id",
+      "refType": null
+    },
+    "createAt": {
+      "type": "integer",
+      "format": "int64",
+      "description": "创建时间",
+      "refType": null
+    },
+    "id": {
+      "type": "integer",
+      "format": "int64",
+      "description": "通道配置id",
+      "refType": null
+    },
+    "param": {
+      "type": "string",
+      "description": "通道配置参数",
+      "refType": null
+    },
+    "title": {
+      "type": "string",
+      "description": "通道配置名称",
+      "refType": null
+    }
+  },
+  "title": "ChannelConfigVo"
+}

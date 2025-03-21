@@ -1,0 +1,11 @@
+Property Name,Type,Format
+createBy,integer,int64
+createDept,integer,int64
+createTime,string,date-time
+email,string,
+id,integer,int64
+nickName,string,
+phonenumber,string,
+sex,string,
+updateBy,integer,int64
+updateTime,string,date-time

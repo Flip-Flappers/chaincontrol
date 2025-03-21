@@ -1,0 +1,215 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Swagger API Doc",
+    "title": "Swagger API",
+    "termsOfService": "http://ip:port/**"
+  },
+  "paths": {
+    "/system/role/authUser/unallocatedList": {
+      "post": {
+        "tags": [
+          "sys-role-controller"
+        ],
+        "summary": "查询未分配用户角色列表",
+        "description": "查询未分配用户角色列表",
+        "operationId": "unallocatedListUsingPOST_1",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "data.createBy",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "data.createDept",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "data.createTime",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "name": "data.deptId",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "data.email",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "data.id",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "data.nickName",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "data.password",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "data.phonenumber",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "data.postIds",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "data.remark",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "data.roleId",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "data.roleIds",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "data.sex",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "data.status",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "data.superAdmin",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "data.updateBy",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "data.updateTime",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "name": "data.userName",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "data.userType",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "pageNum",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "requestId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Paging«SysUserVo»",
+              "originalRef": "Paging«SysUserVo»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    }
+  }
+}

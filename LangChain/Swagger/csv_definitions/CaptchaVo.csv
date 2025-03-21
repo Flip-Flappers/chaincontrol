@@ -1,0 +1,4 @@
+Property Name,Type,Format
+captchaEnabled,boolean,
+img,string,
+uuid,string,

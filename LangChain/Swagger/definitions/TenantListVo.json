@@ -1,0 +1,19 @@
+{
+  "type": "object",
+  "properties": {
+    "companyName": {
+      "type": "string",
+      "refType": null
+    },
+    "domain": {
+      "type": "string",
+      "refType": null
+    },
+    "tenantId": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    }
+  },
+  "title": "TenantListVo"
+}

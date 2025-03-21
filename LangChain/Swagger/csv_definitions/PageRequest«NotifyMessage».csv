@@ -1,0 +1,6 @@
+Property Name,Type,Format
+data,Unknown,
+pageNum,integer,int32
+pageSize,integer,int32
+requestId,string,
+sortMap,object,

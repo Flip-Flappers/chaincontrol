@@ -1,0 +1,19 @@
+{
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "主键"
+    },
+    "model": {
+      "description": "模型内容",
+      "$ref": "#/definitions/Model",
+      "originalRef": "Model"
+    },
+    "productKey": {
+      "type": "string",
+      "description": "产品key"
+    }
+  },
+  "title": "ThingModelVo"
+}

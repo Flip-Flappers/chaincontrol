@@ -1,0 +1,12 @@
+Property Name,Type,Format
+createTime,string,date-time
+cssClass,string,
+dictLabel,string,
+dictSort,integer,int32
+dictType,string,
+dictValue,string,
+id,integer,int64
+isDefault,string,
+listClass,string,
+remark,string,
+status,string,

@@ -1,0 +1,12 @@
+Property Name,Type,Format
+appId,string,
+appName,string,
+appSecret,string,
+appType,string,
+createBy,integer,int64
+createDept,integer,int64
+createTime,string,date-time
+id,integer,int64
+remark,string,
+updateBy,integer,int64
+updateTime,string,date-time

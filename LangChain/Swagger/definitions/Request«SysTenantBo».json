@@ -1,0 +1,15 @@
+{
+  "type": "object",
+  "properties": {
+    "data": {
+      "$ref": "#/definitions/SysTenantBo",
+      "originalRef": "SysTenantBo",
+      "refType": "SysTenantBo"
+    },
+    "requestId": {
+      "type": "string",
+      "refType": null
+    }
+  },
+  "title": "Request«SysTenantBo»"
+}

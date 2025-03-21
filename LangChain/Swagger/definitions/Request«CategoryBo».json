@@ -1,0 +1,15 @@
+{
+  "type": "object",
+  "properties": {
+    "data": {
+      "$ref": "#/definitions/CategoryBo",
+      "originalRef": "CategoryBo",
+      "refType": "CategoryBo"
+    },
+    "requestId": {
+      "type": "string",
+      "refType": null
+    }
+  },
+  "title": "Request«CategoryBo»"
+}

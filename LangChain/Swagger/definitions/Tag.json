@@ -1,0 +1,18 @@
+{
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "refType": null
+    },
+    "name": {
+      "type": "string",
+      "refType": null
+    },
+    "value": {
+      "type": "string",
+      "refType": null
+    }
+  },
+  "title": "Tag"
+}

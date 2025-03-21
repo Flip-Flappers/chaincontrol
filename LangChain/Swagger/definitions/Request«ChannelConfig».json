@@ -1,0 +1,15 @@
+{
+  "type": "object",
+  "properties": {
+    "data": {
+      "$ref": "#/definitions/ChannelConfig",
+      "originalRef": "ChannelConfig",
+      "refType": "ChannelConfig"
+    },
+    "requestId": {
+      "type": "string",
+      "refType": null
+    }
+  },
+  "title": "Request«ChannelConfig»"
+}

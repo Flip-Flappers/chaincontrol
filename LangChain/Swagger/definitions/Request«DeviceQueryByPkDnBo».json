@@ -1,0 +1,15 @@
+{
+  "type": "object",
+  "properties": {
+    "data": {
+      "$ref": "#/definitions/DeviceQueryByPkDnBo",
+      "originalRef": "DeviceQueryByPkDnBo",
+      "refType": "DeviceQueryByPkDnBo"
+    },
+    "requestId": {
+      "type": "string",
+      "refType": null
+    }
+  },
+  "title": "Request«DeviceQueryByPkDnBo»"
+}

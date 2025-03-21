@@ -1,0 +1,56 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Swagger API Doc",
+    "title": "Swagger API",
+    "termsOfService": "http://ip:port/**"
+  },
+  "paths": {
+    "/system/user/profile/updatePwd": {
+      "post": {
+        "tags": [
+          "sys-profile-controller"
+        ],
+        "summary": "重置密码",
+        "description": "重置密码",
+        "operationId": "updatePwdUsingPOST_1",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "bo",
+            "description": "bo",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Request«SysChangePwdBo»",
+              "originalRef": "Request«SysChangePwdBo»"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    }
+  }
+}

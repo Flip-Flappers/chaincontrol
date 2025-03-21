@@ -1,0 +1,57 @@
+{
+  "type": "object",
+  "properties": {
+    "content": {
+      "type": "string",
+      "description": "内容",
+      "refType": null
+    },
+    "createBy": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "createDept": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "createTime": {
+      "type": "string",
+      "format": "date-time",
+      "refType": null
+    },
+    "ruleId": {
+      "type": "string",
+      "description": "规则id",
+      "refType": null
+    },
+    "state1": {
+      "type": "string",
+      "description": "状态",
+      "refType": null
+    },
+    "success": {
+      "type": "boolean",
+      "description": "是否成功",
+      "refType": null
+    },
+    "time": {
+      "type": "integer",
+      "format": "int64",
+      "description": "时间",
+      "refType": null
+    },
+    "updateBy": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "updateTime": {
+      "type": "string",
+      "format": "date-time",
+      "refType": null
+    }
+  },
+  "title": "RuleLogBo"
+}

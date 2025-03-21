@@ -1,0 +1,17 @@
+Property Name,Type,Format
+createBy,integer,int64
+createDept,integer,int64
+createTime,string,date-time
+dataScope,string,
+deptCheckStrictly,boolean,
+deptIds,array,
+id,integer,int64
+menuCheckStrictly,boolean,
+menuIds,array,
+remark,string,
+roleKey,string,
+roleName,string,
+roleSort,integer,int32
+status,string,
+updateBy,integer,int64
+updateTime,string,date-time

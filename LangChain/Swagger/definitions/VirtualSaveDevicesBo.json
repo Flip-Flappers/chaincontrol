@@ -1,0 +1,44 @@
+{
+  "type": "object",
+  "properties": {
+    "createBy": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "createDept": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "createTime": {
+      "type": "string",
+      "format": "date-time",
+      "refType": null
+    },
+    "devices": {
+      "type": "array",
+      "description": "设备id列表",
+      "items": {
+        "type": "string"
+      },
+      "refType": "string"
+    },
+    "id": {
+      "type": "string",
+      "description": "id",
+      "refType": null
+    },
+    "updateBy": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "updateTime": {
+      "type": "string",
+      "format": "date-time",
+      "refType": null
+    }
+  },
+  "title": "VirtualSaveDevicesBo"
+}

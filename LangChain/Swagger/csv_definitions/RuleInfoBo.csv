@@ -1,0 +1,16 @@
+Property Name,Type,Format
+actions,array,
+createAt,integer,int64
+createBy,integer,int64
+createDept,integer,int64
+createTime,string,date-time
+desc,string,
+filters,array,
+id,string,
+listeners,array,
+name,string,
+state,string,
+type,string,
+uid,string,
+updateBy,integer,int64
+updateTime,string,date-time

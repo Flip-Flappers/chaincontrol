@@ -1,0 +1,12 @@
+Property Name,Type,Format
+code,string,
+createAt,integer,int64
+createBy,integer,int64
+createDept,integer,int64
+createTime,string,date-time
+icon,string,
+id,integer,int64
+tenantId,integer,int64
+title,string,
+updateBy,integer,int64
+updateTime,string,date-time

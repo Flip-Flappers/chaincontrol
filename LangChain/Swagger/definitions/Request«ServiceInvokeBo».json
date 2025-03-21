@@ -1,0 +1,15 @@
+{
+  "type": "object",
+  "properties": {
+    "data": {
+      "$ref": "#/definitions/ServiceInvokeBo",
+      "originalRef": "ServiceInvokeBo",
+      "refType": "ServiceInvokeBo"
+    },
+    "requestId": {
+      "type": "string",
+      "refType": null
+    }
+  },
+  "title": "Request«ServiceInvokeBo»"
+}

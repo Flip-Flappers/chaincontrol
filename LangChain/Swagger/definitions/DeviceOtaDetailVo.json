@@ -1,0 +1,49 @@
+{
+  "type": "object",
+  "properties": {
+    "desc": {
+      "type": "string",
+      "refType": null
+    },
+    "deviceId": {
+      "type": "string",
+      "refType": null
+    },
+    "deviceName": {
+      "type": "string",
+      "refType": null
+    },
+    "id": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "module": {
+      "type": "string",
+      "refType": null
+    },
+    "otaInfoId": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "productKey": {
+      "type": "string",
+      "refType": null
+    },
+    "step": {
+      "type": "integer",
+      "format": "int32",
+      "refType": null
+    },
+    "taskId": {
+      "type": "string",
+      "refType": null
+    },
+    "version": {
+      "type": "string",
+      "refType": null
+    }
+  },
+  "title": "DeviceOtaDetailVo"
+}

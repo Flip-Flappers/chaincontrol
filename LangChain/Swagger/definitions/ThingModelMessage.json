@@ -1,0 +1,57 @@
+{
+  "type": "object",
+  "properties": {
+    "code": {
+      "type": "integer",
+      "format": "int32",
+      "refType": null
+    },
+    "data": {
+      "type": "object",
+      "refType": null
+    },
+    "deviceId": {
+      "type": "string",
+      "refType": null
+    },
+    "deviceName": {
+      "type": "string",
+      "refType": null
+    },
+    "id": {
+      "type": "string",
+      "refType": null
+    },
+    "identifier": {
+      "type": "string",
+      "refType": null
+    },
+    "mid": {
+      "type": "string",
+      "refType": null
+    },
+    "occurred": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "productKey": {
+      "type": "string",
+      "refType": null
+    },
+    "time": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "type": {
+      "type": "string",
+      "refType": null
+    },
+    "uid": {
+      "type": "string",
+      "refType": null
+    }
+  },
+  "title": "ThingModelMessage"
+}

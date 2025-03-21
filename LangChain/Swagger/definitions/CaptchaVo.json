@@ -1,0 +1,15 @@
+{
+  "type": "object",
+  "properties": {
+    "captchaEnabled": {
+      "type": "boolean"
+    },
+    "img": {
+      "type": "string"
+    },
+    "uuid": {
+      "type": "string"
+    }
+  },
+  "title": "CaptchaVo"
+}

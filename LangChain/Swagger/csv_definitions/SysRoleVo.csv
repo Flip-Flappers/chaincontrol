@@ -1,0 +1,13 @@
+Property Name,Type,Format
+createTime,string,date-time
+dataScope,string,
+deptCheckStrictly,boolean,
+flag,boolean,
+id,integer,int64
+menuCheckStrictly,boolean,
+remark,string,
+roleKey,string,
+roleName,string,
+roleSort,integer,int32
+status,string,
+superAdmin,boolean,

@@ -1,0 +1,11 @@
+Property Name,Type,Format
+desc,string,
+deviceId,string,
+deviceName,string,
+id,integer,int64
+module,string,
+otaInfoId,integer,int64
+productKey,string,
+step,integer,int32
+taskId,string,
+version,string,

@@ -1,0 +1,7 @@
+Property Name,Type,Format
+childrenKey,string,
+deep,integer,int32
+idKey,string,
+nameKey,string,
+parentIdKey,string,
+weightKey,string,

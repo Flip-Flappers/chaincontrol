@@ -1,0 +1,15 @@
+{
+  "type": "object",
+  "properties": {
+    "data": {
+      "$ref": "#/definitions/SysUserOnline",
+      "originalRef": "SysUserOnline",
+      "refType": "SysUserOnline"
+    },
+    "requestId": {
+      "type": "string",
+      "refType": null
+    }
+  },
+  "title": "Request«SysUserOnline»"
+}

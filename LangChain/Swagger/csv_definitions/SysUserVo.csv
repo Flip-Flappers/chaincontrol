@@ -1,0 +1,22 @@
+Property Name,Type,Format
+avatar,integer,int64
+createTime,string,date-time
+dept,Unknown,
+deptId,integer,int64
+email,string,
+id,integer,int64
+loginDate,string,date-time
+loginIp,string,
+nickName,string,
+password,string,
+phonenumber,string,
+postIds,array,
+remark,string,
+roleId,integer,int64
+roleIds,array,
+roles,array,
+sex,string,
+status,string,
+tenantId,integer,int64
+userName,string,
+userType,string,

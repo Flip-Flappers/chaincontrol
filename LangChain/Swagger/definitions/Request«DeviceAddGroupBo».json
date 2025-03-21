@@ -1,0 +1,15 @@
+{
+  "type": "object",
+  "properties": {
+    "data": {
+      "$ref": "#/definitions/DeviceAddGroupBo",
+      "originalRef": "DeviceAddGroupBo",
+      "refType": "DeviceAddGroupBo"
+    },
+    "requestId": {
+      "type": "string",
+      "refType": null
+    }
+  },
+  "title": "Request«DeviceAddGroupBo»"
+}

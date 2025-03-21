@@ -1,0 +1,56 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Swagger API Doc",
+    "title": "Swagger API",
+    "termsOfService": "http://ip:port/**"
+  },
+  "paths": {
+    "/system/role/authUser/cancelAll": {
+      "post": {
+        "tags": [
+          "sys-role-controller"
+        ],
+        "summary": "批量取消授权用户",
+        "description": "批量取消授权用户",
+        "operationId": "cancelAuthUserAllUsingPOST_1",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "bo",
+            "description": "bo",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Request«SysRoleAuthBo»",
+              "originalRef": "Request«SysRoleAuthBo»"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    }
+  }
+}

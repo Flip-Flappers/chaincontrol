@@ -1,0 +1,51 @@
+{
+  "type": "object",
+  "properties": {
+    "createBy": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "createDept": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "createTime": {
+      "type": "string",
+      "format": "date-time",
+      "refType": null
+    },
+    "deviceId": {
+      "type": "string",
+      "description": "设备",
+      "refType": null
+    },
+    "id": {
+      "type": "string",
+      "description": "tag id",
+      "refType": null
+    },
+    "name": {
+      "type": "string",
+      "description": "tag名称",
+      "refType": null
+    },
+    "updateBy": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "updateTime": {
+      "type": "string",
+      "format": "date-time",
+      "refType": null
+    },
+    "value": {
+      "type": "string",
+      "description": "tag值",
+      "refType": null
+    }
+  },
+  "title": "DeviceTagAddBo"
+}

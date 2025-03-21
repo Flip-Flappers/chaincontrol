@@ -1,0 +1,14 @@
+{
+  "type": "object",
+  "properties": {
+    "latitude": {
+      "type": "string",
+      "refType": null
+    },
+    "longitude": {
+      "type": "string",
+      "refType": null
+    }
+  },
+  "title": "Locate"
+}

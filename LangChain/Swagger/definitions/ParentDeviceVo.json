@@ -1,0 +1,12 @@
+{
+  "type": "object",
+  "properties": {
+    "deviceName": {
+      "type": "string"
+    },
+    "id": {
+      "type": "string"
+    }
+  },
+  "title": "ParentDeviceVo"
+}

@@ -1,0 +1,16 @@
+{
+  "type": "object",
+  "properties": {
+    "postGroup": {
+      "type": "string"
+    },
+    "roleGroup": {
+      "type": "string"
+    },
+    "user": {
+      "$ref": "#/definitions/SysUserVo",
+      "originalRef": "SysUserVo"
+    }
+  },
+  "title": "ProfileVo"
+}

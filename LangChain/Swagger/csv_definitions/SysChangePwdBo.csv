@@ -1,0 +1,8 @@
+Property Name,Type,Format
+createBy,integer,int64
+createDept,integer,int64
+createTime,string,date-time
+newPassword,string,
+oldPassword,string,
+updateBy,integer,int64
+updateTime,string,date-time

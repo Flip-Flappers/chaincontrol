@@ -1,0 +1,7 @@
+Property Name,Type,Format
+deviceTotal,integer,int32
+id,string,
+logAt,integer,int64
+result,string,
+virtualDeviceId,string,
+virtualDeviceName,string,

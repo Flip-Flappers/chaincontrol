@@ -1,0 +1,49 @@
+{
+  "type": "object",
+  "properties": {
+    "browser": {
+      "type": "string",
+      "refType": null
+    },
+    "id": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "ipaddr": {
+      "type": "string",
+      "refType": null
+    },
+    "loginLocation": {
+      "type": "string",
+      "refType": null
+    },
+    "loginTime": {
+      "type": "string",
+      "format": "date-time",
+      "refType": null
+    },
+    "msg": {
+      "type": "string",
+      "refType": null
+    },
+    "os": {
+      "type": "string",
+      "refType": null
+    },
+    "status": {
+      "type": "string",
+      "refType": null
+    },
+    "tenantId": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "userName": {
+      "type": "string",
+      "refType": null
+    }
+  },
+  "title": "SysLogininforVo"
+}

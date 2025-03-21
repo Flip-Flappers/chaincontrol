@@ -1,0 +1,12 @@
+Property Name,Type,Format
+ancestors,string,
+createTime,string,date-time
+deptName,string,
+email,string,
+id,integer,int64
+leader,string,
+orderNum,integer,int32
+parentId,integer,int64
+parentName,string,
+phone,string,
+status,string,

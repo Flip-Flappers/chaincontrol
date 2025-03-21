@@ -1,0 +1,22 @@
+{
+  "type": "object",
+  "properties": {
+    "identifier": {
+      "type": "string",
+      "refType": null
+    },
+    "name": {
+      "type": "string",
+      "refType": null
+    },
+    "outputData": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/Parameter",
+        "originalRef": "Parameter"
+      },
+      "refType": "Parameter"
+    }
+  },
+  "title": "Event"
+}

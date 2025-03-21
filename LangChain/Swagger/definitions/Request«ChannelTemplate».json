@@ -1,0 +1,15 @@
+{
+  "type": "object",
+  "properties": {
+    "data": {
+      "$ref": "#/definitions/ChannelTemplate",
+      "originalRef": "ChannelTemplate",
+      "refType": "ChannelTemplate"
+    },
+    "requestId": {
+      "type": "string",
+      "refType": null
+    }
+  },
+  "title": "Request«ChannelTemplate»"
+}

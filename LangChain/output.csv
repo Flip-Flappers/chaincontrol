@@ -1,0 +1,5 @@
+url,description,name
+http://127.0.0.1:8079/access/deviceApi/getDeviceConfig,获取配置,getdeviceconfig
+http://127.0.0.1:8086/plugin/http/dynamic/register,动态注册,register
+http://127.0.0.1:8086/plugin/http/dynamic/delete,动态删除,deleted
+http://127.0.0.1:8086/plugin/http/dynamic/update,动态更新,update

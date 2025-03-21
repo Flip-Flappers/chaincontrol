@@ -1,0 +1,34 @@
+{
+  "type": "object",
+  "properties": {
+    "channelConfigId": {
+      "type": "integer",
+      "format": "int64",
+      "description": "通道配置id",
+      "refType": null
+    },
+    "content": {
+      "type": "string",
+      "description": "通道模板内容",
+      "refType": null
+    },
+    "createAt": {
+      "type": "integer",
+      "format": "int64",
+      "description": "创建时间",
+      "refType": null
+    },
+    "id": {
+      "type": "integer",
+      "format": "int64",
+      "description": "通道模板id",
+      "refType": null
+    },
+    "title": {
+      "type": "string",
+      "description": "通道模板名称",
+      "refType": null
+    }
+  },
+  "title": "ChannelTemplateVo"
+}

@@ -1,0 +1,17 @@
+{
+  "type": "object",
+  "properties": {
+    "rows": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/ChannelTemplateVo",
+        "originalRef": "ChannelTemplateVo"
+      }
+    },
+    "total": {
+      "type": "integer",
+      "format": "int64"
+    }
+  },
+  "title": "Paging«ChannelTemplateVo»"
+}

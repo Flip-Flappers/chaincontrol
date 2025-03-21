@@ -1,0 +1,14 @@
+Property Name,Type,Format
+createBy,integer,int64
+createDept,integer,int64
+createTime,string,date-time
+id,string,
+model,string,
+modifyAt,integer,int64
+name,string,
+productKey,string,
+script,string,
+state,string,
+type,string,
+updateBy,integer,int64
+updateTime,string,date-time

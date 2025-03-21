@@ -1,0 +1,52 @@
+{
+  "type": "object",
+  "properties": {
+    "createAt": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "desc": {
+      "type": "string",
+      "refType": null
+    },
+    "fail": {
+      "type": "integer",
+      "format": "int32",
+      "refType": null
+    },
+    "id": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "module": {
+      "type": "string",
+      "refType": null
+    },
+    "packageId": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "productKey": {
+      "type": "string",
+      "refType": null
+    },
+    "success": {
+      "type": "integer",
+      "format": "int32",
+      "refType": null
+    },
+    "total": {
+      "type": "integer",
+      "format": "int32",
+      "refType": null
+    },
+    "version": {
+      "type": "string",
+      "refType": null
+    }
+  },
+  "title": "DeviceOtaInfoVo"
+}

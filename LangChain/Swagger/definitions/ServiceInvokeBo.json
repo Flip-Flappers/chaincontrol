@@ -1,0 +1,25 @@
+{
+  "type": "object",
+  "required": [
+    "deviceId",
+    "service"
+  ],
+  "properties": {
+    "args": {
+      "type": "object",
+      "description": "参数",
+      "refType": null
+    },
+    "deviceId": {
+      "type": "string",
+      "description": "设备id",
+      "refType": null
+    },
+    "service": {
+      "type": "string",
+      "description": "服务",
+      "refType": null
+    }
+  },
+  "title": "ServiceInvokeBo"
+}

@@ -1,0 +1,72 @@
+{
+  "type": "object",
+  "properties": {
+    "createBy": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "createDept": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "createTime": {
+      "type": "string",
+      "format": "date-time",
+      "refType": null
+    },
+    "id": {
+      "type": "string",
+      "description": "id",
+      "refType": null
+    },
+    "model": {
+      "type": "string",
+      "description": "型号",
+      "refType": null
+    },
+    "modifyAt": {
+      "type": "integer",
+      "format": "int64",
+      "description": "修改时间",
+      "refType": null
+    },
+    "name": {
+      "type": "string",
+      "description": "名称",
+      "refType": null
+    },
+    "productKey": {
+      "type": "string",
+      "description": "产品Key",
+      "refType": null
+    },
+    "script": {
+      "type": "string",
+      "description": "脚本内容",
+      "refType": null
+    },
+    "state": {
+      "type": "string",
+      "description": "脚本状态",
+      "refType": null
+    },
+    "type": {
+      "type": "string",
+      "description": "脚本类型",
+      "refType": null
+    },
+    "updateBy": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "updateTime": {
+      "type": "string",
+      "format": "date-time",
+      "refType": null
+    }
+  },
+  "title": "ProductModelBo"
+}

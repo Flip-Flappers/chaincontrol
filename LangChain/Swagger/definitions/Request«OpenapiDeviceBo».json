@@ -1,0 +1,15 @@
+{
+  "type": "object",
+  "properties": {
+    "data": {
+      "$ref": "#/definitions/OpenapiDeviceBo",
+      "originalRef": "OpenapiDeviceBo",
+      "refType": "OpenapiDeviceBo"
+    },
+    "requestId": {
+      "type": "string",
+      "refType": null
+    }
+  },
+  "title": "Request«OpenapiDeviceBo»"
+}

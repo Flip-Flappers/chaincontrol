@@ -1,0 +1,22 @@
+{
+  "type": "object",
+  "properties": {
+    "permissions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "roles": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "user": {
+      "$ref": "#/definitions/SysUserVo",
+      "originalRef": "SysUserVo"
+    }
+  },
+  "title": "UserInfoVo"
+}

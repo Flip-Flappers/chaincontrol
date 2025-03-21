@@ -1,0 +1,13 @@
+Property Name,Type,Format
+code,integer,int32
+data,object,
+deviceId,string,
+deviceName,string,
+id,string,
+identifier,string,
+mid,string,
+occurred,integer,int64
+productKey,string,
+time,integer,int64
+type,string,
+uid,string,

@@ -1,0 +1,34 @@
+{
+  "type": "object",
+  "properties": {
+    "createAt": {
+      "type": "integer",
+      "format": "int64"
+    },
+    "deviceId": {
+      "type": "string"
+    },
+    "deviceName": {
+      "type": "string"
+    },
+    "id": {
+      "type": "string"
+    },
+    "model": {
+      "type": "string"
+    },
+    "parentId": {
+      "type": "string"
+    },
+    "productKey": {
+      "type": "string"
+    },
+    "secret": {
+      "type": "string"
+    },
+    "uid": {
+      "type": "string"
+    }
+  },
+  "title": "OpenDeviceInfoVo"
+}

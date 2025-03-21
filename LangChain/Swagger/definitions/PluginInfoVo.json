@@ -1,0 +1,64 @@
+{
+  "type": "object",
+  "properties": {
+    "config": {
+      "type": "string",
+      "refType": null
+    },
+    "configSchema": {
+      "type": "string",
+      "refType": null
+    },
+    "createTime": {
+      "type": "string",
+      "format": "date-time",
+      "refType": null
+    },
+    "deployType": {
+      "type": "string",
+      "refType": null
+    },
+    "description": {
+      "type": "string",
+      "refType": null
+    },
+    "file": {
+      "type": "string",
+      "refType": null
+    },
+    "id": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "name": {
+      "type": "string",
+      "refType": null
+    },
+    "pluginId": {
+      "type": "string",
+      "refType": null
+    },
+    "protocol": {
+      "type": "string",
+      "refType": null
+    },
+    "script": {
+      "type": "string",
+      "refType": null
+    },
+    "state": {
+      "type": "string",
+      "refType": null
+    },
+    "type": {
+      "type": "string",
+      "refType": null
+    },
+    "version": {
+      "type": "string",
+      "refType": null
+    }
+  },
+  "title": "PluginInfoVo"
+}

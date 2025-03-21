@@ -1,0 +1,61 @@
+{
+  "type": "object",
+  "properties": {
+    "createBy": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "createDept": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "createTime": {
+      "type": "string",
+      "format": "date-time",
+      "refType": null
+    },
+    "deviceId": {
+      "type": "string",
+      "refType": null
+    },
+    "deviceName": {
+      "type": "string",
+      "refType": null
+    },
+    "id": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "packageId": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "productKey": {
+      "type": "string",
+      "refType": null
+    },
+    "taskId": {
+      "type": "string",
+      "refType": null
+    },
+    "updateBy": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "updateTime": {
+      "type": "string",
+      "format": "date-time",
+      "refType": null
+    },
+    "version": {
+      "type": "string",
+      "refType": null
+    }
+  },
+  "title": "DeviceOtaInfoBo"
+}

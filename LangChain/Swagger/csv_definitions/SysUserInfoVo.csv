@@ -1,0 +1,6 @@
+Property Name,Type,Format
+postIds,array,
+posts,array,
+roleIds,array,
+roles,array,
+user,Unknown,

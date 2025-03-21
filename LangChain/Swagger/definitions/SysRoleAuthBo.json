@@ -1,0 +1,46 @@
+{
+  "type": "object",
+  "properties": {
+    "createBy": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "createDept": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "createTime": {
+      "type": "string",
+      "format": "date-time",
+      "refType": null
+    },
+    "roleId": {
+      "type": "integer",
+      "format": "int64",
+      "description": "角色ID",
+      "refType": null
+    },
+    "updateBy": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "updateTime": {
+      "type": "string",
+      "format": "date-time",
+      "refType": null
+    },
+    "userIds": {
+      "type": "array",
+      "description": "用户ID列表",
+      "items": {
+        "type": "integer",
+        "format": "int64"
+      },
+      "refType": "integer"
+    }
+  },
+  "title": "SysRoleAuthBo"
+}

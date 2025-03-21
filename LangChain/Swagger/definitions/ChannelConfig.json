@@ -1,0 +1,59 @@
+{
+  "type": "object",
+  "properties": {
+    "channelId": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "createAt": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "createBy": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "createDept": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "createTime": {
+      "type": "string",
+      "format": "date-time",
+      "refType": null
+    },
+    "id": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "param": {
+      "type": "string",
+      "refType": null
+    },
+    "tenantId": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "title": {
+      "type": "string",
+      "refType": null
+    },
+    "updateBy": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "updateTime": {
+      "type": "string",
+      "format": "date-time",
+      "refType": null
+    }
+  },
+  "title": "ChannelConfig"
+}

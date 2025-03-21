@@ -1,0 +1,41 @@
+{
+  "type": "object",
+  "properties": {
+    "clientId": {
+      "type": "string",
+      "description": "clientId",
+      "refType": null
+    },
+    "createBy": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "createDept": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "createTime": {
+      "type": "string",
+      "format": "date-time",
+      "refType": null
+    },
+    "deviceId": {
+      "type": "string",
+      "description": "设备id",
+      "refType": null
+    },
+    "updateBy": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "updateTime": {
+      "type": "string",
+      "format": "date-time",
+      "refType": null
+    }
+  },
+  "title": "DeviceConsumerBo"
+}

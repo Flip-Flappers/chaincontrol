@@ -1,0 +1,16 @@
+{
+  "type": "object",
+  "properties": {
+    "appId": {
+      "type": "string",
+      "description": "appId",
+      "refType": null
+    },
+    "code": {
+      "type": "string",
+      "description": "授权码",
+      "refType": null
+    }
+  },
+  "title": "XcxLoginBo"
+}

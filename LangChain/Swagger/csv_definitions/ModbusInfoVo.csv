@@ -1,0 +1,7 @@
+Property Name,Type,Format
+createAt,integer,int64
+id,integer,int64
+name,string,
+productKey,string,
+remark,string,
+updateAt,integer,int64

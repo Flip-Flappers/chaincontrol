@@ -1,0 +1,88 @@
+{
+  "type": "object",
+  "properties": {
+    "accessKey": {
+      "type": "string",
+      "refType": null
+    },
+    "accessPolicy": {
+      "type": "string",
+      "refType": null
+    },
+    "bucketName": {
+      "type": "string",
+      "refType": null
+    },
+    "configKey": {
+      "type": "string",
+      "refType": null
+    },
+    "createBy": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "createDept": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "createTime": {
+      "type": "string",
+      "format": "date-time",
+      "refType": null
+    },
+    "domain": {
+      "type": "string",
+      "refType": null
+    },
+    "endpoint": {
+      "type": "string",
+      "refType": null
+    },
+    "ext1": {
+      "type": "string",
+      "refType": null
+    },
+    "id": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "isHttps": {
+      "type": "string",
+      "refType": null
+    },
+    "prefix": {
+      "type": "string",
+      "refType": null
+    },
+    "region": {
+      "type": "string",
+      "refType": null
+    },
+    "remark": {
+      "type": "string",
+      "refType": null
+    },
+    "secretKey": {
+      "type": "string",
+      "refType": null
+    },
+    "status": {
+      "type": "string",
+      "refType": null
+    },
+    "updateBy": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "updateTime": {
+      "type": "string",
+      "format": "date-time",
+      "refType": null
+    }
+  },
+  "title": "SysOssConfigBo"
+}

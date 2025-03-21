@@ -1,0 +1,44 @@
+{
+  "type": "object",
+  "properties": {
+    "createBy": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "createDept": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "createTime": {
+      "type": "string",
+      "format": "date-time",
+      "refType": null
+    },
+    "devices": {
+      "type": "array",
+      "description": "设备列表",
+      "items": {
+        "type": "string"
+      },
+      "refType": "string"
+    },
+    "group": {
+      "type": "string",
+      "description": "组id",
+      "refType": null
+    },
+    "updateBy": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "updateTime": {
+      "type": "string",
+      "format": "date-time",
+      "refType": null
+    }
+  },
+  "title": "DeviceAddGroupBo"
+}

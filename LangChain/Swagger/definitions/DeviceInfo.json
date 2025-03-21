@@ -1,0 +1,92 @@
+{
+  "type": "object",
+  "properties": {
+    "createAt": {
+      "type": "integer",
+      "format": "int64"
+    },
+    "createBy": {
+      "type": "integer",
+      "format": "int64"
+    },
+    "createDept": {
+      "type": "integer",
+      "format": "int64"
+    },
+    "createTime": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "deviceId": {
+      "type": "string"
+    },
+    "deviceName": {
+      "type": "string"
+    },
+    "group": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/definitions/Group",
+        "originalRef": "Group"
+      }
+    },
+    "id": {
+      "type": "string"
+    },
+    "locate": {
+      "$ref": "#/definitions/Locate",
+      "originalRef": "Locate"
+    },
+    "model": {
+      "type": "string"
+    },
+    "online": {
+      "type": "boolean"
+    },
+    "parentId": {
+      "type": "string"
+    },
+    "productKey": {
+      "type": "string"
+    },
+    "property": {
+      "type": "object"
+    },
+    "secret": {
+      "type": "string"
+    },
+    "state": {
+      "$ref": "#/definitions/State",
+      "originalRef": "State"
+    },
+    "subUid": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "tag": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/definitions/Tag",
+        "originalRef": "Tag"
+      }
+    },
+    "tenantId": {
+      "type": "integer",
+      "format": "int64"
+    },
+    "uid": {
+      "type": "string"
+    },
+    "updateBy": {
+      "type": "integer",
+      "format": "int64"
+    },
+    "updateTime": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "title": "DeviceInfo"
+}

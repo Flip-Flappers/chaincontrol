@@ -1,0 +1,11 @@
+Property Name,Type,Format
+content,string,
+createBy,integer,int64
+createDept,integer,int64
+createTime,string,date-time
+ruleId,string,
+state1,string,
+success,boolean,
+time,integer,int64
+updateBy,integer,int64
+updateTime,string,date-time

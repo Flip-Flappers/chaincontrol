@@ -1,0 +1,15 @@
+{
+  "type": "object",
+  "properties": {
+    "data": {
+      "$ref": "#/definitions/IconTypeBo",
+      "originalRef": "IconTypeBo",
+      "refType": "IconTypeBo"
+    },
+    "requestId": {
+      "type": "string",
+      "refType": null
+    }
+  },
+  "title": "Request«IconTypeBo»"
+}

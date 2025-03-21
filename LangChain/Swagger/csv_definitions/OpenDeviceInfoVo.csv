@@ -1,0 +1,10 @@
+Property Name,Type,Format
+createAt,integer,int64
+deviceId,string,
+deviceName,string,
+id,string,
+model,string,
+parentId,string,
+productKey,string,
+secret,string,
+uid,string,

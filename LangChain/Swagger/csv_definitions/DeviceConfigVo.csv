@@ -1,0 +1,7 @@
+Property Name,Type,Format
+config,string,
+createAt,integer,int64
+deviceId,string,
+deviceName,string,
+id,string,
+productKey,string,

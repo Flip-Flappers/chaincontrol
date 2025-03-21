@@ -1,0 +1,45 @@
+{
+  "type": "object",
+  "properties": {
+    "createBy": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "createByName": {
+      "type": "string",
+      "refType": null
+    },
+    "createTime": {
+      "type": "string",
+      "format": "date-time",
+      "refType": null
+    },
+    "id": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "noticeContent": {
+      "type": "string",
+      "refType": null
+    },
+    "noticeTitle": {
+      "type": "string",
+      "refType": null
+    },
+    "noticeType": {
+      "type": "string",
+      "refType": null
+    },
+    "remark": {
+      "type": "string",
+      "refType": null
+    },
+    "status": {
+      "type": "string",
+      "refType": null
+    }
+  },
+  "title": "SysNoticeVo"
+}

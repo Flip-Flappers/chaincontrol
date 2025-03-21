@@ -1,0 +1,21 @@
+{
+  "type": "object",
+  "properties": {
+    "deviceName": {
+      "type": "string",
+      "description": "产品名称",
+      "refType": null
+    },
+    "parentId": {
+      "type": "string",
+      "description": "父级ID",
+      "refType": null
+    },
+    "productKey": {
+      "type": "string",
+      "description": "产品key",
+      "refType": null
+    }
+  },
+  "title": "OpenapiDeviceBo"
+}

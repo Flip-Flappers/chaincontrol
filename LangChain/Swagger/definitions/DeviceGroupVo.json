@@ -1,0 +1,38 @@
+{
+  "type": "object",
+  "properties": {
+    "createAt": {
+      "type": "integer",
+      "format": "int64",
+      "description": "创建时间",
+      "refType": null
+    },
+    "deviceQty": {
+      "type": "integer",
+      "format": "int32",
+      "description": "设备数量",
+      "refType": null
+    },
+    "id": {
+      "type": "string",
+      "description": "设备组id",
+      "refType": null
+    },
+    "name": {
+      "type": "string",
+      "description": "设备组名称",
+      "refType": null
+    },
+    "remark": {
+      "type": "string",
+      "description": "分组说明",
+      "refType": null
+    },
+    "uid": {
+      "type": "string",
+      "description": "所属用户",
+      "refType": null
+    }
+  },
+  "title": "DeviceGroupVo"
+}

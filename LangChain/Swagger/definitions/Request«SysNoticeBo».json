@@ -1,0 +1,15 @@
+{
+  "type": "object",
+  "properties": {
+    "data": {
+      "$ref": "#/definitions/SysNoticeBo",
+      "originalRef": "SysNoticeBo",
+      "refType": "SysNoticeBo"
+    },
+    "requestId": {
+      "type": "string",
+      "refType": null
+    }
+  },
+  "title": "Request«SysNoticeBo»"
+}

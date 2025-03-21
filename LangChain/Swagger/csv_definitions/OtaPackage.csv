@@ -1,0 +1,21 @@
+Property Name,Type,Format
+createAt,integer,int64
+createBy,integer,int64
+createDept,integer,int64
+createTime,string,date-time
+desc,string,
+extData,string,
+id,integer,int64
+isDiff,boolean,
+md5,string,
+module,string,
+name,string,
+productKey,string,
+sign,string,
+signMethod,string,
+size,integer,int64
+tenantId,integer,int64
+updateBy,integer,int64
+updateTime,string,date-time
+url,string,
+version,string,

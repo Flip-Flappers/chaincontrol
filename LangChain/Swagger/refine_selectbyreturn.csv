@@ -1,0 +1,11 @@
+filename,contant
+DeviceInfo.csv,[DeviceInfo.csv] [DeviceInfo.csv] Property Name: online
+DeviceQueryBo.csv,[DeviceQueryBo.csv] [DeviceQueryBo.csv] Property Name: online
+DeviceInfoBo.csv,[DeviceInfoBo.csv] [DeviceInfoBo.csv] Property Name: onlineTime
+VirtualDeviceLog.csv,[VirtualDeviceLog.csv] [VirtualDeviceLog.csv] Property Name: deviceTotal
+VirtualDevice.csv,[VirtualDevice.csv] [VirtualDevice.csv] Property Name: devices
+Paging«DeviceOtaInfoVo».csv,[Paging«DeviceOtaInfoVo».csv] [Paging«DeviceOtaInfoVo».csv] Property Name: total
+DeviceAddGroupBo.csv,[DeviceAddGroupBo.csv] [DeviceAddGroupBo.csv] Property Name: devices
+State.csv,[State.csv] [State.csv] Property Name: onlineTime
+PageRequest«DeviceQueryBo».csv,[PageRequest«DeviceQueryBo».csv] [PageRequest«DeviceQueryBo».csv] Property Name: pageNum
+DeviceGroupBo.csv,[DeviceGroupBo.csv] [DeviceGroupBo.csv] Property Name: deviceQty

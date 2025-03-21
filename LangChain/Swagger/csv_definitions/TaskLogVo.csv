@@ -1,0 +1,6 @@
+Property Name,Type,Format
+content,string,
+id,string,
+logAt,integer,int64
+success,boolean,
+taskId,string,

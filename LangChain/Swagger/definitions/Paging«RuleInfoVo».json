@@ -1,0 +1,17 @@
+{
+  "type": "object",
+  "properties": {
+    "rows": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/RuleInfoVo",
+        "originalRef": "RuleInfoVo"
+      }
+    },
+    "total": {
+      "type": "integer",
+      "format": "int64"
+    }
+  },
+  "title": "Paging«RuleInfoVo»"
+}

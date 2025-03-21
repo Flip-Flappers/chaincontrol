@@ -1,0 +1,15 @@
+{
+  "type": "object",
+  "properties": {
+    "data": {
+      "$ref": "#/definitions/PluginInfoBo",
+      "originalRef": "PluginInfoBo",
+      "refType": "PluginInfoBo"
+    },
+    "requestId": {
+      "type": "string",
+      "refType": null
+    }
+  },
+  "title": "Request«PluginInfoBo»"
+}

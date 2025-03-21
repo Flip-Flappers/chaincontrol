@@ -1,0 +1,15 @@
+Property Name,Type,Format
+accessKey,string,
+accessPolicy,string,
+bucketName,string,
+configKey,string,
+domain,string,
+endpoint,string,
+ext1,string,
+id,integer,int64
+isHttps,string,
+prefix,string,
+region,string,
+remark,string,
+secretKey,string,
+status,string,

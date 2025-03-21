@@ -1,0 +1,15 @@
+{
+  "type": "object",
+  "properties": {
+    "data": {
+      "$ref": "#/definitions/XcxLoginBo",
+      "originalRef": "XcxLoginBo",
+      "refType": "XcxLoginBo"
+    },
+    "requestId": {
+      "type": "string",
+      "refType": null
+    }
+  },
+  "title": "Request«XcxLoginBo»"
+}

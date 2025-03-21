@@ -1,0 +1,31 @@
+{
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "menuCheckStrictly": {
+      "type": "boolean",
+      "refType": null
+    },
+    "menuIds": {
+      "type": "string",
+      "refType": null
+    },
+    "packageName": {
+      "type": "string",
+      "refType": null
+    },
+    "remark": {
+      "type": "string",
+      "refType": null
+    },
+    "status": {
+      "type": "string",
+      "refType": null
+    }
+  },
+  "title": "SysTenantPackageVo"
+}

@@ -1,0 +1,7 @@
+Property Name,Type,Format
+createTime,string,date-time
+dictName,string,
+dictType,string,
+id,integer,int64
+remark,string,
+status,string,

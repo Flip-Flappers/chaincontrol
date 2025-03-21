@@ -1,0 +1,6 @@
+Property Name,Type,Format
+channelId,string,
+createAt,integer,int64
+id,integer,int64
+param,string,
+title,string,

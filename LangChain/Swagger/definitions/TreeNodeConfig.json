@@ -1,0 +1,25 @@
+{
+  "type": "object",
+  "properties": {
+    "childrenKey": {
+      "type": "string"
+    },
+    "deep": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "idKey": {
+      "type": "string"
+    },
+    "nameKey": {
+      "type": "string"
+    },
+    "parentIdKey": {
+      "type": "string"
+    },
+    "weightKey": {
+      "type": "string"
+    }
+  },
+  "title": "TreeNodeConfig"
+}

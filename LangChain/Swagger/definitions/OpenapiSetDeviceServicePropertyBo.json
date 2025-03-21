@@ -1,0 +1,21 @@
+{
+  "type": "object",
+  "properties": {
+    "args": {
+      "type": "string",
+      "description": "参数",
+      "refType": null
+    },
+    "deviceName": {
+      "type": "string",
+      "description": "产品名称",
+      "refType": null
+    },
+    "productKey": {
+      "type": "string",
+      "description": "产品key",
+      "refType": null
+    }
+  },
+  "title": "OpenapiSetDeviceServicePropertyBo"
+}

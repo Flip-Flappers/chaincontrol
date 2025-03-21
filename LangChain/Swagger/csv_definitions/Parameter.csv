@@ -1,0 +1,7 @@
+Property Name,Type,Format
+dataType,Unknown,
+description,string,
+identifier,string,
+name,string,
+required,boolean,
+unit,string,

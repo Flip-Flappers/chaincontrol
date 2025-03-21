@@ -1,0 +1,60 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Swagger API Doc",
+    "title": "Swagger API",
+    "termsOfService": "http://ip:port/**"
+  },
+  "paths": {
+    "/system/notice/getDetail": {
+      "post": {
+        "tags": [
+          "sys-notice-controller"
+        ],
+        "summary": "根据通知公告编号获取详细信息",
+        "description": "根据通知公告编号获取详细信息",
+        "operationId": "getInfoUsingPOST_16",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "bo",
+            "description": "bo",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Request«long»",
+              "originalRef": "Request«long»"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/SysNoticeVo",
+              "originalRef": "SysNoticeVo"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    }
+  }
+}

@@ -1,0 +1,8 @@
+Property Name,Type,Format
+appId,string,
+appName,string,
+appSecret,string,
+appType,string,
+id,integer,int64
+remark,string,
+tenantId,integer,int64

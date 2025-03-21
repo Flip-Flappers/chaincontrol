@@ -1,0 +1,47 @@
+{
+  "type": "object",
+  "properties": {
+    "createBy": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "createDept": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "createTime": {
+      "type": "string",
+      "format": "date-time",
+      "refType": null
+    },
+    "id": {
+      "type": "integer",
+      "format": "int64",
+      "description": "id",
+      "refType": null
+    },
+    "typeDescribe": {
+      "type": "string",
+      "description": "分类描述",
+      "refType": null
+    },
+    "typeName": {
+      "type": "string",
+      "description": "分类名称",
+      "refType": null
+    },
+    "updateBy": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "updateTime": {
+      "type": "string",
+      "format": "date-time",
+      "refType": null
+    }
+  },
+  "title": "IconTypeBo"
+}

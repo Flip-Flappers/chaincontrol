@@ -1,0 +1,11 @@
+Property Name,Type,Format
+createAt,integer,int64
+desc,string,
+fail,integer,int32
+id,integer,int64
+module,string,
+packageId,integer,int64
+productKey,string,
+success,integer,int32
+total,integer,int32
+version,string,

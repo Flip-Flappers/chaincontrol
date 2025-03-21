@@ -1,0 +1,45 @@
+{
+  "type": "object",
+  "properties": {
+    "accessMode": {
+      "type": "string",
+      "refType": null
+    },
+    "dataType": {
+      "$ref": "#/definitions/DataType",
+      "originalRef": "DataType",
+      "refType": "DataType"
+    },
+    "description": {
+      "type": "string",
+      "refType": null
+    },
+    "icon": {
+      "$ref": "#/definitions/Icon",
+      "originalRef": "Icon",
+      "refType": "Icon"
+    },
+    "iconId": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "identifier": {
+      "type": "string",
+      "refType": null
+    },
+    "name": {
+      "type": "string",
+      "refType": null
+    },
+    "proData": {
+      "type": "string",
+      "refType": null
+    },
+    "unit": {
+      "type": "string",
+      "refType": null
+    }
+  },
+  "title": "Property"
+}

@@ -1,0 +1,27 @@
+{
+  "type": "object",
+  "properties": {
+    "appid": {
+      "type": "string",
+      "description": "appid",
+      "refType": null
+    },
+    "identifier": {
+      "type": "string",
+      "description": "标识符",
+      "refType": null
+    },
+    "tenantId": {
+      "type": "integer",
+      "format": "int64",
+      "description": "租户ID",
+      "refType": null
+    },
+    "timestamp": {
+      "type": "string",
+      "description": "时间戳",
+      "refType": null
+    }
+  },
+  "title": "TokenVerifyBo"
+}

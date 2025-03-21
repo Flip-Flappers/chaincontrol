@@ -1,0 +1,68 @@
+{
+  "type": "object",
+  "properties": {
+    "createBy": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "createDept": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "createTime": {
+      "type": "string",
+      "format": "date-time",
+      "refType": null
+    },
+    "iconContent": {
+      "type": "string",
+      "description": "图标内容",
+      "refType": null
+    },
+    "iconName": {
+      "type": "string",
+      "description": "图标名称",
+      "refType": null
+    },
+    "iconTypeId": {
+      "type": "integer",
+      "format": "int64",
+      "description": "图标分类id",
+      "refType": null
+    },
+    "id": {
+      "type": "integer",
+      "format": "int64",
+      "description": "id",
+      "refType": null
+    },
+    "updateBy": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "updateTime": {
+      "type": "string",
+      "format": "date-time",
+      "refType": null
+    },
+    "version": {
+      "type": "string",
+      "description": "版本",
+      "refType": null
+    },
+    "viewBox": {
+      "type": "string",
+      "description": "视窗缩放",
+      "refType": null
+    },
+    "xmlns": {
+      "type": "string",
+      "description": "命名空间",
+      "refType": null
+    }
+  },
+  "title": "IconBo"
+}

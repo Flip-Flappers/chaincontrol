@@ -1,0 +1,98 @@
+{
+  "type": "object",
+  "properties": {
+    "createBy": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "createDept": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "createTime": {
+      "type": "string",
+      "format": "date-time",
+      "refType": null
+    },
+    "deptId": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "email": {
+      "type": "string",
+      "refType": null
+    },
+    "id": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "nickName": {
+      "type": "string",
+      "refType": null
+    },
+    "password": {
+      "type": "string",
+      "refType": null
+    },
+    "phonenumber": {
+      "type": "string",
+      "refType": null
+    },
+    "postIds": {
+      "type": "array",
+      "items": {
+        "type": "integer",
+        "format": "int64"
+      },
+      "refType": "integer"
+    },
+    "remark": {
+      "type": "string",
+      "refType": null
+    },
+    "roleId": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "roleIds": {
+      "type": "array",
+      "items": {
+        "type": "integer",
+        "format": "int64"
+      },
+      "refType": "integer"
+    },
+    "sex": {
+      "type": "string",
+      "refType": null
+    },
+    "status": {
+      "type": "string",
+      "refType": null
+    },
+    "updateBy": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "updateTime": {
+      "type": "string",
+      "format": "date-time",
+      "refType": null
+    },
+    "userName": {
+      "type": "string",
+      "refType": null
+    },
+    "userType": {
+      "type": "string",
+      "refType": null
+    }
+  },
+  "title": "SysUserBo"
+}

@@ -1,0 +1,7 @@
+Property Name,Type,Format
+createAt,integer,int64
+deviceQty,integer,int32
+id,string,
+name,string,
+remark,string,
+uid,string,

@@ -1,0 +1,12 @@
+Property Name,Type,Format
+accessMode,string,
+dataType,Unknown,
+description,string,
+identifier,string,
+name,string,
+processor,string,
+regAddr,integer,int32
+regNum,integer,int32
+regType,string,
+sort,string,
+unit,string,

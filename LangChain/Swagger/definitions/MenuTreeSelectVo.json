@@ -1,0 +1,20 @@
+{
+  "type": "object",
+  "properties": {
+    "checkedKeys": {
+      "type": "array",
+      "items": {
+        "type": "integer",
+        "format": "int64"
+      }
+    },
+    "menus": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/Tree«long»",
+        "originalRef": "Tree«long»"
+      }
+    }
+  },
+  "title": "MenuTreeSelectVo"
+}

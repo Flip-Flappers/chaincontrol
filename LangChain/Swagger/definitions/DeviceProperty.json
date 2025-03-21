@@ -1,0 +1,22 @@
+{
+  "type": "object",
+  "properties": {
+    "deviceId": {
+      "type": "string"
+    },
+    "id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "time": {
+      "type": "integer",
+      "format": "int64"
+    },
+    "value": {
+      "type": "object"
+    }
+  },
+  "title": "DeviceProperty"
+}

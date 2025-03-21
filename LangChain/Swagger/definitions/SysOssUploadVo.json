@@ -1,0 +1,15 @@
+{
+  "type": "object",
+  "properties": {
+    "fileName": {
+      "type": "string"
+    },
+    "ossId": {
+      "type": "string"
+    },
+    "url": {
+      "type": "string"
+    }
+  },
+  "title": "SysOssUploadVo"
+}

@@ -1,0 +1,27 @@
+{
+  "type": "object",
+  "properties": {
+    "code": {
+      "type": "string",
+      "refType": null
+    },
+    "password": {
+      "type": "string",
+      "refType": null
+    },
+    "tenantId": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "username": {
+      "type": "string",
+      "refType": null
+    },
+    "uuid": {
+      "type": "string",
+      "refType": null
+    }
+  },
+  "title": "LoginBody"
+}

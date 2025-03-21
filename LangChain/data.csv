@@ -1,0 +1,3 @@
+path,描述,代号
+http://127.0.0.1:8079/access/deviceApi/getDeviceConfig,获取配置,getdeviceconfig
+http://127.0.0.1:8086/plugin/http/dynamic/register,注册,register

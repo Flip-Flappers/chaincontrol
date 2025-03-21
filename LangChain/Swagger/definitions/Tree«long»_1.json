@@ -1,0 +1,7 @@
+{
+  "type": "object",
+  "title": "Tree«long»_1",
+  "additionalProperties": {
+    "type": "object"
+  }
+}

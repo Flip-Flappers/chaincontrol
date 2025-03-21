@@ -1,0 +1,6 @@
+Property Name,Type,Format
+code,string,
+password,string,
+tenantId,integer,int64
+username,string,
+uuid,string,

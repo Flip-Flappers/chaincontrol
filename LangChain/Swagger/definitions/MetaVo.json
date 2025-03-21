@@ -1,0 +1,22 @@
+{
+  "type": "object",
+  "properties": {
+    "icon": {
+      "type": "string",
+      "refType": null
+    },
+    "link": {
+      "type": "string",
+      "refType": null
+    },
+    "noCache": {
+      "type": "boolean",
+      "refType": null
+    },
+    "title": {
+      "type": "string",
+      "refType": null
+    }
+  },
+  "title": "MetaVo"
+}

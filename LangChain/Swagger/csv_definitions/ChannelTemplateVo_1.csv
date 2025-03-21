@@ -1,0 +1,11 @@
+Property Name,Type,Format
+channelConfigId,integer,int64
+content,string,
+createAt,integer,int64
+createBy,integer,int64
+createDept,integer,int64
+createTime,string,date-time
+id,integer,int64
+title,string,
+updateBy,integer,int64
+updateTime,string,date-time

@@ -1,0 +1,17 @@
+{
+  "type": "object",
+  "properties": {
+    "rows": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/AlertConfig",
+        "originalRef": "AlertConfig"
+      }
+    },
+    "total": {
+      "type": "integer",
+      "format": "int64"
+    }
+  },
+  "title": "Paging«AlertConfig»"
+}

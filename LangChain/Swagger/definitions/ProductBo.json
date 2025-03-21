@@ -1,0 +1,106 @@
+{
+  "type": "object",
+  "properties": {
+    "category": {
+      "type": "string",
+      "description": "品类",
+      "refType": null
+    },
+    "createAt": {
+      "type": "integer",
+      "format": "int64",
+      "description": "创建时间",
+      "refType": null
+    },
+    "createBy": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "createDept": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "createTime": {
+      "type": "string",
+      "format": "date-time",
+      "refType": null
+    },
+    "iconId": {
+      "type": "integer",
+      "format": "int64",
+      "description": "产品图标ID",
+      "refType": null
+    },
+    "id": {
+      "type": "integer",
+      "format": "int64",
+      "description": "id",
+      "refType": null
+    },
+    "img": {
+      "type": "string",
+      "description": "图片",
+      "refType": null
+    },
+    "isOpenLocate": {
+      "type": "boolean",
+      "description": "是否开启设备定位,true/false",
+      "refType": null
+    },
+    "keepAliveTime": {
+      "type": "integer",
+      "format": "int64",
+      "description": "保活时长",
+      "refType": null
+    },
+    "locateUpdateType": {
+      "type": "string",
+      "description": "定位更新方式",
+      "refType": null
+    },
+    "name": {
+      "type": "string",
+      "description": "产品名称",
+      "refType": null
+    },
+    "nodeType": {
+      "type": "integer",
+      "format": "int32",
+      "description": "节点类型",
+      "refType": null
+    },
+    "productKey": {
+      "type": "string",
+      "description": "productKey",
+      "refType": null
+    },
+    "productSecret": {
+      "type": "string",
+      "description": "产品密钥",
+      "refType": null
+    },
+    "transparent": {
+      "type": "boolean",
+      "description": "是否透传,true/false",
+      "refType": null
+    },
+    "uid": {
+      "type": "string",
+      "description": "用户ID",
+      "refType": null
+    },
+    "updateBy": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "updateTime": {
+      "type": "string",
+      "format": "date-time",
+      "refType": null
+    }
+  },
+  "title": "ProductBo"
+}

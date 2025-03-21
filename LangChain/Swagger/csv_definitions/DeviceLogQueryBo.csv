@@ -1,0 +1,9 @@
+Property Name,Type,Format
+createBy,integer,int64
+createDept,integer,int64
+createTime,string,date-time
+deviceId,string,
+identifier,string,
+type,string,
+updateBy,integer,int64
+updateTime,string,date-time

@@ -1,0 +1,10 @@
+Property Name,Type,Format
+accessMode,string,
+dataType,Unknown,
+description,string,
+icon,Unknown,
+iconId,integer,int64
+identifier,string,
+name,string,
+proData,string,
+unit,string,

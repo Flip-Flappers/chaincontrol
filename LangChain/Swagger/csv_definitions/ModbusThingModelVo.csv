@@ -1,0 +1,5 @@
+Property Name,Type,Format
+id,string,
+model,Unknown,
+productKey,string,
+updateAt,integer,int64

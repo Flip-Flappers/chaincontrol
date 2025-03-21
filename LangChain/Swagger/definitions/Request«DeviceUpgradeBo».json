@@ -1,0 +1,15 @@
+{
+  "type": "object",
+  "properties": {
+    "data": {
+      "$ref": "#/definitions/DeviceUpgradeBo",
+      "originalRef": "DeviceUpgradeBo",
+      "refType": "DeviceUpgradeBo"
+    },
+    "requestId": {
+      "type": "string",
+      "refType": null
+    }
+  },
+  "title": "Request«DeviceUpgradeBo»"
+}

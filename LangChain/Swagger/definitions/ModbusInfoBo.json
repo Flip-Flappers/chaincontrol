@@ -1,0 +1,52 @@
+{
+  "type": "object",
+  "properties": {
+    "createBy": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "createDept": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "createTime": {
+      "type": "string",
+      "format": "date-time",
+      "refType": null
+    },
+    "id": {
+      "type": "integer",
+      "format": "int64",
+      "description": "id",
+      "refType": null
+    },
+    "name": {
+      "type": "string",
+      "description": "产品名称",
+      "refType": null
+    },
+    "productKey": {
+      "type": "string",
+      "description": "产品Key",
+      "refType": null
+    },
+    "remark": {
+      "type": "string",
+      "description": "说明",
+      "refType": null
+    },
+    "updateBy": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "updateTime": {
+      "type": "string",
+      "format": "date-time",
+      "refType": null
+    }
+  },
+  "title": "ModbusInfoBo"
+}

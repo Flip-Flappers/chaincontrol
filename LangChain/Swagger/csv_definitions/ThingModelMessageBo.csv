@@ -1,0 +1,19 @@
+Property Name,Type,Format
+code,integer,int32
+createBy,integer,int64
+createDept,integer,int64
+createTime,string,date-time
+data,object,
+deviceId,string,
+deviceName,string,
+from,string,
+id,string,
+identifier,string,
+mid,string,
+occurred,integer,int64
+productKey,string,
+time,integer,int64
+type,string,
+uid,string,
+updateBy,integer,int64
+updateTime,string,date-time

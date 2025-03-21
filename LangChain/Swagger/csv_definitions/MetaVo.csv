@@ -1,0 +1,5 @@
+Property Name,Type,Format
+icon,string,
+link,string,
+noCache,boolean,
+title,string,

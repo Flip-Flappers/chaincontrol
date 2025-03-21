@@ -1,0 +1,18 @@
+Property Name,Type,Format
+createAt,integer,int64
+createBy,integer,int64
+createDept,integer,int64
+createTime,string,date-time
+devices,array,
+id,string,
+name,string,
+productKey,string,
+script,string,
+state,string,
+tenantId,integer,int64
+trigger,string,
+triggerExpression,string,
+type,string,
+uid,string,
+updateBy,integer,int64
+updateTime,string,date-time

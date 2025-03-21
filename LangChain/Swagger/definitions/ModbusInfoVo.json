@@ -1,0 +1,39 @@
+{
+  "type": "object",
+  "properties": {
+    "createAt": {
+      "type": "integer",
+      "format": "int64",
+      "description": "创建时间",
+      "refType": null
+    },
+    "id": {
+      "type": "integer",
+      "format": "int64",
+      "description": "id",
+      "refType": null
+    },
+    "name": {
+      "type": "string",
+      "description": "产品名称",
+      "refType": null
+    },
+    "productKey": {
+      "type": "string",
+      "description": "产品Key",
+      "refType": null
+    },
+    "remark": {
+      "type": "string",
+      "description": "说明",
+      "refType": null
+    },
+    "updateAt": {
+      "type": "integer",
+      "format": "int64",
+      "description": "修改时间",
+      "refType": null
+    }
+  },
+  "title": "ModbusInfoVo"
+}

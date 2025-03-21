@@ -1,0 +1,25 @@
+Property Name,Type,Format
+businessType,integer,int32
+businessTypes,array,
+costTime,integer,int64
+createBy,integer,int64
+createDept,integer,int64
+createTime,string,date-time
+deptName,string,
+errorMsg,string,
+id,integer,int64
+jsonResult,string,
+method,string,
+operIp,string,
+operLocation,string,
+operName,string,
+operParam,string,
+operTime,string,date-time
+operUrl,string,
+operatorType,integer,int32
+requestMethod,string,
+status,integer,int32
+tenantId,integer,int64
+title,string,
+updateBy,integer,int64
+updateTime,string,date-time

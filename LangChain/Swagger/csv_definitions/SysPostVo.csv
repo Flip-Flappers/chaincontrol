@@ -1,0 +1,8 @@
+Property Name,Type,Format
+createTime,string,date-time
+id,integer,int64
+postCode,string,
+postName,string,
+postSort,integer,int32
+remark,string,
+status,string,

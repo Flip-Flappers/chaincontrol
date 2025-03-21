@@ -1,0 +1,11 @@
+Property Name,Type,Format
+content,string,
+createBy,integer,int64
+createDept,integer,int64
+createTime,string,date-time
+id,string,
+logAt,integer,int64
+success,boolean,
+taskId,string,
+updateBy,integer,int64
+updateTime,string,date-time

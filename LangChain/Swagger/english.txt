@@ -1,0 +1,161 @@
+Tags,Summary
+Added the alarm center configuration
+Example Delete the alarm center configuration
+Query the alarm center configuration page
+alarm Center,Pages are broken for querying alarm messages
+Edit the alarm center configuration
+Authentication,Log in
+Log in to log out
+Authentication,User registration
+Tenant drop-down list on the Log in page for authentication
+Authentication, small program Log in
+Generate verification code
+device,Create a device
+Device,Batch delete devices
+Device,Get subdevice
+device,Get device configuration
+device,Save device configuration
+Device,Device configuration delivery
+device,Consumer device information messages (real-time push device information)
+device,Delete device
+Device,Get Device Details
+Device,Device model log
+Equipment,Obtain historical device property data
+Device,Download Device Templates
+Device,Get Device Details
+device,Acquire gateway device
+device,Get the device object model
+device,Adding a device Group
+device,Add a device to a group
+Equipment,Clear all devices in the group
+Device,Delete group
+device,Modifying device group
+device,Download a device group template
+device,Import device group
+device,Remove the device from the group
+Device,Get group list
+device,Import device
+Device,Device list
+device,Storage device
+Equipment,Service invocation
+Device,Attribute acquisition
+Device,Attribute setting
+Device,Device shadow creation
+Device,Device shadow acquisition
+device,Analog device escalation
+Device,Add tag
+Equipment,Equipment untying
+modbus,New ModbusInfo
+modbus,Delete ModbusInfo
+modbus,Edit ModbusInfo
+modbus,Download the point template
+modbus,View ModbusInfo details
+modbus,View point model
+modbus,Import point model
+modbus,ModbusInfo Template list
+modbus,Synchronize the point site model to the product
+modbus,Save the point object model
+Clear system access records. Clear system access records
+System access records: Delete Log in logs in batches
+Gets a list of system access records. Gets a list of system access records
+Gets a list of system access records. Gets a list of system access records
+System access record,Account unlock
+The user is monitored online, forcing logout user
+Get an online user monitoring list. Get an online user monitoring list
+Example: Clear operation logs
+Delete operation logs in batches
+Example Export the operation log list
+Obtain the operation log record list. Obtain the operation log record list
+Message notification,New channel configuration
+Message notification,Deleting a channel configuration
+Message notification,Get the channel configuration list
+Message notification,Get the channel configuration based on the ID
+Message notification,Gets the channel configuration page list
+Message notification,Modifying Channel Configuration
+Message notification,Gets a list of channel types
+Message notification,Adding a channel Template
+Message notification,Deleting a Channel Template
+the message notifies to Obtain a channel template based on the ID
+Message notification,Get the list of channel templates
+Message notification,Modifying a channel Template
+Message notification,Message list
+openapi- device,Individual device deletion
+openapi- device,Example Query details about a single device
+openapi- device,Example Query the property snapshot of a specified device
+openapi- device,Individual device registration
+openapi- device, which sets the properties of the device
+openapi- Foundation,token acquisition
+ota upgrade management,Query the device upgrade result
+ota upgrade management,Querying device upgrade batch
+ota upgrade management,OTA upgrade
+ota upgrade management,New upgrade package
+ota upgrade management,Deleting an upgrade Package
+ota Upgrade management,Upgrade package list
+ota Upgrade management,Upgrade package upload
+ota upgrade management,ota upgrade test
+plug-in management,Add plug-in
+plug-in management,Modify plug-in status
+plugin management,Delete plugin
+Plugin management,Plugin details
+plug-in management,Modify plug-in
+dynamic-route-controller,The plug-in registers a new http interface
+dynamic-route-controller,The plug-in deregisters the http interface
+Plug-in management,Get a list of plug-ins
+Plugin management,Uploading Jar packages
+Products,new
+Product,Delete category
+Products,Category editor
+Product,Product category display
+Products,Product categories are displayed in page breaks
+product,Delete product
+Products,Editing products
+Product,View details
+Product,View object model
+Product,Delete icon
+Products,Delete icon category
+Products,Icon paging display
+Products,Icon category list
+Products,Save icon
+Products,Save icon category
+Products,list
+product,Delete product model
+product,Editing product model
+Product,Deletion model
+Product,Preservation model
+product,Upload product pictures
+sys-oss-config-controller,Example Modify object storage configurations
+sys-oss-config-controller,Added object storage configuration
+sys-oss-config-controller,Status modification
+sys-oss-config-controller,Example Delete object storage configurations
+sys-oss-config-controller,Obtain object storage configuration details
+sys-oss-config-controller queries the object storage configuration list
+sys-oss-controller,Delete OSS object storage
+sys-oss-controller,Download OSS Objects
+sys-oss-controller: queries the OSS object storage list
+sys-oss-controller,Query OSS objects based on id strings
+sys-oss-controller,Upload the OSS object storage
+rule engine,Delete rule
+rule engine,Save rule
+Rule engine, rule list
+rule engine,Pause rule
+rule engine,Recovery rule
+Rules engine,Clearing log
+Rule engine,Rule log
+Rules engine,Deleting a Scheduled Task
+Rules engine,Stop scheduled tasks
+Rules engine,Update scheduled tasks
+Rule engine,Restore scheduled tasks
+Rules engine,Save scheduled tasks
+Rules engine,Clear scheduled task logs
+Rules engine,Log list of scheduled tasks
+Rule engine, schedule task list
+Space Equipment,Equipment log
+sys-app-controller,Adding Application Information
+sys-app-controller,Deleting application Information
+sys-app-controller,Modify application information
+sys-app-controller: exports the application information list
+sys-app-controller,Obtain application information details
+sys-app-controller: queries the application information list
+parameter configuration Indicates New parameter configuration
+Delete parameter configuration
+parameter configuration information operation,Modify parameter configuratio

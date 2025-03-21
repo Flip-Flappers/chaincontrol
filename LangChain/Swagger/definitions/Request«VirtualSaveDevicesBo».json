@@ -1,0 +1,15 @@
+{
+  "type": "object",
+  "properties": {
+    "data": {
+      "$ref": "#/definitions/VirtualSaveDevicesBo",
+      "originalRef": "VirtualSaveDevicesBo",
+      "refType": "VirtualSaveDevicesBo"
+    },
+    "requestId": {
+      "type": "string",
+      "refType": null
+    }
+  },
+  "title": "Request«VirtualSaveDevicesBo»"
+}

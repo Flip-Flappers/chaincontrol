@@ -1,0 +1,10 @@
+Property Name,Type,Format
+createBy,integer,int64
+createByName,string,
+createTime,string,date-time
+fileName,string,
+fileSuffix,string,
+id,integer,int64
+originalName,string,
+service,string,
+url,string,

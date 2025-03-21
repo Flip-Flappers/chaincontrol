@@ -1,0 +1,47 @@
+{
+  "type": "object",
+  "properties": {
+    "alwaysShow": {
+      "type": "boolean",
+      "refType": null
+    },
+    "children": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/RouterVo",
+        "originalRef": "RouterVo"
+      },
+      "refType": "RouterVo"
+    },
+    "component": {
+      "type": "string",
+      "refType": null
+    },
+    "hidden": {
+      "type": "boolean",
+      "refType": null
+    },
+    "meta": {
+      "$ref": "#/definitions/MetaVo",
+      "originalRef": "MetaVo",
+      "refType": "MetaVo"
+    },
+    "name": {
+      "type": "string",
+      "refType": null
+    },
+    "path": {
+      "type": "string",
+      "refType": null
+    },
+    "query": {
+      "type": "string",
+      "refType": null
+    },
+    "redirect": {
+      "type": "string",
+      "refType": null
+    }
+  },
+  "title": "RouterVo"
+}

@@ -1,0 +1,15 @@
+{
+  "type": "object",
+  "properties": {
+    "data": {
+      "$ref": "#/definitions/VirtualDevice",
+      "originalRef": "VirtualDevice",
+      "refType": "VirtualDevice"
+    },
+    "requestId": {
+      "type": "string",
+      "refType": null
+    }
+  },
+  "title": "Request«VirtualDevice»"
+}

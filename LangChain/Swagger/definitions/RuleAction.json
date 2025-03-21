@@ -1,0 +1,14 @@
+{
+  "type": "object",
+  "properties": {
+    "config": {
+      "type": "string",
+      "refType": null
+    },
+    "type": {
+      "type": "string",
+      "refType": null
+    }
+  },
+  "title": "RuleAction"
+}

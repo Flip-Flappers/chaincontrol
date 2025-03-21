@@ -1,0 +1,21 @@
+Property Name,Type,Format
+category,string,
+createAt,integer,int64
+createBy,integer,int64
+createDept,integer,int64
+createTime,string,date-time
+iconId,integer,int64
+id,integer,int64
+img,string,
+isOpenLocate,boolean,
+keepAliveTime,integer,int64
+locateUpdateType,string,
+name,string,
+nodeType,integer,int32
+productKey,string,
+productSecret,string,
+tenantId,integer,int64
+transparent,boolean,
+uid,string,
+updateBy,integer,int64
+updateTime,string,date-time

@@ -1,0 +1,59 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Swagger API Doc",
+    "title": "Swagger API",
+    "termsOfService": "http://ip:port/**"
+  },
+  "paths": {
+    "/device/groups/list": {
+      "post": {
+        "tags": [
+          "设备"
+        ],
+        "summary": "获取分组列表",
+        "operationId": "getDeviceGroupsUsingPOST_1",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "pageRequest",
+            "description": "pageRequest",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/PageRequest«DeviceGroupBo»",
+              "originalRef": "PageRequest«DeviceGroupBo»"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Paging«DeviceGroupVo»",
+              "originalRef": "Paging«DeviceGroupVo»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    }
+  }
+}

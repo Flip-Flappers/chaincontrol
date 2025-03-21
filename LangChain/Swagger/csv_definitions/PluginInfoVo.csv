@@ -1,0 +1,15 @@
+Property Name,Type,Format
+config,string,
+configSchema,string,
+createTime,string,date-time
+deployType,string,
+description,string,
+file,string,
+id,integer,int64
+name,string,
+pluginId,string,
+protocol,string,
+script,string,
+state,string,
+type,string,
+version,string,

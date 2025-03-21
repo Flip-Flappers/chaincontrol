@@ -1,0 +1,122 @@
+{
+  "type": "object",
+  "properties": {
+    "businessType": {
+      "type": "integer",
+      "format": "int32",
+      "refType": null
+    },
+    "businessTypes": {
+      "type": "array",
+      "items": {
+        "type": "integer",
+        "format": "int32"
+      },
+      "refType": "integer"
+    },
+    "costTime": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "createBy": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "createDept": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "createTime": {
+      "type": "string",
+      "format": "date-time",
+      "refType": null
+    },
+    "deptName": {
+      "type": "string",
+      "refType": null
+    },
+    "errorMsg": {
+      "type": "string",
+      "refType": null
+    },
+    "id": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "jsonResult": {
+      "type": "string",
+      "refType": null
+    },
+    "method": {
+      "type": "string",
+      "refType": null
+    },
+    "operIp": {
+      "type": "string",
+      "refType": null
+    },
+    "operLocation": {
+      "type": "string",
+      "refType": null
+    },
+    "operName": {
+      "type": "string",
+      "refType": null
+    },
+    "operParam": {
+      "type": "string",
+      "refType": null
+    },
+    "operTime": {
+      "type": "string",
+      "format": "date-time",
+      "refType": null
+    },
+    "operUrl": {
+      "type": "string",
+      "refType": null
+    },
+    "operatorType": {
+      "type": "integer",
+      "format": "int32",
+      "refType": null
+    },
+    "params": {
+      "type": "object",
+      "refType": null
+    },
+    "requestMethod": {
+      "type": "string",
+      "refType": null
+    },
+    "status": {
+      "type": "integer",
+      "format": "int32",
+      "refType": null
+    },
+    "tenantId": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "title": {
+      "type": "string",
+      "refType": null
+    },
+    "updateBy": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "updateTime": {
+      "type": "string",
+      "format": "date-time",
+      "refType": null
+    }
+  },
+  "title": "SysOperLogBo"
+}

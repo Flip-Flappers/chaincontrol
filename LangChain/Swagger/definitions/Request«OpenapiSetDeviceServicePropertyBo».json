@@ -1,0 +1,15 @@
+{
+  "type": "object",
+  "properties": {
+    "data": {
+      "$ref": "#/definitions/OpenapiSetDeviceServicePropertyBo",
+      "originalRef": "OpenapiSetDeviceServicePropertyBo",
+      "refType": "OpenapiSetDeviceServicePropertyBo"
+    },
+    "requestId": {
+      "type": "string",
+      "refType": null
+    }
+  },
+  "title": "Request«OpenapiSetDeviceServicePropertyBo»"
+}

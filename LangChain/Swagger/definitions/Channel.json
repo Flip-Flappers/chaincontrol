@@ -1,0 +1,47 @@
+{
+  "type": "object",
+  "properties": {
+    "code": {
+      "type": "string"
+    },
+    "createAt": {
+      "type": "integer",
+      "format": "int64"
+    },
+    "createBy": {
+      "type": "integer",
+      "format": "int64"
+    },
+    "createDept": {
+      "type": "integer",
+      "format": "int64"
+    },
+    "createTime": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "icon": {
+      "type": "string"
+    },
+    "id": {
+      "type": "integer",
+      "format": "int64"
+    },
+    "tenantId": {
+      "type": "integer",
+      "format": "int64"
+    },
+    "title": {
+      "type": "string"
+    },
+    "updateBy": {
+      "type": "integer",
+      "format": "int64"
+    },
+    "updateTime": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "title": "Channel"
+}

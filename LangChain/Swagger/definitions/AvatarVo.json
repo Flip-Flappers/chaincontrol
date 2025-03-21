@@ -1,0 +1,9 @@
+{
+  "type": "object",
+  "properties": {
+    "imgUrl": {
+      "type": "string"
+    }
+  },
+  "title": "AvatarVo"
+}

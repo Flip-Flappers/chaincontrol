@@ -1,0 +1,53 @@
+{
+  "type": "object",
+  "properties": {
+    "createBy": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "createDept": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "createTime": {
+      "type": "string",
+      "format": "date-time",
+      "refType": null
+    },
+    "deviceId": {
+      "type": "string",
+      "description": "设备id",
+      "refType": null
+    },
+    "end": {
+      "type": "integer",
+      "format": "int64",
+      "description": "结束时间",
+      "refType": null
+    },
+    "name": {
+      "type": "string",
+      "description": "属性名称",
+      "refType": null
+    },
+    "start": {
+      "type": "integer",
+      "format": "int64",
+      "description": "开始时间",
+      "refType": null
+    },
+    "updateBy": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "updateTime": {
+      "type": "string",
+      "format": "date-time",
+      "refType": null
+    }
+  },
+  "title": "DevicePropertiesLogQueryBo"
+}

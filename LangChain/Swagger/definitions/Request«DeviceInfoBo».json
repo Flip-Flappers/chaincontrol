@@ -1,0 +1,15 @@
+{
+  "type": "object",
+  "properties": {
+    "data": {
+      "$ref": "#/definitions/DeviceInfoBo",
+      "originalRef": "DeviceInfoBo",
+      "refType": "DeviceInfoBo"
+    },
+    "requestId": {
+      "type": "string",
+      "refType": null
+    }
+  },
+  "title": "Request«DeviceInfoBo»"
+}

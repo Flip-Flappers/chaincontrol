@@ -1,0 +1,4 @@
+Property Name,Type,Format
+offlineTime,integer,int64
+online,boolean,
+onlineTime,integer,int64

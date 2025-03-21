@@ -1,0 +1,95 @@
+{
+  "type": "object",
+  "properties": {
+    "createAt": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "createBy": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "createDept": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "createTime": {
+      "type": "string",
+      "format": "date-time",
+      "refType": null
+    },
+    "desc": {
+      "type": "string",
+      "refType": null
+    },
+    "extData": {
+      "type": "string",
+      "refType": null
+    },
+    "id": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "isDiff": {
+      "type": "boolean",
+      "refType": null
+    },
+    "md5": {
+      "type": "string",
+      "refType": null
+    },
+    "module": {
+      "type": "string",
+      "refType": null
+    },
+    "name": {
+      "type": "string",
+      "refType": null
+    },
+    "productKey": {
+      "type": "string",
+      "refType": null
+    },
+    "sign": {
+      "type": "string",
+      "refType": null
+    },
+    "signMethod": {
+      "type": "string",
+      "refType": null
+    },
+    "size": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "tenantId": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "updateBy": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "updateTime": {
+      "type": "string",
+      "format": "date-time",
+      "refType": null
+    },
+    "url": {
+      "type": "string",
+      "refType": null
+    },
+    "version": {
+      "type": "string",
+      "refType": null
+    }
+  },
+  "title": "OtaPackage"
+}

@@ -1,0 +1,15 @@
+{
+  "type": "object",
+  "properties": {
+    "data": {
+      "$ref": "#/definitions/LoginBody",
+      "originalRef": "LoginBody",
+      "refType": "LoginBody"
+    },
+    "requestId": {
+      "type": "string",
+      "refType": null
+    }
+  },
+  "title": "Request«LoginBody»"
+}

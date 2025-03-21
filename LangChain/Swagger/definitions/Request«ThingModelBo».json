@@ -1,0 +1,15 @@
+{
+  "type": "object",
+  "properties": {
+    "data": {
+      "$ref": "#/definitions/ThingModelBo",
+      "originalRef": "ThingModelBo",
+      "refType": "ThingModelBo"
+    },
+    "requestId": {
+      "type": "string",
+      "refType": null
+    }
+  },
+  "title": "Request«ThingModelBo»"
+}

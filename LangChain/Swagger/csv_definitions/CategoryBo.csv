@@ -1,0 +1,9 @@
+Property Name,Type,Format
+createAt,integer,int64
+createBy,integer,int64
+createDept,integer,int64
+createTime,string,date-time
+id,string,
+name,string,
+updateBy,integer,int64
+updateTime,string,date-time

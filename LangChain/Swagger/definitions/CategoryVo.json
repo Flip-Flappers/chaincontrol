@@ -1,0 +1,22 @@
+{
+  "type": "object",
+  "properties": {
+    "createAt": {
+      "type": "integer",
+      "format": "int64",
+      "description": "分类描述",
+      "refType": null
+    },
+    "id": {
+      "type": "string",
+      "description": "分类id",
+      "refType": null
+    },
+    "name": {
+      "type": "string",
+      "description": "分类名称",
+      "refType": null
+    }
+  },
+  "title": "CategoryVo"
+}

@@ -1,0 +1,10 @@
+Property Name,Type,Format
+alwaysShow,boolean,
+children,array,
+component,string,
+hidden,boolean,
+meta,Unknown,
+name,string,
+path,string,
+query,string,
+redirect,string,

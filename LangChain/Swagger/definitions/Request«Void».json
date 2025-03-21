@@ -1,0 +1,10 @@
+{
+  "type": "object",
+  "properties": {
+    "requestId": {
+      "type": "string",
+      "refType": null
+    }
+  },
+  "title": "Request«Void»"
+}

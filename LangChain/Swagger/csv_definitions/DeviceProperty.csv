@@ -1,0 +1,6 @@
+Property Name,Type,Format
+deviceId,string,
+id,string,
+name,string,
+time,integer,int64
+value,object,

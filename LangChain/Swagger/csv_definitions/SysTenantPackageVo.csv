@@ -1,0 +1,7 @@
+Property Name,Type,Format
+id,integer,int64
+menuCheckStrictly,boolean,
+menuIds,string,
+packageName,string,
+remark,string,
+status,string,

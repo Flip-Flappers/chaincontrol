@@ -1,0 +1,31 @@
+{
+  "type": "object",
+  "properties": {
+    "config": {
+      "type": "string",
+      "description": "设备配置json内容"
+    },
+    "createAt": {
+      "type": "integer",
+      "format": "int64",
+      "description": "创建时间"
+    },
+    "deviceId": {
+      "type": "string",
+      "description": "设备id"
+    },
+    "deviceName": {
+      "type": "string",
+      "description": "设备名称"
+    },
+    "id": {
+      "type": "string",
+      "description": "设备配置id"
+    },
+    "productKey": {
+      "type": "string",
+      "description": "产品key"
+    }
+  },
+  "title": "DeviceConfigVo"
+}

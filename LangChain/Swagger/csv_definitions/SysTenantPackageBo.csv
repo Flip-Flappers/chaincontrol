@@ -1,0 +1,12 @@
+Property Name,Type,Format
+createBy,integer,int64
+createDept,integer,int64
+createTime,string,date-time
+menuCheckStrictly,boolean,
+menuIds,array,
+packageId,integer,int64
+packageName,string,
+remark,string,
+status,string,
+updateBy,integer,int64
+updateTime,string,date-time

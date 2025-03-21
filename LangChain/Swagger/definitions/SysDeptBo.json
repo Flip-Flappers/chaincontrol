@@ -1,0 +1,66 @@
+{
+  "type": "object",
+  "properties": {
+    "createBy": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "createDept": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "createTime": {
+      "type": "string",
+      "format": "date-time",
+      "refType": null
+    },
+    "deptName": {
+      "type": "string",
+      "refType": null
+    },
+    "email": {
+      "type": "string",
+      "refType": null
+    },
+    "id": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "leader": {
+      "type": "string",
+      "refType": null
+    },
+    "orderNum": {
+      "type": "integer",
+      "format": "int32",
+      "refType": null
+    },
+    "parentId": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "phone": {
+      "type": "string",
+      "refType": null
+    },
+    "status": {
+      "type": "string",
+      "refType": null
+    },
+    "updateBy": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "updateTime": {
+      "type": "string",
+      "format": "date-time",
+      "refType": null
+    }
+  },
+  "title": "SysDeptBo"
+}

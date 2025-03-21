@@ -1,0 +1,3 @@
+Property Name,Type,Format
+rows,array,
+total,integer,int64

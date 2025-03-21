@@ -1,0 +1,31 @@
+{
+  "type": "object",
+  "properties": {
+    "dataType": {
+      "$ref": "#/definitions/DataType",
+      "originalRef": "DataType",
+      "refType": "DataType"
+    },
+    "description": {
+      "type": "string",
+      "refType": null
+    },
+    "identifier": {
+      "type": "string",
+      "refType": null
+    },
+    "name": {
+      "type": "string",
+      "refType": null
+    },
+    "required": {
+      "type": "boolean",
+      "refType": null
+    },
+    "unit": {
+      "type": "string",
+      "refType": null
+    }
+  },
+  "title": "Parameter"
+}

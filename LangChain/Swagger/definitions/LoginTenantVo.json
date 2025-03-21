@@ -1,0 +1,16 @@
+{
+  "type": "object",
+  "properties": {
+    "tenantEnabled": {
+      "type": "boolean"
+    },
+    "voList": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/TenantListVo",
+        "originalRef": "TenantListVo"
+      }
+    }
+  },
+  "title": "LoginTenantVo"
+}

@@ -1,0 +1,15 @@
+{
+  "type": "object",
+  "properties": {
+    "data": {
+      "$ref": "#/definitions/GetDeviceServicePorpertyBo",
+      "originalRef": "GetDeviceServicePorpertyBo",
+      "refType": "GetDeviceServicePorpertyBo"
+    },
+    "requestId": {
+      "type": "string",
+      "refType": null
+    }
+  },
+  "title": "Request«GetDeviceServicePorpertyBo»"
+}

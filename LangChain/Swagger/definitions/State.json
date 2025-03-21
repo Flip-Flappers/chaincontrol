@@ -1,0 +1,20 @@
+{
+  "type": "object",
+  "properties": {
+    "offlineTime": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "online": {
+      "type": "boolean",
+      "refType": null
+    },
+    "onlineTime": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    }
+  },
+  "title": "State"
+}

@@ -1,0 +1,43 @@
+{
+  "type": "object",
+  "properties": {
+    "appId": {
+      "type": "string",
+      "description": "appId",
+      "refType": null
+    },
+    "appName": {
+      "type": "string",
+      "description": "应用名称",
+      "refType": null
+    },
+    "appSecret": {
+      "type": "string",
+      "description": "appSecret",
+      "refType": null
+    },
+    "appType": {
+      "type": "string",
+      "description": "应用类型",
+      "refType": null
+    },
+    "id": {
+      "type": "integer",
+      "format": "int64",
+      "description": "id",
+      "refType": null
+    },
+    "remark": {
+      "type": "string",
+      "description": "备注",
+      "refType": null
+    },
+    "tenantId": {
+      "type": "integer",
+      "format": "int64",
+      "description": "租户id",
+      "refType": null
+    }
+  },
+  "title": "SysAppVo"
+}

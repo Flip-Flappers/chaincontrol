@@ -1,0 +1,230 @@
+[
+    {
+        "table_name": "alert_config",
+        "table_description": "此SQL文件用于创建用于存储告警配置的表 alert_config。 --     表中记录了告警配置信息，包括告警标识、创建与更新时间、启用状态、告警严重度、 --     关联消息模板、关联规则引擎、租户信息等，便于系统后续对告警的管理和处理。"
+    },
+    {
+        "table_name": "alert_record",
+        "table_description": "此SQL文件用于创建存储告警记录的表 alert_record。 --     表中记录了告警的详细信息，包括告警记录标识、创建时间、告警触发时间、 --     告警详情、严重度等级、是否已读状态等，便于系统对告警记录进行存储、查询和历史追踪。"
+    },
+    {
+        "table_name": "category",
+        "table_description": "此SQL文件用于创建存储系统中分类信息的表 category。表中记录了分类的基本信息， --     包括分类ID、名称、以及创建与更新时间等信息，同时支持多租户环境。"
+    },
+    {
+        "table_name": "channel",
+        "table_description": "此SQL文件用于创建存储通道相关信息的表 channel。 --     表中记录了通道的基本属性，包括通道ID、创建与更新时间、通道名称、图标、标题等， --     同时支持多租户环境。该表可用于区分不同的功能模块或数据流，便于系统管理与展示。"
+    },
+    {
+        "table_name": "channel_config",
+        "table_description": "此SQL文件用于创建存储通道配置信息的表 channel_config。 --     表中记录了通道的相关配置，包括通道ID、参数、创建时间等信息， --     方便系统管理和动态调整通道参数。"
+    },
+    {
+        "table_name": "channel_template",
+        "table_description": "此SQL文件用于创建存储通道模板的表 channel_template。 --     该表用于定义通道的模板内容，允许用户根据通道配置定义不同的模板格式， --     以支持不同的业务场景。"
+    },
+    {
+        "table_name": "device_config",
+        "table_description": "此SQL文件用于创建存储设备配置信息的表 device_config。 --     该表用于记录设备的配置信息，包括设备的ID、名称、产品Key及其JSON格式的配置内容， --     以支持设备管理和远程配置。"
+    },
+    {
+        "table_name": "device_group",
+        "table_description": "此SQL文件用于创建存储设备分组信息的表 device_group。 --     该表用于管理多个设备的分组信息，支持批量管理设备。 --     设备组用于归类管理多个设备，便于批量操作和权限控制。"
+    },
+    {
+        "table_name": "device_group_mapping",
+        "table_description": "此SQL文件用于创建设备与设备组之间的映射关系表 device_group_mapping。 --     该表用于维护设备和设备组之间的多对多关系，每条记录表示一个设备属于某个设备组。"
+    },
+    {
+        "table_name": "device_info",
+        "table_description": "此SQL文件用于创建设备信息表 device_info。 --     该表用于存储设备的基本信息，包括设备的ID、名称、地理位置、离线，在线状态及相关的时间信息。"
+    },
+    {
+        "table_name": "device_ota_detail",
+        "table_description": "此SQL文件用于创建设备OTA（固件升级）详情表 device_ota_detail。 --     该表用于存储设备的OTA升级过程中的详细信息，包括设备ID、产品Key、升级任务ID、当前步骤等。"
+    },
+    {
+        "table_name": "device_ota_info",
+        "table_description": "该SQL文件用于创建设备OTA（固件升级）任务表 device_ota_info。 --     该表用于存储OTA升级任务的整体信息，如升级的目标设备数、成功/失败统计等。"
+    },
+    {
+        "table_name": "device_sub_user",
+        "table_description": "该SQL文件用于创建设备子用户表 device_sub_user。 --     该表用于存储与设备关联的子用户信息，包括设备与子用户之间的关联关系。"
+    },
+    {
+        "table_name": "device_tag",
+        "table_description": "该SQL文件用于创建设备标签表 device_tag。 --     该表用于存储设备的扩展标签信息，支持为设备添加自定义属性标签。"
+    },
+    {
+        "table_name": "home",
+        "table_description": "该SQL文件用于创建智能家庭管理表 home。 --     该表用于存储家庭基础信息及设备空间元数据，支持多租户家庭体系管理。"
+    },
+    {
+        "table_name": "icon",
+        "table_description": "该SQL文件用于创建图标表 icon。 --     该表用于存储系统中的图标信息，支持图标内容、分类、版本等管理。"
+    },
+    {
+        "table_name": "icon_type",
+        "table_description": "该SQL文件用于创建图标分类表 icon_type。 --     该表用于存储图标的分类信息，如图标所属的类型（例如系统图标、用户自定义图标等）。"
+    },
+    {
+        "table_name": "modbus_info",
+        "table_description": "该SQL文件用于创建Modbus设备信息表 modbus_info。 --     该表用于存储Modbus设备的配置信息，包括产品名称、productKey、用户、租户等信息。"
+    },
+    {
+        "table_name": "modbus_thing_model",
+        "table_description": "该SQL文件用于创建Modbus设备模型表 modbus_thing_model。 --     该表用于存储与Modbus设备相关的设备模型信息，包括模型内容、产品Key、租户等信息。"
+    },
+    {
+        "table_name": "notify_message",
+        "table_description": "该SQL文件用于创建通知消息表 notify_message。 --     该表用于存储系统发送的通知消息信息，包括消息内容、消息类型、状态等。"
+    },
+    {
+        "table_name": "oauth_client",
+        "table_description": "该SQL文件用于创建OAuth客户端表 oauth_client。 --     该表用于存储OAuth客户端相关信息，包括客户端ID、密钥、允许访问的URL等。"
+    },
+    {
+        "table_name": "oper_log",
+        "table_description": "该SQL文件用于创建操作日志表 oper_log。 --     该表用于记录系统中的各种操作日志，包含操作的详细信息，如操作人员、操作内容、请求参数等。"
+    },
+    {
+        "table_name": "ota_device",
+        "table_description": "该SQL文件用于创建OTA设备表 ota_device。 --     该表用于记录设备的OTA（Over-The-Air）升级信息，包括设备状态、版本、创建时间等。"
+    },
+    {
+        "table_name": "ota_package",
+        "table_description": "该SQL文件用于创建OTA升级包表 ota_package。 --     该表用于记录OTA升级包的信息，包括包的版本、大小、MD5值、URL等。"
+    },
+    {
+        "table_name": "plugin_info",
+        "table_description": "该SQL文件用于创建插件信息表 plugin_info。 --     该表用于记录插件信息，包括插件名称、配置、版本、部署方式等。"
+    },
+    {
+        "table_name": "plugin_instance",
+        "table_description": "该SQL文件用于创建插件实例表 plugin_instance。 --     该表用于记录插件实例的信息，包括插件的主程序ID、心跳时间、IP地址、端口等。"
+    },
+    {
+        "table_name": "product",
+        "table_description": "该SQL文件用于创建产品表 product。 --     该表用于记录产品的信息，包括产品名称、密钥、图标、定位等。"
+    },
+    {
+        "table_name": "product_model",
+        "table_description": "该SQL文件用于创建产品型号表 product_model。 --     该表用于记录产品的型号、脚本内容、产品Key等信息。"
+    },
+    {
+        "table_name": "rule_info",
+        "table_description": "该SQL文件用于创建规则信息表 rule_info。 --     该表用于记录规则的详细信息，包括规则的动作、过滤器、监听器等。"
+    },
+    {
+        "table_name": "screen",
+        "table_description": "该SQL文件用于创建屏幕信息表 screen。 --     该表用于记录屏幕的详细信息，包括屏幕名称、端口、资源文件等。"
+    },
+    {
+        "table_name": "screen_api",
+        "table_description": "该SQL文件用于创建屏幕API表 screen_api。 --     该表用于记录与屏幕相关的API信息，包括API路径、请求方法、参数等。"
+    },
+    {
+        "table_name": "space",
+        "table_description": "该SQL文件用于创建空间表 space。 --     该表用于记录空间的信息，包括空间名称、设备数量、关联家庭等。"
+    },
+    {
+        "table_name": "space_device",
+        "table_description": "该SQL文件用于创建空间设备表 space_device。 --     该表用于记录空间中设备的信息，包括设备ID、设备名称、是否收藏等。"
+    },
+    {
+        "table_name": "sys_app",
+        "table_description": "该SQL文件用于创建系统应用表 sys_app。 --     该表用于记录系统应用的信息，包括应用的ID、名称、类型、秘钥等。"
+    },
+    {
+        "table_name": "sys_config",
+        "table_description": "该SQL文件用于创建系统配置表 sys_config。 --     该表用于存储系统中的配置信息，包括参数的键名、键值、类型等。"
+    },
+    {
+        "table_name": "sys_dept",
+        "table_description": "该SQL文件用于创建部门表 sys_dept。 --     该表用于记录系统中的部门信息，包括部门名称、负责人、联系电话等。"
+    },
+    {
+        "table_name": "sys_dict_data",
+        "table_description": "该SQL文件用于创建字典数据表 sys_dict_data。 --     该表用于存储字典数据，包含字典标签、字典类型、字典键值等信息。"
+    },
+    {
+        "table_name": "sys_dict_type",
+        "table_description": "该SQL文件用于创建字典类型表 sys_dict_type。 --     该表用于存储字典的类型信息，包括字典名称、字典类型、状态等。"
+    },
+    {
+        "table_name": "sys_logininfor",
+        "table_description": "该SQL文件用于创建登录信息表 sys_logininfor。 --     该表用于记录用户的登录信息，包括登录时间、IP地址、浏览器类型、操作系统等。"
+    },
+    {
+        "table_name": "sys_menu",
+        "table_description": "该SQL文件用于创建菜单表 sys_menu。 --     该表用于记录系统菜单的信息，包括菜单名称、类型、权限、路由等。"
+    },
+    {
+        "table_name": "sys_notice",
+        "table_description": "该SQL文件用于创建公告表 sys_notice。 --     该表用于记录系统公告的信息，包括公告内容、类型、状态等。"
+    },
+    {
+        "table_name": "sys_oss",
+        "table_description": "该SQL文件用于创建对象存储表 sys_oss。 --     该表用于记录对象存储的信息，包括文件名、后缀名、服务商等。"
+    },
+    {
+        "table_name": "sys_oss_config",
+        "table_description": "该SQL文件用于创建对象存储配置表 sys_oss_config。 --     该表用于记录和管理与对象存储相关的配置信息，如桶名称、访问密钥、权限设置等。"
+    },
+    {
+        "table_name": "sys_post",
+        "table_description": "该SQL文件用于创建岗位表 sys_post。 --     该表用于记录和管理系统中的岗位信息，如岗位编码、岗位名称、岗位排序等。"
+    },
+    {
+        "table_name": "sys_role",
+        "table_description": "该SQL文件用于创建角色表 sys_role。 --     该表用于记录和管理系统中的角色信息，如角色名称、角色权限、角色排序等。"
+    },
+    {
+        "table_name": "sys_role_dept",
+        "table_description": "该SQL文件用于创建角色与部门的关联表 sys_role_dept。 --     该表用于记录系统中角色与部门的关联关系。"
+    },
+    {
+        "table_name": "sys_role_menu",
+        "table_description": "该SQL文件用于创建角色与菜单的关联表 sys_role_menu。 --     该表用于记录系统中角色与菜单的关联关系。"
+    },
+    {
+        "table_name": "sys_tenant",
+        "table_description": "该SQL文件用于创建租户表 sys_tenant。 --     该表用于记录系统中的租户信息，如租户基本信息、账户数量、联系方式等。"
+    },
+    {
+        "table_name": "sys_tenant_package",
+        "table_description": "该SQL文件用于创建租户套餐表 sys_tenant_package。 --     该表用于记录不同租户套餐的基本信息，包含套餐的名称、状态、关联菜单等。"
+    },
+    {
+        "table_name": "sys_user",
+        "table_description": "该SQL文件用于创建用户表 sys_user。 --     该表用于记录系统中所有用户的基本信息，包括用户账号、密码、联系方式等。"
+    },
+    {
+        "table_name": "sys_user_post",
+        "table_description": "该SQL文件用于创建用户岗位关联表 sys_user_post。 --     该表用于记录用户和岗位之间的关联关系。"
+    },
+    {
+        "table_name": "sys_user_role",
+        "table_description": "该SQL文件用于创建用户角色关联表 sys_user_role。 --     该表用于记录用户和角色之间的关联关系。"
+    },
+    {
+        "table_name": "task_info",
+        "table_description": "该SQL文件用于创建任务信息表 task_info。 --     该表用于记录任务的信息，包括任务的状态、描述、执行结果等。"
+    },
+    {
+        "table_name": "thing_model",
+        "table_description": "该SQL文件用于创建产品模型表 thing_model。 --     该表用于记录产品模型的相关信息，包括模型内容和产品 key。"
+    },
+    {
+        "table_name": "user_info",
+        "table_description": "该SQL文件用于创建用户信息表 user_info。 --     该表用于存储用户的基本信息，包括联系方式、账户信息、角色及权限等。"
+    },
+    {
+        "table_name": "virtual_device",
+        "table_description": "该SQL文件用于创建虚拟设备表 virtual_device。 --     该表用于存储虚拟设备的基本信息，包括虚拟设备名称、状态、行为脚本及触发方式等。"
+    },
+    {
+        "table_name": "virtual_device_mapping",
+        "table_description": "该SQL文件用于创建虚拟设备映射表 virtual_device_mapping。 --     该表用于记录虚拟设备与租户之间的映射关系。"
+    }
+]

@@ -1,0 +1,15 @@
+{
+  "type": "object",
+  "properties": {
+    "data": {
+      "$ref": "#/definitions/ThingModelMessageBo",
+      "originalRef": "ThingModelMessageBo",
+      "refType": "ThingModelMessageBo"
+    },
+    "requestId": {
+      "type": "string",
+      "refType": null
+    }
+  },
+  "title": "Request«ThingModelMessageBo»"
+}

@@ -1,0 +1,94 @@
+{
+  "type": "object",
+  "properties": {
+    "actions": {
+      "type": "array",
+      "description": "动作",
+      "items": {
+        "$ref": "#/definitions/RuleAction",
+        "originalRef": "RuleAction"
+      },
+      "refType": "RuleAction"
+    },
+    "createAt": {
+      "type": "integer",
+      "format": "int64",
+      "description": "创建时间",
+      "refType": null
+    },
+    "createBy": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "createDept": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "createTime": {
+      "type": "string",
+      "format": "date-time",
+      "refType": null
+    },
+    "desc": {
+      "type": "string",
+      "description": "描述",
+      "refType": null
+    },
+    "filters": {
+      "type": "array",
+      "description": "过滤器",
+      "items": {
+        "$ref": "#/definitions/FilterConfig",
+        "originalRef": "FilterConfig"
+      },
+      "refType": "FilterConfig"
+    },
+    "id": {
+      "type": "string",
+      "description": "id",
+      "refType": null
+    },
+    "listeners": {
+      "type": "array",
+      "description": "监听器",
+      "items": {
+        "$ref": "#/definitions/FilterConfig",
+        "originalRef": "FilterConfig"
+      },
+      "refType": "FilterConfig"
+    },
+    "name": {
+      "type": "string",
+      "description": "规则名称",
+      "refType": null
+    },
+    "state": {
+      "type": "string",
+      "description": "状态",
+      "refType": null
+    },
+    "type": {
+      "type": "string",
+      "description": "规则类型",
+      "refType": null
+    },
+    "uid": {
+      "type": "string",
+      "description": "用户id",
+      "refType": null
+    },
+    "updateBy": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "updateTime": {
+      "type": "string",
+      "format": "date-time",
+      "refType": null
+    }
+  },
+  "title": "RuleInfoBo"
+}

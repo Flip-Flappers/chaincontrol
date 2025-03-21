@@ -1,0 +1,23 @@
+Property Name,Type,Format
+createAt,integer,int64
+createBy,integer,int64
+createDept,integer,int64
+createTime,string,date-time
+deviceId,string,
+deviceName,string,
+group,object,
+id,string,
+locate,Unknown,
+model,string,
+online,boolean,
+parentId,string,
+productKey,string,
+property,object,
+secret,string,
+state,Unknown,
+subUid,array,
+tag,object,
+tenantId,integer,int64
+uid,string,
+updateBy,integer,int64
+updateTime,string,date-time

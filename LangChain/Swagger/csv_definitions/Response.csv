@@ -1,0 +1,5 @@
+Property Name,Type,Format
+code,integer,int32
+data,object,
+message,string,
+requestId,string,

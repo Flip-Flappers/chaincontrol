@@ -1,0 +1,15 @@
+Property Name,Type,Format
+createAt,integer,int64
+deviceId,string,
+deviceName,string,
+group,object,
+id,string,
+locate,Unknown,
+model,string,
+offlineTime,integer,int64
+online,boolean,
+onlineTime,integer,int64
+parentId,string,
+product,Unknown,
+productKey,string,
+secret,string,

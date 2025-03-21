@@ -1,0 +1,97 @@
+{
+  "type": "object",
+  "properties": {
+    "category": {
+      "type": "string",
+      "refType": null
+    },
+    "createAt": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "createBy": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "createDept": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "createTime": {
+      "type": "string",
+      "format": "date-time",
+      "refType": null
+    },
+    "iconId": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "id": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "img": {
+      "type": "string",
+      "refType": null
+    },
+    "isOpenLocate": {
+      "type": "boolean",
+      "refType": null
+    },
+    "keepAliveTime": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "locateUpdateType": {
+      "type": "string",
+      "refType": null
+    },
+    "name": {
+      "type": "string",
+      "refType": null
+    },
+    "nodeType": {
+      "type": "integer",
+      "format": "int32",
+      "refType": null
+    },
+    "productKey": {
+      "type": "string",
+      "refType": null
+    },
+    "productSecret": {
+      "type": "string",
+      "refType": null
+    },
+    "tenantId": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "transparent": {
+      "type": "boolean",
+      "refType": null
+    },
+    "uid": {
+      "type": "string",
+      "refType": null
+    },
+    "updateBy": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "updateTime": {
+      "type": "string",
+      "format": "date-time",
+      "refType": null
+    }
+  },
+  "title": "Product"
+}

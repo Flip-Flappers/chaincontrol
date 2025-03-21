@@ -1,0 +1,4 @@
+Property Name,Type,Format
+args,string,
+deviceName,string,
+productKey,string,

@@ -1,0 +1,36 @@
+{
+  "type": "object",
+  "properties": {
+    "configKey": {
+      "type": "string",
+      "refType": null
+    },
+    "configName": {
+      "type": "string",
+      "refType": null
+    },
+    "configType": {
+      "type": "string",
+      "refType": null
+    },
+    "configValue": {
+      "type": "string",
+      "refType": null
+    },
+    "createTime": {
+      "type": "string",
+      "format": "date-time",
+      "refType": null
+    },
+    "id": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "remark": {
+      "type": "string",
+      "refType": null
+    }
+  },
+  "title": "SysConfigVo"
+}

@@ -1,0 +1,32 @@
+{
+  "type": "object",
+  "properties": {
+    "createTime": {
+      "type": "string",
+      "format": "date-time",
+      "refType": null
+    },
+    "dictName": {
+      "type": "string",
+      "refType": null
+    },
+    "dictType": {
+      "type": "string",
+      "refType": null
+    },
+    "id": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "remark": {
+      "type": "string",
+      "refType": null
+    },
+    "status": {
+      "type": "string",
+      "refType": null
+    }
+  },
+  "title": "SysDictTypeVo"
+}

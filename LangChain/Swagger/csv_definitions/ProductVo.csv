@@ -1,0 +1,16 @@
+Property Name,Type,Format
+category,string,
+createAt,integer,int64
+icon,Unknown,
+iconId,integer,int64
+id,integer,int64
+img,string,
+isOpenLocate,boolean,
+keepAliveTime,integer,int64
+locateUpdateType,string,
+name,string,
+nodeType,integer,int32
+productKey,string,
+productSecret,string,
+transparent,boolean,
+uid,string,

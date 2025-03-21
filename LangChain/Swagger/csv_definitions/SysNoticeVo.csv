@@ -1,0 +1,10 @@
+Property Name,Type,Format
+createBy,integer,int64
+createByName,string,
+createTime,string,date-time
+id,integer,int64
+noticeContent,string,
+noticeTitle,string,
+noticeType,string,
+remark,string,
+status,string,

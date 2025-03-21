@@ -1,0 +1,38 @@
+{
+  "type": "object",
+  "properties": {
+    "postIds": {
+      "type": "array",
+      "items": {
+        "type": "integer",
+        "format": "int64"
+      }
+    },
+    "posts": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/SysPostVo",
+        "originalRef": "SysPostVo"
+      }
+    },
+    "roleIds": {
+      "type": "array",
+      "items": {
+        "type": "integer",
+        "format": "int64"
+      }
+    },
+    "roles": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/SysRoleVo",
+        "originalRef": "SysRoleVo"
+      }
+    },
+    "user": {
+      "$ref": "#/definitions/SysUserVo",
+      "originalRef": "SysUserVo"
+    }
+  },
+  "title": "SysUserInfoVo"
+}

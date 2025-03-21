@@ -1,0 +1,267 @@
+Path,Method,Tags,Summary
+/alert/createAlertConfig,POST,Center of alarm,Added alarm center configuration
+/alert/deleteAlertConfigById,POST,Center of alarm,Delete the alarm center configuration
+/alert/selectAlertConfigPage,POST,Center of alarm,Query alarm center configuration paging
+/alert/selectAlertRecordPage,POST,Center of alarm,Query alert message paging
+/alert/updateAlertConfig,POST,Center of alarm,Edit the alarm center configuration
+/auth/login,POST,Authentication,Login
+/auth/logout,POST,Authentication,Log Out
+/auth/register,POST,Authentication,User registration
+/auth/tenant/list,POST,Authentication,The tenant drop-down box on the login page
+/auth/xcxLogin,POST,Authentication,Applet login
+/code,POST,Verification code,Generate CAPtchas
+/device/add,POST,device,Creating devices
+/device/batchDelete,POST,device,Deleting devices in bulk
+/device/children/list,POST,device,Getting subdevices
+/device/config/get,POST,device,Getting device configuration
+/device/config/save,POST,device,Saving device configuration
+/device/config/send,POST,device,Distribution of equipment configuration
+/device/consumer,POST,device,Consumer device information message (real-time push device information)
+/device/delete,POST,device,Deleting a device
+/device/detail,POST,device,Get device details
+/device/deviceLogs/list,POST,device,Device physical model log
+/device/deviceProperty/log/list,POST,device,Get historical data of device properties
+/device/exportData,POST,device,Download the device template
+/device/getByPkDn,POST,device,Get device details
+/device/getParentDevices,POST,device,Get the gateway device
+/device/getThingModel,POST,device,Get the device object model
+/device/group/add,POST,device,Adding device groups
+/device/group/addDevices,POST,device,Add a device to a group
+/device/group/clear,POST,device,Clear all devices under the group
+/device/group/delete,POST,device,Deleting groups
+/device/group/edit,POST,device,Modifying device groups
+/device/group/exportData,POST,device,Download the device grouping template
+/device/group/importData,POST,device,Importing device groups
+/device/group/removeDevices,POST,device,Removes the device from the group
+/device/groups/list,POST,device,Getting the group list
+/device/importData,POST,device,Importing devices
+/device/list,POST,device,List of devices
+/device/save,POST,device,Saving device
+/device/service/invoke,POST,device,Service invocation
+/device/service/property/get,POST,device,Property fetching
+/device/service/property/set,POST,device,Property setting
+/device/shadow/createShadow,POST,device,Device shadow creation
+/device/shadow/getShadow,GET,device,Device shadow acquisition
+/device/simulateSend,POST,device,Simulate device reporting
+/device/tag/add,POST,device,Adding tags
+/device/unbind,POST,device,Unbinding of equipment
+/modbus/add,POST,modbus,Create ModbusInfo
+/modbus/deleteModbus,POST,modbus,Delete ModbusInfo
+/modbus/edit,POST,modbus,Edit ModbusInfo
+/modbus/exportData,POST,modbus,Download the dot template
+/modbus/getDetail,POST,modbus,See ModbusInfo for details
+/modbus/getThingModelByProductKey,POST,modbus,Look at the point object model
+/modbus/importData,POST,modbus,Import the point location model
+/modbus/list,POST,modbus,ModbusInfo template list
+/modbus/syncToProduct,POST,modbus,Synchronize the point position object model to the product
+/modbus/thingModel/save,POST,modbus,Save the point object model
+/monitor/logininfor/clean,POST,System access record,Clean up system access records
+/monitor/logininfor/delete,POST,System access record,Delete login logs in bulk
+/monitor/logininfor/export,POST,System access record,Gets a list of system access records
+/monitor/logininfor/list,POST,System access record,Gets a list of system access records
+/monitor/logininfor/unlockByUserName,POST,System access record,Account unlocking
+/monitor/online/kickoutByTokenValue,POST,User online monitoring,Strong user withdrawal
+/monitor/online/list,POST,User online monitoring,Get an online user monitoring list
+/monitor/operlog/clean,POST,Operation logging,Clean up operation logging
+/monitor/operlog/delete,POST,Operation logging,Batch delete operation log records
+/monitor/operlog/export,POST,Operation logging,Export a list of operation log records
+/monitor/operlog/list,POST,Operation logging,Gets a list of operation log records
+/notify/channel/config/add,POST,Message notification,New channel configuration
+/notify/channel/config/delById,POST,Message notification,Remove channel configuration
+/notify/channel/config/getAll,POST,Message notification,Gets a list of channel configurations
+/notify/channel/config/getById,POST,Message notification,Get the channel configuration based on the ID
+/notify/channel/config/getList,POST,Message notification,Gets a paging list of channel configurations
+/notify/channel/config/updateById,POST,Message notification,Modifying channel configuration
+/notify/channel/getList,POST,Message notification,Gets a list of channel types
+/notify/channel/template/add,POST,Message notification,New channel template
+/notify/channel/template/delById,POST,Message notification,Remove channel templates
+/notify/channel/template/getById,POST,Message notification,Get the channel template based on the ID
+/notify/channel/template/getList,POST,Message notification,Gets a list of channel templates
+/notify/channel/template/updateById,POST,Message notification,Modifying channel templates
+/notify/message/getList,POST,Message notification,Message list
+/openapi/device/v1/deleteDevice,POST,openapi- Device,Single device deletion
+/openapi/device/v1/detail,POST,openapi- Device,Query individual device details
+/openapi/device/v1/queryDevicePropertyStatus,POST,openapi- Device,Query the attribute snapshot for the specified device
+/openapi/device/v1/registerDevice,POST,openapi- Device,Single device registration
+/openapi/device/v1/setDeviceProperty,POST,openapi- Device,Sets device properties
+/openapi/v1/getToken,POST,openapi- Basics,token acquisition
+/ota/device/detail,POST,ota Upgrade Management,Equipment upgrade results query
+/ota/device/info,POST,ota Upgrade Management,Equipment upgrade batch query
+/ota/device/upgrade,POST,ota Upgrade Management,OTA upgrade
+/ota/package/add,POST,ota Upgrade Management,New upgrade packages
+/ota/package/delById,POST,ota Upgrade Management,Remove upgrade packs
+/ota/package/getList,POST,ota Upgrade Management,Upgrade package list
+/ota/package/upload,POST,ota Upgrade Management,Upgrade package upload
+/ota/testStartUpgrade,POST,ota Upgrade Management,ota upgrade test
+/plugin/add,POST,Plugin management,Adding plugins
+/plugin/changeState,POST,Plugin management,Modifying plugin state
+/plugin/delete,POST,Plugin management,Removing plugins
+/plugin/detail,POST,Plugin management,Plugin Details
+/plugin/edit,POST,Plugin management,Modifying plugins
+/plugin/http/dynamic/register,POST,dynamic-route-controller,The plugin registers the new http interface
+/plugin/http/dynamic/unregister,POST,dynamic-route-controller,Plugins log out the http interface
+/plugin/list,POST,Plugin management,Getting a list of plugins
+/plugin/uploadJar,POST,Plugin management,Uploading Jar packages
+/product/add,POST,Products,New
+/product/category/delete,POST,Products,Delete a category
+/product/category/edit,POST,Products,Category editor
+/product/category/getAll,POST,Products,Product category display
+/product/category/list,POST,Products,Product categories pagination display
+/product/deleteProduct,POST,Products,Deleting Products
+/product/edit,POST,Products,Edit Products
+/product/getDetail,POST,Products,View details
+/product/getThingModelByProductKey,POST,Products,Model of viewing object
+/product/icon/deleteIcon,POST,Products,Delete ICONS
+/product/icon/deleteIconType,POST,Products,Remove icon categories
+/product/icon/getAllIcon,POST,Products,ICONS are paginated
+/product/icon/getAllIconType,POST,Products,Icon category list
+/product/icon/saveIcon,POST,Products,Save the icon
+/product/icon/saveIconType,POST,Products,Save icon categories
+/product/list,POST,Products,Lists
+/product/productModel/delete,POST,Products,Delete product model
+/product/productModel/edit,POST,Products,Edit product model
+/product/thingModel/delete,POST,Products,Deletion model
+/product/thingModel/save,POST,Products,Model of preservation
+/product/uploadImg/{productKey},POST,Products,Upload product images
+/resource/oss/config,POST,sys-oss-config-controller,Modify the object store configuration
+/resource/oss/config/add,POST,sys-oss-config-controller,Added object store configuration
+/resource/oss/config/changeStatus,POST,sys-oss-config-controller,State modification
+/resource/oss/config/delete,POST,sys-oss-config-controller,Remove the object store configuration
+/resource/oss/config/getDetail,POST,sys-oss-config-controller,Gets object store configuration details
+/resource/oss/config/list,POST,sys-oss-config-controller,The query object stores a list of configurations
+/resource/oss/delete,POST,sys-oss-controller,Remove the OSS object store
+/resource/oss/downloadById,POST,sys-oss-controller,Downloading OSS objects
+/resource/oss/list,POST,sys-oss-controller,Query the list of OSS object stores
+/resource/oss/listByIds,POST,sys-oss-controller,Querying OSS objects is based on id strings
+/resource/oss/upload,POST,sys-oss-controller,Upload the OSS object store
+/rule_engine/delete,POST,Rule engine,Delete rules
+/rule_engine/edit,POST,Rule engine,Save rules
+/rule_engine/list,POST,Rule engine,List of rules
+/rule_engine/pause,POST,Rule engine,Pause rules
+/rule_engine/resume,POST,Rule engine,Recovery rules
+/rule_engine/ruleLog/clear,POST,Rule engine,Cleaning logs
+/rule_engine/ruleLog/list,POST,Rule engine,Rule log
+/rule_engine/task/delete,POST,Rule engine,Removing a scheduled task
+/rule_engine/task/pause,POST,Rule engine,Stopping a scheduled task
+/rule_engine/task/renew,POST,Rule engine,Update scheduled tasks
+/rule_engine/task/resume,POST,Rule engine,Resuming scheduled tasks
+/rule_engine/task/save,POST,Rule engine,Saving scheduled tasks
+/rule_engine/taskLogs/clear,POST,Rule engine,Clear the scheduled task log
+/rule_engine/taskLogs/list,POST,Rule engine,list of scheduled task logs
+/rule_engine/tasks/list,POST,Rule engine,Scheduled task list
+/space/deviceLogs,POST,Space equipment,Device log
+/system/app/add,POST,sys-app-controller,New application information
+/system/app/delete,POST,sys-app-controller,Deleting application information
+/system/app/edit,POST,sys-app-controller,Modifying application information
+/system/app/export,POST,sys-app-controller,Export a list of application information
+/system/app/getDetail,POST,sys-app-controller,Get application information details
+/system/app/list,POST,sys-app-controller,Query the list of application information
+/system/config/add,POST,Parameter configuration information operation processing,New parameter configuration
+/system/config/delete,POST,Parameter configuration information operation processing,Remove parameter configuration
+/system/config/edit,POST,Parameter configuration information operation processing,Modifying parameter configuration
+/system/config/export,POST,Parameter configuration information operation processing,Export a list of parameter configurations
+/system/config/exportSysData,POST,Parameter configuration information operation processing,Exporting system data
+/system/config/getConfigKey,POST,Parameter configuration information operation processing,Query the parameter value by the parameter key
+/system/config/getDetail,POST,Parameter configuration information operation processing,Get details based on the parameter number
+/system/config/list,POST,Parameter configuration information operation processing,Gets a list of parameter configurations
+/system/config/refreshCache,POST,Parameter configuration information operation processing,Flush the parameter cache
+/system/config/updateByKey,POST,Parameter configuration information operation processing,Modify the parameter configuration based on the parameter key name
+/system/dept/add,POST,sys-dept-controller,New departments
+/system/dept/delete,POST,sys-dept-controller,Delete a department
+/system/dept/edit,POST,sys-dept-controller,Change the department
+/system/dept/getInfo,POST,sys-dept-controller,Get the details based on the department number
+/system/dept/list,POST,sys-dept-controller,Get a list of departments
+/system/dept/list/exclude,POST,sys-dept-controller,Query department list (excluding nodes)
+/system/dict/data/add,POST,sys-dict-data-controller,New dictionary type
+/system/dict/data/delete,POST,sys-dict-data-controller,Removing a Dictionary Type
+/system/dict/data/edit,PUT,sys-dict-data-controller,Modify the save dictionary type
+/system/dict/data/export,POST,sys-dict-data-controller,Export a list of dictionary data
+/system/dict/data/getDetail,POST,sys-dict-data-controller,Query dictionary data details
+/system/dict/data/list,POST,sys-dict-data-controller,Query a list of dictionary data
+/system/dict/data/type,POST,sys-dict-data-controller,Query dictionary data information according to dictionary type
+/system/dict/type/add,POST,sys-dict-type-controller,New dictionary type
+/system/dict/type/delete,POST,sys-dict-type-controller,Removing a Dictionary Type
+/system/dict/type/edit,POST,sys-dict-type-controller,Changing the dictionary Type
+/system/dict/type/export,POST,sys-dict-type-controller,Exports a list of dictionary types
+/system/dict/type/getById,POST,sys-dict-type-controller,Query dictionary type details
+/system/dict/type/list,POST,sys-dict-type-controller,Query a list of dictionary types
+/system/dict/type/optionselect,POST,sys-dict-type-controller,Gets a list of dictionary select boxes
+/system/dict/type/refreshCache,POST,sys-dict-type-controller,Flushing the dictionary cache
+/system/menu/add,POST,sys-menu-controller,New menu added
+/system/menu/delete,POST,sys-menu-controller,Delete menu
+/system/menu/getRouters,POST,sys-menu-controller,Getting routing information
+/system/menu/list,POST,sys-menu-controller,Getting a list of menus
+/system/menu/roleMenuTreeselectByRoleId,POST,sys-menu-controller,Load the corresponding role menu list tree
+/system/menu/treeselect,POST,sys-menu-controller,Gets a list of menu drop-down trees
+/system/notice/add,POST,sys-notice-controller,Additional Notices
+/system/notice/delete,POST,sys-notice-controller,Notice of Deletion
+/system/notice/getDetail,POST,sys-notice-controller,Get the details according to the notification bulletin No
+/system/notice/list,POST,sys-notice-controller,Get a list of notification announcements
+/system/post/add,POST,Job Information,New jobs
+/system/post/delete,POST,Job Information,Deleting a post
+/system/post/edit,POST,Job Information,Change the position
+/system/post/export,POST,Job Information,Exporting a job list
+/system/post/getInfo,POST,Job Information,Get the details based on the post number
+/system/post/list,POST,Job Information,Get a list of jobs
+/system/post/optionselect,POST,Job Information,Gets a list of job selection boxes
+/system/role/add,POST,sys-role-controller,Adding new roles
+/system/role/authUser/allocatedList,POST,sys-role-controller,Query the list of assigned user roles
+/system/role/authUser/cancel,POST,sys-role-controller,Deauthorize users
+/system/role/authUser/cancelAll,POST,sys-role-controller,Cancel authorized users in bulk
+/system/role/authUser/selectAll,POST,sys-role-controller,Select user authorizations in bulk
+/system/role/authUser/unallocatedList,POST,sys-role-controller,Query the list of unassigned user roles
+/system/role/changeStatus,POST,sys-role-controller,State modification
+/system/role/dataScope,POST,sys-role-controller,Change the save data permission
+/system/role/delete,POST,sys-role-controller,Removing a role
+/system/role/deptTreeByRoleId,POST,sys-role-controller,Gets a list of department trees for the corresponding role
+/system/role/edit,POST,sys-role-controller,Modifying the Save role
+/system/role/export,POST,sys-role-controller,Export a list of role information
+/system/role/getInfo,POST,sys-role-controller,Get details based on the role number
+/system/role/list,POST,sys-role-controller,Gets a list of role information
+/system/role/optionselect,POST,sys-role-controller,Gets a list of role select boxes
+/system/tenant/add,POST,Tenant management,New tenants added
+/system/tenant/delete,POST,Tenant management,Removing tenants
+/system/tenant/dynamic,POST,Tenant management,Dynamic tenant switching
+/system/tenant/dynamic/clear,POST,Tenant management,Clear dynamic tenants
+/system/tenant/edit,POST,Tenant management,Changing tenants
+/system/tenant/export,POST,Tenant management,Exporting a tenant list
+/system/tenant/getDetail,POST,Tenant management,Get tenant details
+/system/tenant/list,POST,Tenant management,Querying the tenant list
+/system/tenant/package/add,POST,sys-tenant-package-controller,New tenant package
+/system/tenant/package/changeStatus,POST,sys-tenant-package-controller,State modification
+/system/tenant/package/delete,POST,sys-tenant-package-controller,Removing tenant packages
+/system/tenant/package/edit,POST,sys-tenant-package-controller,Modifying tenant packages
+/system/tenant/package/export,POST,sys-tenant-package-controller,Export the list of tenant packages
+/system/tenant/package/getInfo,POST,sys-tenant-package-controller,Get tenant package details
+/system/tenant/package/list,POST,sys-tenant-package-controller,Query the list of tenant packages
+/system/tenant/package/selectList,POST,sys-tenant-package-controller,Query the tenant package drop-down list
+/system/tenant/syncTenantPackage,POST,Tenant management,Synchronous Tenant Plan
+/system/user/add,POST,User information,Adding new users
+/system/user/authRole,POST,User information,User authorization role
+/system/user/authRoleByUserId,POST,User information,Get the authorization role based on the user number
+/system/user/changeStatus,POST,User information,State modification
+/system/user/delete,POST,User information,Deleting users
+/system/user/deptTree,POST,User information,Gets a list of department trees
+/system/user/edit,POST,User information,Changing users
+/system/user/export,POST,User information,Exporting a list of users
+/system/user/getDetail,POST,User information,Get the details based on the user number
+/system/user/getInfo,POST,User information,Getting user information
+/system/user/importData,POST,User information,Importing data
+/system/user/importTemplate,POST,User information,Getting the import template
+/system/user/list,POST,User information,Getting a list of users
+/system/user/profile/avatar,POST,sys-profile-controller,Avatar upload
+/system/user/profile/getDetail,POST,sys-profile-controller,Personal Information
+/system/user/profile/updateProfile,POST,sys-profile-controller,Changing users
+/system/user/profile/updatePwd,POST,sys-profile-controller,Reset Password
+/system/user/resetPwd,POST,User information,Reset Password
+/virtual_device/add,POST,Virtualdevice,Adding virtual devices
+/virtual_device/batchDelete,POST,Virtualdevice,Delete virtual devices in bulk
+/virtual_device/delete,POST,Virtualdevice,Deleting virtual devices
+/virtual_device/getDetail,POST,Virtualdevice,Get the virtual device details
+/virtual_device/list,POST,Virtualdevice,Gets a list of virtual devices
+/virtual_device/logs/list,POST,Virtualdevice,Take the virtual device execution log
+/virtual_device/modify,POST,Virtualdevice,Modifying virtual devices
+/virtual_device/run,POST,Virtualdevice,Manually execute the virtual appliance
+/virtual_device/saveDevices,POST,Virtualdevice,Saving virtual device connections
+/virtual_device/saveScript,POST,Virtualdevice,Save the script of virtual Device
+/virtual_device/setState,POST,Virtualdevice,Set the virtual device state

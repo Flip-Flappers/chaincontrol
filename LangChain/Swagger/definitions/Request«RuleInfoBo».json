@@ -1,0 +1,15 @@
+{
+  "type": "object",
+  "properties": {
+    "data": {
+      "$ref": "#/definitions/RuleInfoBo",
+      "originalRef": "RuleInfoBo",
+      "refType": "RuleInfoBo"
+    },
+    "requestId": {
+      "type": "string",
+      "refType": null
+    }
+  },
+  "title": "Request«RuleInfoBo»"
+}

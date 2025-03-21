@@ -1,0 +1,15 @@
+{
+  "type": "object",
+  "properties": {
+    "data": {
+      "$ref": "#/definitions/SysRoleAuthBo",
+      "originalRef": "SysRoleAuthBo",
+      "refType": "SysRoleAuthBo"
+    },
+    "requestId": {
+      "type": "string",
+      "refType": null
+    }
+  },
+  "title": "Request«SysRoleAuthBo»"
+}

@@ -1,0 +1,11 @@
+Property Name,Type,Format
+actions,array,
+createAt,integer,int64
+desc,string,
+filters,array,
+id,string,
+listeners,array,
+name,string,
+state,string,
+type,string,
+uid,string,

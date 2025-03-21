@@ -1,0 +1,30 @@
+{
+  "type": "object",
+  "properties": {
+    "identifier": {
+      "type": "string",
+      "refType": null
+    },
+    "inputData": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/Parameter",
+        "originalRef": "Parameter"
+      },
+      "refType": "Parameter"
+    },
+    "name": {
+      "type": "string",
+      "refType": null
+    },
+    "outputData": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/Parameter",
+        "originalRef": "Parameter"
+      },
+      "refType": "Parameter"
+    }
+  },
+  "title": "Service"
+}

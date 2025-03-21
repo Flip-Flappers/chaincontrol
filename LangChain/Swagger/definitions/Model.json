@@ -1,0 +1,30 @@
+{
+  "type": "object",
+  "properties": {
+    "events": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/Event",
+        "originalRef": "Event"
+      },
+      "refType": "Event"
+    },
+    "properties": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/Property",
+        "originalRef": "Property"
+      },
+      "refType": "Property"
+    },
+    "services": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/Service",
+        "originalRef": "Service"
+      },
+      "refType": "Service"
+    }
+  },
+  "title": "Model"
+}

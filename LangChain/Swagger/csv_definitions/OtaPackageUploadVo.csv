@@ -1,0 +1,6 @@
+Property Name,Type,Format
+md5,string,
+originalName,string,
+ossId,integer,int64
+size,integer,int64
+url,string,

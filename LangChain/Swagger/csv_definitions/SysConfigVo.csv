@@ -1,0 +1,8 @@
+Property Name,Type,Format
+configKey,string,
+configName,string,
+configType,string,
+configValue,string,
+createTime,string,date-time
+id,integer,int64
+remark,string,

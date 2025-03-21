@@ -1,0 +1,24 @@
+{
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "主键"
+    },
+    "model": {
+      "description": "模型内容",
+      "$ref": "#/definitions/Model_1",
+      "originalRef": "Model_1"
+    },
+    "productKey": {
+      "type": "string",
+      "description": "产品key"
+    },
+    "updateAt": {
+      "type": "integer",
+      "format": "int64",
+      "description": "更新时间"
+    }
+  },
+  "title": "ModbusThingModelVo"
+}

@@ -1,0 +1,19 @@
+{
+  "type": "object",
+  "required": [
+    "deviceId"
+  ],
+  "properties": {
+    "args": {
+      "type": "object",
+      "description": "参数",
+      "refType": null
+    },
+    "deviceId": {
+      "type": "string",
+      "description": "设备id",
+      "refType": null
+    }
+  },
+  "title": "SetDeviceServicePorpertyBo"
+}

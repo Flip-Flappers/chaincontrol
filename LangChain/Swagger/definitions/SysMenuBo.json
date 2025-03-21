@@ -1,0 +1,94 @@
+{
+  "type": "object",
+  "properties": {
+    "component": {
+      "type": "string",
+      "refType": null
+    },
+    "createBy": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "createDept": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "createTime": {
+      "type": "string",
+      "format": "date-time",
+      "refType": null
+    },
+    "icon": {
+      "type": "string",
+      "refType": null
+    },
+    "id": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "isCache": {
+      "type": "string",
+      "refType": null
+    },
+    "isFrame": {
+      "type": "string",
+      "refType": null
+    },
+    "menuName": {
+      "type": "string",
+      "refType": null
+    },
+    "menuType": {
+      "type": "string",
+      "refType": null
+    },
+    "orderNum": {
+      "type": "integer",
+      "format": "int32",
+      "refType": null
+    },
+    "parentId": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "path": {
+      "type": "string",
+      "refType": null
+    },
+    "perms": {
+      "type": "string",
+      "refType": null
+    },
+    "queryParam": {
+      "type": "string",
+      "refType": null
+    },
+    "remark": {
+      "type": "string",
+      "refType": null
+    },
+    "status": {
+      "type": "string",
+      "refType": null
+    },
+    "updateBy": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "updateTime": {
+      "type": "string",
+      "format": "date-time",
+      "refType": null
+    },
+    "visible": {
+      "type": "string",
+      "refType": null
+    }
+  },
+  "title": "SysMenuBo"
+}

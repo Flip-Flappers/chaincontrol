@@ -1,0 +1,27 @@
+{
+  "type": "object",
+  "properties": {
+    "content": {
+      "type": "string",
+      "refType": null
+    },
+    "id": {
+      "type": "string",
+      "refType": null
+    },
+    "logAt": {
+      "type": "integer",
+      "format": "int64",
+      "refType": null
+    },
+    "success": {
+      "type": "boolean",
+      "refType": null
+    },
+    "taskId": {
+      "type": "string",
+      "refType": null
+    }
+  },
+  "title": "TaskLogVo"
+}
