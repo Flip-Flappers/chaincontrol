@@ -80,10 +80,17 @@ def save_documents_to_csv(relevant_docs, output_file="selectbyreturn.csv"):
         writer.writerow(["className", "contents"])
 
         # 写入每个相关文档的信息
+        # 使用一个 set 记录已经写入的文件名
+        written_files = set()
+
         for i, doc in enumerate(relevant_docs):
-            file_name = doc.metadata.get("source", "未知文件")[:-4]
+            file_name = doc.metadata.get("source", "未知文件")[:-4]  # 获取文件名
             content_snippet = doc.page_content
-            writer.writerow([file_name, content_snippet])
+
+            # 只有当 file_name 不在 set 中时才写入
+            if file_name not in written_files:
+                writer.writerow([file_name, content_snippet])
+                written_files.add(file_name)  # 记录已写入的文件名
 
     print(f"相关文档已保存至 {output_file}")
 
@@ -101,18 +108,50 @@ def main():
     vector_store = create_vector_store(split_docs)
     retriever = create_retriever(vector_store)
 
+    Rewritten_Command = []
+    Translated_Command = []
+    file_name = "commands.csv"
+    with open(file_name, mode='r', newline='', encoding='utf-8') as file:
+        reader = csv.reader(file)
 
-    query = "Check all the online devices for me"
+        # 读取表头
+        header = next(reader)
 
+        # 找到 "Translated Rewritten Command" 列的索引
+        if "Rewritten Command" in header:
+            index = header.index("Rewritten Command")
 
+            # 读取数据
+            for row in reader:
+                Rewritten_Command.append(row[index])
+    with open(file_name, mode='r', newline='', encoding='utf-8') as file:
+        reader = csv.reader(file)
+
+        # 读取表头
+        header = next(reader)
+        if "Translated Command" in header:
+            index = header.index("Translated Command")
+            for row in reader:
+                Translated_Command.append(row[index])
+
+    all_relevant_docs = []
+    for query in Rewritten_Command:
+
+        relevant_docs = retriever.invoke(query)
+        all_relevant_docs.append(relevant_docs)
+        print(f"\n找到 {len(relevant_docs)} 个相关结果：")
+        for i, doc in enumerate(relevant_docs):
+            file_name = doc.metadata.get("source", "未知文件")
+            print(f"\n#{i + 1} 文件名: {file_name}")
+            print(f"内容片段: {doc.page_content[:250]}...")
+    query = Translated_Command[0]
     relevant_docs = retriever.invoke(query)
-
+    all_relevant_docs.append(relevant_docs)
     print(f"\n找到 {len(relevant_docs)} 个相关结果：")
     for i, doc in enumerate(relevant_docs):
         file_name = doc.metadata.get("source", "未知文件")
         print(f"\n#{i + 1} 文件名: {file_name}")
         print(f"内容片段: {doc.page_content[:250]}...")
-
     # 保存相关文档到 CSV
     save_documents_to_csv(relevant_docs)
 

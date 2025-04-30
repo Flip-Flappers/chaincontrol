@@ -1,11 +1,12 @@
 className,contents
-DeviceInfo,[DeviceInfo.csv] [DeviceInfo.csv] Property Name: online
-VirtualDeviceLog,[VirtualDeviceLog.csv] [VirtualDeviceLog.csv] Property Name: deviceTotal
-State,[State.csv] [State.csv] Property Name: onlineTime
-VirtualDevice,[VirtualDevice.csv] [VirtualDevice.csv] Property Name: devices
-Paging«DeviceOtaInfoVo»,[Paging«DeviceOtaInfoVo».csv] [Paging«DeviceOtaInfoVo».csv] Property Name: total
-DeviceAddGroupBo,[DeviceAddGroupBo.csv] [DeviceAddGroupBo.csv] Property Name: devices
-DeviceQueryByPkDnBo,[DeviceQueryByPkDnBo.csv] [DeviceQueryByPkDnBo.csv] Property Name: updateBy
-Request«DeviceQueryByPkDnBo»,[Request«DeviceQueryByPkDnBo».csv] [Request«DeviceQueryByPkDnBo».csv] Property Name: data
-PageRequest«VirtualDevice»,[PageRequest«VirtualDevice».csv] [PageRequest«VirtualDevice».csv] Property Name: sortMap
-DeviceInfoBo,[DeviceInfoBo.csv] [DeviceInfoBo.csv] Property Name: offlineTime
+DeviceInfo,[DeviceInfo.csv] [DeviceInfo.csv] Property Name: deviceName
+ServiceInvokeBo,[ServiceInvokeBo.csv] [ServiceInvokeBo.csv] Property Name: deviceId
+SetDeviceServicePorpertyBo,[SetDeviceServicePorpertyBo.csv] [SetDeviceServicePorpertyBo.csv] Property Name: deviceId
+DeviceProperty,[DeviceProperty.csv] [DeviceProperty.csv] Property Name: deviceId
+Request«DeviceUpgradeBo»,"[Request«DeviceUpgradeBo».csv] Type: string
+Format:"
+OpenapiSetDeviceServicePropertyBo,[OpenapiSetDeviceServicePropertyBo.csv] [OpenapiSetDeviceServicePropertyBo.csv] Property Name: deviceName
+DeviceConfigAddBo,[DeviceConfigAddBo.csv] [DeviceConfigAddBo.csv] Property Name: deviceId
+Request«DeviceConfigAddBo»,"[Request«DeviceConfigAddBo».csv] Type: Unknown
+Format:"
+OpenDeviceInfoVo,[OpenDeviceInfoVo.csv] [OpenDeviceInfoVo.csv] Property Name: deviceId

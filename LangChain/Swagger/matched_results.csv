@@ -1,20 +1,16 @@
 API path,Tags,Summary,Reason
-/device/add,device,Creating devices,"This API has Property: online, Property: offlineTime, Property: offlineTime."
-/device/children/list,device,Getting subdevices,"This API has Property: online, Property: offlineTime."
-/device/consumer,device,Consumer device information message (real-time push device information),"This API has Property: online, Property: offlineTime."
-/device/detail,device,Get device details,"This API has Property: online, Property: offlineTime."
-/device/getByPkDn,device,Get device details,"This API has Property: data, Property: online, Property: offlineTime, Property: updateBy, Property: data."
-/device/group/addDevices,device,Add a device to a group,This API has Property: devices.
-/device/group/removeDevices,device,Removes the device from the group,This API has Property: devices.
-/device/list,device,List of devices,"This API has Property: online, Property: offlineTime."
-/device/save,device,Saving device,"This API has Property: online, Property: offlineTime, Property: offlineTime."
-/openapi/device/v1/detail,openapi- Device,Query individual device details,"This API has Property: online, Property: offlineTime."
-/openapi/device/v1/registerDevice,openapi- Device,Single device registration,"This API has Property: online, Property: offlineTime."
-/ota/device/info,ota Upgrade Management,Equipment upgrade batch query,"This API has Property: online, Property: offlineTime, Property: total."
-/plugin/changeState,Plugin management,Modifying plugin state,This API has Property: onlineTime.
-/virtual_device/add,Virtualdevice,Adding virtual devices,"This API has Property: deviceTotal, Property: devices, Property: sortMap."
-/virtual_device/getDetail,Virtualdevice,Get the virtual device details,"This API has Property: deviceTotal, Property: devices, Property: sortMap."
-/virtual_device/list,Virtualdevice,Gets a list of virtual devices,"This API has Property: sortMap, Property: deviceTotal, Property: devices, Property: sortMap."
-/virtual_device/logs/list,Virtualdevice,Take the virtual device execution log,"This API has Property: deviceTotal, Property: deviceTotal, Property: devices, Property: sortMap."
-/virtual_device/modify,Virtualdevice,Modifying virtual devices,"This API has Property: deviceTotal, Property: devices, Property: sortMap."
-/virtual_device/setState,Virtualdevice,Set the virtual device state,This API has Property: onlineTime.
+/device/add,device,Creating devices,"This API has Property: deviceName, Property: deviceId."
+/device/children/list,device,Getting subdevices,"This API has Property: deviceName, Property: deviceId."
+/device/consumer,device,Consumer device information message (real-time push device information),"This API has Property: deviceName, Property: deviceId."
+/device/detail,device,Get device details,"This API has Property: deviceName, Property: deviceId."
+/device/deviceProperty/log/list,device,Get historical data of device properties,This API has Property: deviceId.
+/device/getByPkDn,device,Get device details,"This API has Property: deviceName, Property: deviceId."
+/device/list,device,List of devices,"This API has Property: deviceName, Property: deviceId."
+/device/save,device,Saving device,"This API has Property: deviceName, Property: deviceId."
+/device/service/invoke,device,Service invocation,This API has Property: deviceId.
+/device/service/property/set,device,Property setting,This API has Property: deviceId.
+/openapi/device/v1/detail,openapi- Device,Query individual device details,"This API has Property: deviceName, Property: deviceId."
+/openapi/device/v1/queryDevicePropertyStatus,openapi- Device,Query the attribute snapshot for the specified device,This API has Property: deviceId.
+/openapi/device/v1/registerDevice,openapi- Device,Single device registration,"This API has Property: deviceName, Property: deviceId, Property: deviceId."
+/openapi/device/v1/setDeviceProperty,openapi- Device,Sets device properties,"This API has Property: deviceId, Property: deviceName."
+/ota/device/info,ota Upgrade Management,Equipment upgrade batch query,"This API has Property: deviceName, Property: deviceId."
