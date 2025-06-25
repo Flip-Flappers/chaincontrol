@@ -1,12 +1,10 @@
 className,contents
-DeviceInfo,[DeviceInfo.csv] [DeviceInfo.csv] Property Name: deviceName
-ServiceInvokeBo,[ServiceInvokeBo.csv] [ServiceInvokeBo.csv] Property Name: deviceId
-SetDeviceServicePorpertyBo,[SetDeviceServicePorpertyBo.csv] [SetDeviceServicePorpertyBo.csv] Property Name: deviceId
-DeviceProperty,[DeviceProperty.csv] [DeviceProperty.csv] Property Name: deviceId
-Request«DeviceUpgradeBo»,"[Request«DeviceUpgradeBo».csv] Type: string
-Format:"
-OpenapiSetDeviceServicePropertyBo,[OpenapiSetDeviceServicePropertyBo.csv] [OpenapiSetDeviceServicePropertyBo.csv] Property Name: deviceName
-DeviceConfigAddBo,[DeviceConfigAddBo.csv] [DeviceConfigAddBo.csv] Property Name: deviceId
-Request«DeviceConfigAddBo»,"[Request«DeviceConfigAddBo».csv] Type: Unknown
-Format:"
-OpenDeviceInfoVo,[OpenDeviceInfoVo.csv] [OpenDeviceInfoVo.csv] Property Name: deviceId
+AlertConfig,[AlertConfig.csv] [AlertConfig.csv] Property Name: messageTemplateId
+ChannelConfig,[ChannelConfig.csv] [ChannelConfig.csv] Property Name: title
+RuleAction,[RuleAction.csv] [RuleAction.csv] Property Name: config
+AlertRecord,[AlertRecord.csv] [AlertRecord.csv] Property Name: readFlg
+ChannelTemplateVo_1,[ChannelTemplateVo_1.csv] [ChannelTemplateVo_1.csv] Property Name: channelConfigId
+Request«ChannelTemplate»,[Request«ChannelTemplate».csv] [Request«ChannelTemplate».csv] Property Name: requestId
+ChannelConfigBo,[ChannelConfigBo.csv] [ChannelConfigBo.csv] Property Name: param
+Request«ChangeStateBo»,[Request«ChangeStateBo».csv] [Request«ChangeStateBo».csv] Property Name: requestId
+DeferredResult«ThingModelMessage»,[DeferredResult«ThingModelMessage».csv] [DeferredResult«ThingModelMessage».csv] Property Name: setOrExpired

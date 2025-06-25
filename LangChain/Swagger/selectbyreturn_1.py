@@ -5,6 +5,7 @@ from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_community.vectorstores import Chroma
 import glob
 import os
+import shutil
 
 
 def load_csv_files(folder_path):
@@ -48,6 +49,8 @@ def split_documents(docs):
 def create_vector_store(docs):
     """ 复用已有 Chroma 数据，避免重复计算向量 """
     persist_directory = "select_by_definitions_chroma_db"
+    if os.path.exists(persist_directory):
+        shutil.rmtree(persist_directory)
 
     # 检查 Chroma 数据库是否已经存在
     if os.path.exists(persist_directory) and os.listdir(persist_directory):
@@ -73,6 +76,10 @@ def create_retriever(vector_store, top_k=10):
 
 
 def save_documents_to_csv(relevant_docs, output_file="selectbyreturn.csv"):
+
+
+    if os.path.exists(output_file):
+        os.remove(output_file)
     """ 将相关文档的文件名和内容片段保存为 CSV 文件 """
     with open(output_file, mode="w", newline='', encoding='utf-8') as file:
         writer = csv.writer(file)
@@ -96,6 +103,8 @@ def save_documents_to_csv(relevant_docs, output_file="selectbyreturn.csv"):
 
 
 def main():
+
+
     print("正在加载 CSV 文件...")
     documents = load_csv_files("csv_definitions")
     print(f"成功加载 {len(documents)} 个文档")
