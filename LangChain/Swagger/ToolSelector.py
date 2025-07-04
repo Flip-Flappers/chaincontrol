@@ -45,7 +45,13 @@ class ToolSelector:
     """
     def select_tool(self) -> Tool:
         template = """
-        You are a tool selector. Based on the user's input, decide whether to use the 'DeviceAPITool' or 'PlatformAPITool'.
+        You are an intelligent assistant responsible for choosing the correct tool to handle user commands.
+
+        There are two tools available:
+        1. DeviceAPITool - for sending control commands to a single type of product or individual device.
+        2. PlatformAPITool - for addition, deletion, modification, and search of data in IoT systems.
+        
+        Based on the user's input, decide whether to use the 'DeviceAPITool' or 'PlatformAPITool'.
 
          << Output Format >>
         {json_output}
@@ -55,7 +61,7 @@ class ToolSelector:
         """
         prompt = PromptTemplate.from_template(template)
 
-        llm = OllamaLLM(model="deepseek-r1:1.5b", base_url="http://localhost:11434", temperature=1.0)
+        llm = OllamaLLM(model="deepseek-r1:14b", base_url="http://localhost:11434", temperature=1.0)
         llm_chain = LLMChain(prompt=prompt, llm=llm)
 
 

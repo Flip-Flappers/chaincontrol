@@ -62,7 +62,7 @@ REMEMBER: "total" MUST be 10 and MUST be consistent with the number in the json 
 REMEMBER: "user intent" MUST be based on << User Input >>
 """
 
-llm = OllamaLLM(model="deepseek-r1:1.5b", base_url="http://localhost:11434", temperature=1.0)
+llm = OllamaLLM(model="deepseek-r1:14b", base_url="http://localhost:11434", temperature=1.0)
 llm_chain = LLMChain(prompt=prompt_template, llm=llm)
 
 translate_model_name = "Helsinki-NLP/opus-mt-zh-en"
