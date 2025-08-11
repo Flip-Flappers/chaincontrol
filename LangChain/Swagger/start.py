@@ -51,7 +51,7 @@ def main():
                     gr.JSON(label="targetDevice"),
                     gr.JSON(label="targetProduct")
                 ],
-        title="Gradio Demo",
+        title="物联网平台自然语言控制",
         description="demo"
     )
     iface.launch()

@@ -24,8 +24,8 @@ class KeyWordsSelector:
         self.productKey = None
         self.keyWords_list = \
             [
-                "deviceName: String, Unique identifier of the device",
-                "productKey: String, Unique identifier of the product",
+                "deviceName: String, Unique identifier of the device.\n",
+                "productKey: String, Unique identifier of the product.\n",
             ]
 
         self.prompt_template = PromptTemplate(
@@ -143,7 +143,6 @@ class KeyWordsSelector:
 
         history = []
         is_first = True
-        keyword_map = None
         for i in range(3):
             think, answer, history = self.llm.multi_chat(self.prompt_template.format(command=command, KeyWord_list=self.keyWords_list, json_output=self.json_output), history, is_first)
             is_first = False
@@ -163,7 +162,7 @@ class KeyWordsSelector:
                 history.append({'role': 'user', 'content': "注意，上一次回答是:\n" + answer + "\n, 其中productKey回答不正确，系统中无此名称产品，请按照要求，重新解析<< User Input >>！"})
 
 
-        return self.think, self.answer, keyword_map
+        return self.think, self.answer, self.ans
 
 
 

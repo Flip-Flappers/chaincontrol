@@ -35,7 +35,7 @@ class ToolSelector:
                               "6. The correct deviceName is required as tool_input.\n",
             },
             {
-                "toolName": "productTool",
+                "toolName": "ProductTool",
                 "function": "1. Manage and query product information through << ProductKey >>.\n"
                                "2. Obtain the corresponding configuration of the product through the << ProductKey >>.\n"
                                "3. Batch control all devices under the product through the << ProductKey >>.\n"
@@ -45,7 +45,8 @@ class ToolSelector:
             {
                 "toolName": "LocalSystemTool",
                 "function": "Not interacting with the device, but only interacting with the IoT software platform itself.\n"
-                            "This tool calling the API of the IoT software itself to achieve addition, deletion, modification, and query for the IoT software platform.\n"
+                            "LocalSystemTool calling the API interface of the IoT software itself to achieve addition, deletion, modification, and query for the IoT software platform.\n"
+                            "LocalSystemTool call the IOT system's own API, such as switch plugins, querying historical alarm data and device properties data, querying users and logging records.\n"
             }
         ]
 
@@ -53,7 +54,13 @@ class ToolSelector:
             input_variables=["command", "KeyWords", "toolTable", "json_output"],
             template="""
                     You are an experienced IoT system expert. Users of the IoT control software often issue vague or ambiguous commands.\n
-                    Your task is to choose the appropriate tool to implement user commands. IMPORTANT: You can only choose ONE tool.\n
+                    Your task is to choose appropriate tools to implement user << COMMAND >>. \n
+                    IMPORTANT: You can use multiple tools, but you can only use them in ORDER!!!\n
+                    Tools can be reused, but must be called in order.\n
+                    For example: You can first use the "local system tool" to query information that is not explicitly displayed in the command, and then use "DeviceTool" or "ProductTool" perform correct operations on terminal devices.\n
+                    You need to extract the user's << COMMAND >>, identify and relevant extract content to correspond to the specific tasks of each tool, correctly issue instructions to tools.\n
+                    The user input extracted from the << COMMAND >> will be placed at << instructions >> in the output.\n
+                    IMPORTANT: << instructions >> 必须要带有具体对象和具体动作
                     Your work assistant has extracted the keywords from the user command and stored them in << KeyWords >>.\n
                     Please carefully analyze the << function >> of each tool in the << tooltable >>.\n
                     
@@ -80,12 +87,24 @@ class ToolSelector:
         self.json_output = """
             Return a markdown code snippet with JSON object formatted as follows:\n
             ```json\n
-            {\n
-              
-                "toolName": string, // Selected toolName\n
-                "reason": string // Reasons for choosing the target tool\n
-            }\n
-            ```\n
+                    {\n
+                        "steps": int, // Total number of steps. \n
+                        "results": [\n
+                        {\n
+                            "step_num": 1,
+                            "toolName": string, // Selected toolName of the first step.\n
+                            "reason": string // Reasons for choosing the target tool of the first step.\n
+                            "instructions"： string // Extract user input from << Command >> of the first step.\n
+                        },\n
+                        {\n
+                            "step_num": 2,
+                            "toolName": string, // Selected toolName of the second step.\n
+                            "reason": string // Reasons for choosing the target tool of the second step.\n
+                            "instructions"： string // Extract user input from << Command >> of the second step.\n
+                        }\n
+                        ]\n
+                    }\n
+            ```
             REMEMBER: "toolName" MUST be based on << COMMAND >>\n
             REMEMBER: "toolName" Must be consistent with << toolTable >>\n
             REMEMBER: If there is no corresponding tool, toolName defaults to null.\n
