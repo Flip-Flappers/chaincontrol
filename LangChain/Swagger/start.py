@@ -10,17 +10,26 @@ import gradio as gr
 
 import tools.ToolSelector as ToolSelector
 import tools.DeviceTool as DeviceTool
+import tools.LocalSystemTool as LocalSystemTool
 
 keywordSelector = KeyWordsSelector.KeyWordsSelector()
 
 def greet(command):
-
     think, answer, keywords = keywordSelector.select_keywords(command)
-    toolSelector = ToolSelector.ToolSelector(keywords)
-    think, answer, targetTool = toolSelector.select_tool(command)
-    """if targetTool['toolName'] == "DeviceTool":
-        deviceTool = DeviceTool.DeviceTool(keywords, keywords['deviceName'])
-        think, answer, targetTool = deviceTool.intention_recognition(command)"""
+    for keyword in keywords:
+        if keyword.get('KeyWord') == "null":
+            continue
+        action = keyword.get("action")
+        keyword_map = {keyword["keyWordName"]: keyword["KeyWord"]}
+        toolSelector = ToolSelector.ToolSelector(keyword_map)
+
+        think, answer, targetTool = toolSelector.select_tool("for device：" + keyword_map['deviceName'] + ", the action is" + action)
+        for tool in targetTool:
+            if tool['toolName'] == "DeviceTool":
+                deviceTool = DeviceTool.DeviceTool(keyword_map, keyword_map['deviceName'])
+                think, answer, targetDeviceTool = deviceTool.intention_recognition(tool['instructions'])
+
+
 
     #keyWords_refiner = KeyWords_refiner_0_3.Command_Refine()
     #keyWords_refiner.refine_command()

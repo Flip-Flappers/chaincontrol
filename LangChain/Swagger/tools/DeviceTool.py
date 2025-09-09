@@ -1,3 +1,4 @@
+import ast
 import json
 import concurrent
 import csv
@@ -13,16 +14,18 @@ from transformers import MarianMTModel, MarianTokenizer
 
 from LangChain.Swagger.model.deepseek import deepseek
 from langchain_core.prompts import PromptTemplate
-
+BASE_URL = "http://localhost:8086"
 
 class DeviceTool:
     def __init__(self, keywords, deviceName):
         self.think = None
         self.answer = None
         self.ans =  None
-        self.deviceName = None
+        self.deviceName = deviceName
+        self.devicePluginName = None
         self.keywords = keywords
         self.llm = deepseek()
+        self.token = self.get_token()
         self.toolTable = [
             {
                 "toolName": "Device Control Tool",
@@ -30,7 +33,7 @@ class DeviceTool:
                             "1.call the device API to send data to the device.\n"
                             "2.retrieve properties from the device.\n"
                             "3.let the device complete specified operations.\n"
-                            "The functions of this device include:\n" + self.get_deviceAPIS(deviceName)
+                            "The functions of this device include:\n" + self.get_deviceAPIS(deviceName, self.token)[0]
             },
             {
                 "toolName": "View Device Property Tool",
@@ -50,9 +53,43 @@ class DeviceTool:
             {
                 "toolName": "Modify Device properties Tool",
                 "function": "this tool can Modify device properties, which 'Device Control Tool' does not support.\n"
+            },
+            {
+                "toolName": "View Device Detail Tool",
+                "function": "this tool can Show the Basic information about the device."
             }
         ]
         self.file_name = "./tmp/device_tool.json"
+
+    @staticmethod
+    def get_token():
+        url = f"{BASE_URL}/openapi/v1/getToken"
+        headers = {"Content-Type": "application/json"}
+
+        payload = {
+            "requestId": "13",
+            "data": {
+                "appid": "admin",
+                "password": "123456",
+                "identifier": "fd4b1aacdf9a0b334c4b3f616812bb12",
+                "timestamp": "20240901",
+                "tenantId": "452748015218757"
+            }
+        }
+
+        try:
+            response = requests.post(url, json=payload, headers=headers, timeout=10)
+            response.raise_for_status()
+            data = response.json()
+            print("✅ getToken 返回:", data)
+
+            # 这里根据实际返回的 JSON 结构提取 token
+            token = data.get("data", {}).get("requestId")
+            print("✅ 解析出的 token:", token)
+            return token
+        except requests.RequestException as e:
+            print(f"❌ 获取 token 失败: {e}")
+            return None
 
     @staticmethod
     def getDeviceDetailByName(deviceName):
@@ -116,121 +153,126 @@ class DeviceTool:
         data = json.loads(result)
         return data
     @staticmethod
-    def check_deviceName(deviceName):
-        return True
+    def check_deviceName(device_name, token):
+        url = f"{BASE_URL}/device/getDeviceDetailByDeviceName"
+        headers = {
+            "Content-Type": "application/json",
+            "token": f"{token}"  # 一般是这样传，具体要看你后端要求
+        }
+        payload = {
+            "data": {
+                "deviceName": device_name,
+                "productKey": "None"
+            },
+            "requestId": 45
+        }
+
+        try:
+            response = requests.post(url, json=payload, headers=headers, timeout=10)
+            response.raise_for_status()
+            device_info = response.json()
+            print("✅ 查询成功，返回：", device_info)
+            if device_info.get("data") is None:
+                return False
+            return True
+        except requests.RequestException as e:
+            print(f"❌ 查询失败: {e}")
+            return False
 
 
     @staticmethod
-    def getProductKeyByDeviceName(deviceName):
-        return "openiotgateway01"
+    def getProductKeyByDeviceName(deviceName, token):
 
-    def get_deviceAPIS(self, deviceName):
-        return """
-        [
-            {
-                "ApiName": "SetProductTime",
-                "description": "设置设备的ProductTime。",
-                "body": "{
-                    "productTime": int, // 需要设置的 ProductTime
-                    "type":"SetProductTime"
-                }"
+        url = f"{BASE_URL}/device/getDeviceDetailByDeviceName"
+        headers = {
+            "Content-Type": "application/json",
+            "token": f"{token}"  # 一般是这样传，具体要看你后端要求
+        }
+        payload = {
+            "data": {
+                "deviceName": deviceName,
+                "productKey": "None"
             },
-            {
-                "ApiName": "SetAlarm",
-                "function": "设置设备的告警周期",
-                "body"："
-                        {
-                            "deviceName": string, // 目标设备名称,
-                            "payload": "{
-                                SetAlarm:{
-                                    AlarmTime: int // 需要设置的设备告警周期，注意：单位是秒！
-                                }
-                            }",
-                            "type":"SetAlarm"
-                        }
-                    "            
-            },
-            {
-                "ApiName": "SetDRT",
-                "function": "设置设备的DRT",  
-                "body": "
-                {
-                    "deviceName":"sb1",
-                    "payload": "{
-                        SetDRT:{
-                            Hp10_DRTN1:int, // 需要设置的Hp10_DRTN1
-                            Hp10_DRTF1:int, // 需要设置的Hp10_DRTF1
-                            Hp10_DRTN2:int, // 需要设置的Hp10_DRTN2
-                            Hp10_DRTF2:int, // 需要设置的Hp10_DRTF2
-                            Hp07_DRTN:int,  // 需要设置的Hp07_DRTN
-                            Hp07_DRTF":int  // 需要设置的Hp07_DRTF
-                            }
-                    }",
-                    "type":"SetDRT"
-                }
-                "
-            },
-            {
-                "ApiName": "SetDT",
-                "function": "设置设备的DT",
-                "body"："
-                        {
-                            "deviceName": string, // 目标设备名称,
-                            "payload": "{
-                                SetDT:{
-                                    Hp10_DT1: int, // 需要设置的Hp10_DT1
-                                    Hp10_DT2: int,// 需要设置的Hp10_DT2
-                                    Hp07_DT: int // 需要设置的Hp07_DT
-                                }
-                            }",
-                            "type":"SetDT"
-                        }
-                    "
-            },
-            {
-                "toolName": "SetUserName",
-                "function": "设置设备的userName",
-                "body"："
-                        {
-                            "deviceName": string, // 目标设备名称,
-                            "payload": "{
-                                SetUserName:{
-                                    UserName: string // 需要设置的username
-                                }
-                            }",
-                            "type":"SetUserName"
-                        }
-                    "        
-            }
-        ]"""
+            "requestId": 45
+        }
+        try:
+            response = requests.post(url, json=payload, headers=headers, timeout=10)
+            response.raise_for_status()
+            device_info = response.json()
+            print("✅ 查询成功，返回：", device_info)
+            if device_info.get("data") is None:
+                return None
+            return device_info.get("data").get("productKey")
+        except requests.RequestException as e:
+            print(f"❌ 查询失败: {e}")
+            return None
 
-    def getTargetApiBody(self, deviceName, apiName):
-        if apiName == "SetAlarm":
-            return """
-            
-                {
-                    "deviceName": string, // 目标设备名称,
-                    "payload": "{   // string 注意，payload是string类型的
-                        \"SetAlarm\":{\"AlarmTime\":\"int\" // 需要设置的设备告警周期，注意：单位是秒！}
-                        }",
-                    "type":"SetAlarm"
-                }
-            """
-        elif apiName == "SetDT":
-            return """
-                {
-                    "deviceName":"sb1",
-                    "payload": "{ // string 注意，payload是string类型的
-                        \"SetDT\":{
-                            \"Hp10_DT1\":int, // 需要设置的Hp10_DT1, 
-                            \"Hp10_DT2\":int, // 需要设置的Hp10_DT2
-                            \"Hp07_DT\":int   // 需要设置的Hp07_DT
-                            }
-                    }",
-                    "type":"SetDT"
-                }
-            
-            """
+
+    def get_deviceAPIS(self, deviceName, token):
+        url = f"{BASE_URL}/plugin/getPluginDetailByDeviceName"
+        headers = {
+            "Content-Type": "application/json",
+            "token": f"{token}"  # 一般是这样传，具体要看你后端要求
+        }
+        payload = {
+            "data": deviceName,
+            "requestId": 45
+        }
+        try:
+            response = requests.post(url, json=payload, headers=headers, timeout=10)
+            response.raise_for_status()
+            plugin_info = response.json()
+            print("✅ 查询成功，返回：", plugin_info)
+            if plugin_info.get("data") is None:
+                return None
+            self.devicePluginName = plugin_info.get("data").get("pluginId")
+        except requests.RequestException as e:
+            print(f"❌ 查询失败: {e}")
+            return None
+
+        url = f"{BASE_URL}/{self.devicePluginName}"
+        headers = {
+            "Content-Type": "application/json",
+            "token": f"{token}"  # 一般是这样传，具体要看你后端要求
+        }
+        try:
+            response = requests.get(url, headers=headers, timeout=10)
+            response.raise_for_status()
+            device_api_info = response.json()
+            print("✅ 查询成功，返回：", device_api_info)
+            if device_api_info.get("data") is None:
+                return None
+            return str(device_api_info.get("data")), device_api_info.get("data")
+        except requests.RequestException as e:
+            print(f"❌ 查询失败: {e}")
+            return None
+
+
+
+
+    def getTargetApiBody(self, deviceName, apiName, token):
+        url = f"{BASE_URL}/{self.devicePluginName}/search"
+        headers = {
+            "Content-Type": "application/json",
+            "token": f"{token}"  # 一般是这样传，具体要看你后端要求
+        }
+        payload = {
+            "data": apiName,
+            "requestId": 45
+        }
+        try:
+            response = requests.post(url, json=payload, headers=headers, timeout=10)
+            response.raise_for_status()
+            api_info = response.json()
+            print("✅ 查询成功，返回：", api_info)
+            if api_info.get("data") is None:
+                return None
+            return api_info.get("data").get("body")
+        except requests.RequestException as e:
+            print(f"❌ 查询失败: {e}")
+            return None
+
+
     def getTargetBody(self, deviceName, targetAPI, command, current_task):
         API_prompt_template = PromptTemplate(
             input_variables=["command", "KeyWords", "API BODY", "current_task", "json_output"],
@@ -282,17 +324,21 @@ class DeviceTool:
         ans = self.write_to_json(answer, "./tmp/api_targetbody.json")
 
         return ans
-    def getControlApiDescription(self, deviceName):
-        return """
-        1.重启设备。\n
-        2.设置设备DRT属性：DRT。\n
-        3.设置设备DT属性：DT。\n
-        4.设置设备的用户id：UserID。\n
-        5.设置设备的用户名称：UserName。\n
-        6.设置设备告警周期：AlarmTime。\n
-        7.设置设备属性：上报周期。\n
-        """
 
+    def remove_star_keys(self, data):
+        """
+        递归删除所有以 ** 开头的 JSON key
+        """
+        if isinstance(data, dict):
+            return {
+                k: self.remove_star_keys(v)
+                for k, v in data.items()
+                if not k.startswith("**")
+            }
+        elif isinstance(data, list):
+            return [self.remove_star_keys(item) for item in data]
+        else:
+            return data
     def intention_recognition(self, command):
         self.prompt_template = PromptTemplate(
             input_variables=["command", "KeyWords", "toolTable", "json_output"],
@@ -367,13 +413,35 @@ class DeviceTool:
 
         for i in range(len(ans["results"])):
             if ans["results"][i]["toolName"] == "Device Control Tool":
-                API_Detail = self.get_deviceAPIS(self.deviceName)
+                API_Detail, target_apis= self.get_deviceAPIS(self.deviceName, self.token)
                 target_API = self.getTargetApi(API_Detail, command, ans["results"][i]['reason'])
+                targetAPIName = target_API.get("targetAPIName")
+                target_url = ""
+                for api in target_apis:
+                    if targetAPIName == api.get("apiName"):
+                        target_url = api.get("url")
+                        break
                 print("target_API:")
                 print(target_API)
-                body = self.getTargetBody(self.deviceName, self.getTargetApiBody(self.deviceName, target_API["targetAPIName"]),  command, ans["results"][i]['reason'])
+                body = self.getTargetBody(self.deviceName, self.getTargetApiBody(self.deviceName, target_API["targetAPIName"], self.token),  command, ans["results"][i]['reason'])
+                print("old_body: ")
+                print(body)
+                body = self.remove_star_keys(body)
                 print("target_body:")
                 print(body)
+                url = f"http://localhost:8078{target_url}"
+                print("url:{}", url)
+                headers = {
+                    "Content-Type": "application/json",
+                    "token": f"{self.token}"  # 一般是这样传，具体要看你后端要求
+                }
+                payload = body
+                response = requests.post(url, json=payload, headers=headers, timeout=10)
+                response.raise_for_status()
+                api_info = response.json()
+                print("✅ 调用成功：", api_info)
+
+
 
 
 
@@ -468,6 +536,8 @@ class DeviceTool:
 
         if start is not None and end is not None:
             json_str = text[start:end]
+            print("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&")
+            print(json_str)
             return json.loads(self.clean_json_string_with_regex(json_str))  # 返回 dict，可改成 return json_str 返回字符串
         else:
             raise ValueError("未找到完整的 JSON 对象")
@@ -476,11 +546,11 @@ class DeviceTool:
     def write_to_json(self, json_str, file_name):
         try:
             data = self.extract_json(json_str)
-
             # 删除旧文件（如果存在）
             if os.path.exists(file_name):
                 os.remove(file_name)
-
+            print("*********************************************************")
+            print(data)
             # 写入 JSON 文件
             with open(file_name, mode="w", encoding="utf-8") as file:
                 json.dump(data, file, ensure_ascii=False, indent=2)

@@ -16,7 +16,7 @@ class deepseek:
             api_key=os.getenv("DASHSCOPE_API_KEY"),
             base_url="https://dashscope.aliyuncs.com/compatible-mode/v1"
         )
-        self.model = "deepseek-r1"
+        self.model = "deepseek-r1-0528"
 
 
 

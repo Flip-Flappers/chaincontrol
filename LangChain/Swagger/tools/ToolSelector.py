@@ -13,7 +13,7 @@ from transformers import MarianMTModel, MarianTokenizer
 from LangChain.Swagger.model.deepseek import deepseek
 from LangChain.Swagger.tools.DeviceTool import DeviceTool
 from LangChain.Swagger.tools.ProductTool import ProductTool
-
+BASE_URL = "http://localhost:8086"
 
 
 class ToolSelector:
@@ -23,6 +23,7 @@ class ToolSelector:
         self.answer = None
         self.ans = None
         self.keywords = keywords
+        self.token = self.get_token()
         self.file_name = "./tmp/tool_selector.json"
         self.toolTable = [
             {
@@ -32,7 +33,8 @@ class ToolSelector:
                               "3. Use the << deviceName >> to query the historical attributes reported by the device.\n"
                               "4. Obtain device alerts by << deviceName >>.\n"
                               "5. Check the device status by << deviceName >>.\n"
-                              "6. The correct deviceName is required as tool_input.\n",
+                              "6. The correct deviceName is required as tool_input.\n"
+                               "The functions of this device include:\n" + self.get_deviceAPIS(keywords['deviceName'], self.token)[0],
             },
             {
                 "toolName": "ProductTool",
@@ -60,7 +62,7 @@ class ToolSelector:
                     For example: You can first use the "local system tool" to query information that is not explicitly displayed in the command, and then use "DeviceTool" or "ProductTool" perform correct operations on terminal devices.\n
                     You need to extract the user's << COMMAND >>, identify and relevant extract content to correspond to the specific tasks of each tool, correctly issue instructions to tools.\n
                     The user input extracted from the << COMMAND >> will be placed at << instructions >> in the output.\n
-                    IMPORTANT: << instructions >> 必须要带有具体对象和具体动作
+                    IMPORTANT: << instructions >> Must have specific objects(deviceName or productKey) and actions! \n
                     Your work assistant has extracted the keywords from the user command and stored them in << KeyWords >>.\n
                     Please carefully analyze the << function >> of each tool in the << tooltable >>.\n
                     
@@ -110,7 +112,75 @@ class ToolSelector:
             REMEMBER: If there is no corresponding tool, toolName defaults to null.\n
             """
         self.llm = deepseek()
+    def get_deviceAPIS(self, deviceName, token):
+        url = f"{BASE_URL}/plugin/getPluginDetailByDeviceName"
+        headers = {
+            "Content-Type": "application/json",
+            "token": f"{token}"  # 一般是这样传，具体要看你后端要求
+        }
+        payload = {
+            "data": deviceName,
+            "requestId": 45
+        }
+        try:
+            response = requests.post(url, json=payload, headers=headers, timeout=10)
+            response.raise_for_status()
+            plugin_info = response.json()
+            print("✅ 查询成功，返回：", plugin_info)
+            if plugin_info.get("data") is None:
+                return None
+            self.devicePluginName = plugin_info.get("data").get("pluginId")
+        except requests.RequestException as e:
+            print(f"❌ 查询失败: {e}")
+            return None
 
+        url = f"{BASE_URL}/{self.devicePluginName}"
+        headers = {
+            "Content-Type": "application/json",
+            "token": f"{token}"  # 一般是这样传，具体要看你后端要求
+        }
+        try:
+            response = requests.get(url, headers=headers, timeout=10)
+            response.raise_for_status()
+            device_api_info = response.json()
+            print("✅ 查询成功，返回：", device_api_info)
+            if device_api_info.get("data") is None:
+                return None
+            return str(device_api_info.get("data")), device_api_info.get("data")
+        except requests.RequestException as e:
+            print(f"❌ 查询失败: {e}")
+            return None
+
+
+    @staticmethod
+    def get_token():
+        url = f"{BASE_URL}/openapi/v1/getToken"
+        headers = {"Content-Type": "application/json"}
+
+        payload = {
+            "requestId": "13",
+            "data": {
+                "appid": "admin",
+                "password": "123456",
+                "identifier": "fd4b1aacdf9a0b334c4b3f616812bb12",
+                "timestamp": "20240901",
+                "tenantId": "452748015218757"
+            }
+        }
+
+        try:
+            response = requests.post(url, json=payload, headers=headers, timeout=10)
+            response.raise_for_status()
+            data = response.json()
+            print("✅ getToken 返回:", data)
+
+            # 这里根据实际返回的 JSON 结构提取 token
+            token = data.get("data", {}).get("requestId")
+            print("✅ 解析出的 token:", token)
+            return token
+        except requests.RequestException as e:
+            print(f"❌ 获取 token 失败: {e}")
+            return None
     def clean_json_string_with_regex(self, s: str) -> str:
         # 去掉开头 ``` 或 ```json 和后面的换行
         s = re.sub(r"^\s*```(?:json)?\s*\n?", "", s, flags=re.IGNORECASE)
@@ -162,6 +232,7 @@ class ToolSelector:
 
     def select_tool(self, command):
 
+
         history = []
         is_first = True
 
@@ -172,7 +243,7 @@ class ToolSelector:
         self.think = think
         self.answer = answer
         ans = self.write_to_json(answer)
-        self.ans = ans
+        self.ans = ans['results']
         return self.think, self.answer, self.ans
 
 

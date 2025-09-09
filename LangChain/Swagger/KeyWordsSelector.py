@@ -13,7 +13,7 @@ from transformers import MarianMTModel, MarianTokenizer
 from LangChain.Swagger.tools.DeviceTool import DeviceTool
 from LangChain.Swagger.tools.ProductTool import ProductTool
 from model import deepseek
-
+BASE_URL = "http://localhost:8086"
 class KeyWordsSelector:
 
     def __init__(self):
@@ -31,53 +31,80 @@ class KeyWordsSelector:
         self.prompt_template = PromptTemplate(
             input_variables=["command", "KeyWord_list", "json_output"],
             template="""
-                    You are an experienced IoT system expert. Users of the IoT control software often issue vague or ambiguous commands. Your task is to extract the specified keywords from the user's COMMANDS.
-                    Focus on realistic and typical IoT scenarios, such as:
-                    - Smart home automation (e.g., controlling lights, thermostat, appliances)
-                    - Device scheduling (timers and routines)
-                    - Energy efficiency and management
-                    - Security monitoring (e.g., cameras, alarms)
-                    - Sensor integration and data monitoring
-                    - Remote device control and management
-    
-                   
-                    IMPORTANT: Use detailed, professional language and logical reasoning to connect the user’s vague command to that specific intent.
-                    Attention: Ensure each intention is distinct, practical, and clearly described.
-                    Attention: Avoid vague or redundant phrasing.
-                    Caution: Keep the user’s perspective in mind and do not stray beyond what their command plausibly means.
-    
-                    Emphasize that the goal is to help the user discover the software’s capabilities more precisely and effectively.
-    
-                    << User Input >>
-                    {command}
+                    You are an experienced IoT system expert. Users of the IoT control software often issue vague or ambiguous commands. \n
+                    ## The First Task： you need to extract the specified keywords from the << User Input >>.\n
+                    Focus on realistic and typical IoT scenarios, such as:\n
+                    - Smart home automation (e.g., controlling lights, thermostat, appliances)\n
+                    - Device scheduling (timers and routines)\n
+                    - Energy efficiency and management\n
+                    - Security monitoring (e.g., cameras, alarms)\n
+                    - Sensor integration and data monitoring\n
+                    - Remote device control and management\n
+                    - IMPORTANT: If there are multiple keywords, use different IDs to distinguish them.\n
                     
-                    <<KeyWord List>>
-                    {KeyWord_list}
+                    
+                    ## FOR Device Create Task
+                    The device creation task is a special task that is mainly processed in three steps:\n
+                     1. Confirm whether the relevant device is mentioned (such as being in the same product as XXX device).\n
+                     2. If the relevant device is mentioned, the task will be considered as one of the tasks for XXX device.\n 
+                     3. If not mentioned, the specific device Name and productKey need to be found before creating the device.\n
+                    - IMPORTANT: For newly created device tasks, these newly created device names cannot be used as keywords.\n
+                    - IMPORTANT: If the device creation task mentions related devices, it will be treated as a task for related devices. The relevant devices will provide corresponding functions and create new devices. At this point, this task will be one of the tasks for the relevant devices.\n
+                    - IMPORTANT: If the device creation task mentions related devices, it will be treated as a task for related devices. The relevant devices will provide corresponding functions and create new devices. At this point, this task will be one of the tasks for the relevant devices.\n
+                    - IMPORTANT: If the device creation task mentions related devices, it will be treated as a task for related devices. The relevant devices will provide corresponding functions and create new devices. At this point, this task will be one of the tasks for the relevant devices.\n
+                    - IMPORTANT: If the task is create device, the Name of device to be created must be add in task. such as: the Name of device to be created is XXXXX\n
+                 
+                    
+                    - IMPORTANT: Each action must contain a keywords and Specific actions according to  << COMMAND >> . For multiple actions, use 1., 2., 3... Describe by points\n
     
-                    << Output Format >>
-                    {json_output}
+                    
+                    ## The Second Task: you need to extract the corresponding action for each keyword in << User Input >>.\n
+                    - IMPORTANT: The action must include the keyWordName, keyword and all actions corresponding to the keyword, preferably using the exact words in << User Input >>.\n
+                    - IMPORTANT: The action content referred to needs to be clearly displayed. When mentioning a product, there should be a product name, and when mentioning a device, there should be a device name.\n\n
+                   
+                    ## IMPORTANT
+                    IMPORTANT: Use detailed, professional language and logical reasoning to connect the user’s vague command to that specific intent.\n
+                    Attention: Ensure each intention is distinct, practical, and clearly described.\n
+                    Attention: Avoid vague or redundant phrasing.\n
+                    Caution: Keep the user’s perspective in mind and do not stray beyond what their command plausibly means.\n
+                    Caution: Cannot Skip any Command!\n
+                    Caution: Cannot Skip any Command!\n
+                    Caution: Cannot Skip any Command!\n
+                    
+                    Emphasize that the goal is to help the user discover the software’s capabilities more precisely and effectively.\n\n
+    
+                    << User Input >>\n
+                    {command}\n\n
+                    
+                    <<KeyWord List>>\n
+                    {KeyWord_list}\n\n
+    
+                    << Output Format >>\n
+                    {json_output}\n\n
                 """
         )
 
         self.json_output = """
-            Return a markdown code snippet with JSON object formatted as follows:
-            ```json
+            Return a markdown code snippet with JSON object formatted as follows:\n
+            ```json\n
             {
-                "total": int, // the number of results
-                "results": [
+                "total": int, // the number of results\n
+                "results": [\n
                     {
-                        "id": 1, // the first KeyWord,
-                        "keyWordName": string // the name of the first KeyWord in <<KeyWord List>>
-                        "KeyWord": string,  
+                        "id": 1, // the first KeyWord,\n
+                        "keyWordName": string // the name of the first KeyWord in <<KeyWord List>>\n
+                        "KeyWord": string,  \n
+                        "action": string 1. 2. 3. // the corresponding action for the first keyword in << User Input >>.\
                     },
                     {
-                        "id": 2, // the second KeyWord
-                        "keyWordName": string // the type of the second KeyWord in <<KeyWord List>>
-                        "KeyWord": string,  
-                    },
-                    ...
-                ]
-            }
+                        "id": 2, // the second KeyWord\n
+                        "keyWordName": string // the type of the second KeyWord in <<KeyWord List>>\n
+                        "KeyWord": string,  \n
+                        "action": string 1. 2. 3.  // the corresponding action for the second keyword in << User Input >>\
+                    },\n
+                    ...\n
+                ]\n
+            }\n
             ```
             REMEMBER: "KeyWord" MUST be based on << User Input >>
             REMEMBER: "keyWordName" Must be consistent with <<KeyWord List>>
@@ -139,7 +166,37 @@ class KeyWordsSelector:
             print(f"写入 JSON 文件时出错: {e}")
         return data.get("results", [])
 
+    @staticmethod
+    def get_token():
+        url = f"{BASE_URL}/openapi/v1/getToken"
+        headers = {"Content-Type": "application/json"}
+
+        payload = {
+            "requestId": "13",
+            "data": {
+                "appid": "admin",
+                "password": "123456",
+                "identifier": "fd4b1aacdf9a0b334c4b3f616812bb12",
+                "timestamp": "20240901",
+                "tenantId": "452748015218757"
+            }
+        }
+
+        try:
+            response = requests.post(url, json=payload, headers=headers, timeout=10)
+            response.raise_for_status()
+            data = response.json()
+            print("✅ getToken 返回:", data)
+
+            # 这里根据实际返回的 JSON 结构提取 token
+            token = data.get("data", {}).get("requestId")
+            print("✅ 解析出的 token:", token)
+            return token
+        except requests.RequestException as e:
+            print(f"❌ 获取 token 失败: {e}")
+            return None
     def select_keywords(self, command):
+
 
         history = []
         is_first = True
@@ -149,19 +206,18 @@ class KeyWordsSelector:
             self.think = think
             self.answer = answer
             ans = self.write_to_json(answer)
-            self.ans = ans
             keyword_map = {item["keyWordName"]: item["KeyWord"] for item in ans}
             deviceName = keyword_map.get("deviceName")
             productKey = keyword_map.get("productKey")
-            if ((deviceName == "null" or deviceName == "None" or deviceName is None or deviceName == "" or deviceName == "NULL" or DeviceTool.check_deviceName(deviceName)) and
+            self.ans = ans
+            token = self.get_token()
+            if ((deviceName == "null" or deviceName == "None" or deviceName is None or deviceName == "" or deviceName == "NULL" or DeviceTool.check_deviceName(deviceName, token)) and
                 (productKey == "null" or productKey == "None" or productKey is None or productKey == "" or productKey == "NULL" or ProductTool.check_productKey(productKey))):
                 break
-            if not DeviceTool.check_deviceName(deviceName):
+            if not DeviceTool.check_deviceName(deviceName, token):
                 history.append({'role': 'user', 'content': "注意，上一次回答是:\n" + answer + "\n, 其中deviceName回答不正确,系统中无此名称设备，请按照要求，重新解析<< User Input >>！"})
             if not ProductTool.check_productKey(productKey):
                 history.append({'role': 'user', 'content': "注意，上一次回答是:\n" + answer + "\n, 其中productKey回答不正确，系统中无此名称产品，请按照要求，重新解析<< User Input >>！"})
-
-
         return self.think, self.answer, self.ans
 
 
