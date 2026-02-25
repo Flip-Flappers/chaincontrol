@@ -54,8 +54,10 @@ python run_desktop_with_backend.py --host 127.0.0.1 --port 8001
   "answer": "已为你打开客厅灯",
   "raw": {
     "steps": [
-      {"name": "加载执行器", "status": "completed", "detail": "已加载 Swagger pipeline", "duration_ms": 10},
-      {"name": "执行命令解析", "status": "completed", "detail": "命令解析与工具选择完成", "duration_ms": 280}
+      {"name": "加载执行器", "status": "completed", "detail": "已加载 Swagger pipeline 组件", "duration_ms": 8},
+      {"name": "抽槽（KeywordSelector）", "status": "completed", "detail": "识别到 2 个关键词槽位", "duration_ms": 120},
+      {"name": "关键词#1 工具选择", "status": "completed", "detail": "device=客厅灯, action=打开, tools=1", "duration_ms": 45},
+      {"name": "关键词#1 设备控制", "status": "completed", "detail": "tool=DeviceTool, 执行结果条目=1", "duration_ms": 96}
     ]
   }
 }
@@ -70,4 +72,5 @@ python run_desktop_with_backend.py --host 127.0.0.1 --port 8001
 
 ## 步骤可视化
 - 后端会在 `/control` 响应的 `raw.steps` 返回每一步的 `name/detail/status/duration_ms`。
+- `/control` 默认按“加载执行器 -> 抽槽（KeywordSelector）-> 工具选择 -> 设备控制 -> 执行结束”的顺序组织步骤。
 - 桌面端会在聊天窗口中按顺序显示“请求准备 -> 调用后端 -> 后端步骤详情 -> 最终结果”。

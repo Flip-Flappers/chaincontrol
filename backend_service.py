@@ -1,12 +1,4 @@
-"""ChainControl 后端服务（适配 Tkinter 客户端）
-
-提供接口：
-- GET /health
-- POST /control
-
-默认启动：
-    uvicorn backend_service:app --host 0.0.0.0 --port 8000
-"""
+"""ChainControl 后端服务（适配 Tkinter 客户端）。"""
 
 from __future__ import annotations
 
@@ -61,8 +53,8 @@ def _release_user_slot(user_id: str) -> None:
         _inflight_users.discard(user_id)
 
 
-def _resolve_swagger_greet():
-    """动态加载 LangChain/Swagger/start.py 中的 greet 方法。"""
+def _resolve_swagger_components() -> Dict[str, Any] | None:
+    """动态加载 LangChain/Swagger/start.py 中的组件。"""
     base_dir = Path(__file__).resolve().parent
     swagger_dir = base_dir / "LangChain" / "Swagger"
     if not swagger_dir.exists():
@@ -70,19 +62,148 @@ def _resolve_swagger_greet():
 
     sys.path.insert(0, str(swagger_dir))
     try:
-        from start import greet  # type: ignore
+        from start import DeviceTool, ToolSelector, greet, keywordSelector  # type: ignore
 
-        return greet
+        return {
+            "greet": greet,
+            "keyword_selector": keywordSelector,
+            "tool_selector_cls": getattr(ToolSelector, "ToolSelector", None),
+            "device_tool_cls": getattr(DeviceTool, "DeviceTool", None),
+        }
     except Exception:
         return None
 
 
-def _run_control_pipeline(command: str) -> Dict[str, Any]:
-    """执行控制流水线。
+def _run_swagger_step_pipeline(command: str, components: Dict[str, Any], step_trace: List[Dict[str, Any]]) -> Dict[str, Any]:
+    """按显式步骤执行：抽槽 -> 工具选择 -> 设备控制意图识别。"""
 
-    优先复用现有 Swagger 流程（start.greet）。
-    若加载失败，返回兜底响应，保证桌面客户端可用。
-    """
+    def add_step(name: str, detail: str, status: str, started_at: float) -> None:
+        step_trace.append(
+            {
+                "name": name,
+                "detail": detail,
+                "status": status,
+                "duration_ms": int((time.perf_counter() - started_at) * 1000),
+            }
+        )
+
+    keyword_selector = components.get("keyword_selector")
+    tool_selector_cls = components.get("tool_selector_cls")
+    device_tool_cls = components.get("device_tool_cls")
+
+    if keyword_selector is None or tool_selector_cls is None:
+        raise RuntimeError("Swagger 组件不完整，缺少 keywordSelector/ToolSelector")
+
+    keywords: List[Dict[str, Any]] = []
+    all_target_tools: List[Dict[str, Any]] = []
+    all_device_actions: List[Dict[str, Any]] = []
+
+    t_extract = time.perf_counter()
+    _, _, raw_keywords = keyword_selector.select_keywords(command)
+    keywords = raw_keywords or []
+    add_step("抽槽（KeywordSelector）", f"识别到 {len(keywords)} 个关键词槽位", "completed", t_extract)
+
+    if not keywords:
+        add_step("执行结束", "未识别到可执行关键词，跳过设备控制", "completed", time.perf_counter())
+        return {
+            "ok": True,
+            "answer": "未识别到可执行的设备意图。",
+            "keywords": [],
+            "target_tools": [],
+            "raw": {
+                "mode": "swagger_step_pipeline",
+                "steps": step_trace,
+                "device_actions": [],
+            },
+        }
+
+    for index, keyword in enumerate(keywords, start=1):
+        key_word_value = str(keyword.get("KeyWord", ""))
+        device_name = str(keyword.get("keyWordName", ""))
+        action = str(keyword.get("action", ""))
+
+        if key_word_value == "null":
+            add_step(
+                f"关键词#{index}",
+                f"device={device_name or 'unknown'} 命中空槽位，跳过",
+                "skipped",
+                time.perf_counter(),
+            )
+            continue
+
+        keyword_map = {"deviceName": device_name, "KeyWord": key_word_value}
+        t_tool = time.perf_counter()
+        selector = tool_selector_cls(keyword_map)
+        _, _, target_tools = selector.select_tool(
+            f"for device：{keyword_map['deviceName']}, the action is {action}"
+        )
+        selected_tools = target_tools or []
+        all_target_tools.extend(selected_tools)
+        add_step(
+            f"关键词#{index} 工具选择",
+            f"device={keyword_map['deviceName']}, action={action}, tools={len(selected_tools)}",
+            "completed",
+            t_tool,
+        )
+
+        for tool_idx, tool in enumerate(selected_tools, start=1):
+            tool_name = str(tool.get("toolName", "unknown"))
+            if tool_name != "DeviceTool":
+                add_step(
+                    f"关键词#{index} 工具#{tool_idx}",
+                    f"tool={tool_name} 当前未执行，仅记录",
+                    "skipped",
+                    time.perf_counter(),
+                )
+                continue
+
+            if device_tool_cls is None:
+                add_step(
+                    f"关键词#{index} 工具#{tool_idx}",
+                    "DeviceTool 类缺失，无法执行设备意图识别",
+                    "failed",
+                    time.perf_counter(),
+                )
+                continue
+
+            instructions = str(tool.get("instructions", ""))
+            t_device = time.perf_counter()
+            device_tool = device_tool_cls(keyword_map, keyword_map["deviceName"])
+            _, _, target_device_tool = device_tool.intention_recognition(instructions)
+            device_targets = target_device_tool if isinstance(target_device_tool, list) else [target_device_tool]
+            all_device_actions.extend([item for item in device_targets if item])
+            add_step(
+                f"关键词#{index} 设备控制",
+                f"tool=DeviceTool, 执行结果条目={len([item for item in device_targets if item])}",
+                "completed",
+                t_device,
+            )
+
+    add_step(
+        "执行结束",
+        f"keywords={len(keywords)}, tools={len(all_target_tools)}, device_actions={len(all_device_actions)}",
+        "completed",
+        time.perf_counter(),
+    )
+
+    return {
+        "ok": True,
+        "answer": "命令处理完成，已按步骤执行抽槽与设备控制。",
+        "keywords": keywords,
+        "target_tools": all_target_tools,
+        "raw": {
+            "mode": "swagger_step_pipeline",
+            "keywords_count": len(keywords),
+            "target_tools_count": len(all_target_tools),
+            "device_actions_count": len(all_device_actions),
+            "device_actions": all_device_actions,
+            "steps": step_trace,
+        },
+    }
+
+
+def _run_control_pipeline(command: str) -> Dict[str, Any]:
+    """执行控制流水线并返回每步执行轨迹。"""
     step_trace: List[Dict[str, Any]] = []
 
     def add_step(name: str, detail: str, status: str, started_at: float) -> None:
@@ -95,10 +216,10 @@ def _run_control_pipeline(command: str) -> Dict[str, Any]:
             }
         )
 
-    t0 = time.perf_counter()
-    greet = _resolve_swagger_greet()
-    if greet is None:
-        add_step("加载执行器", "未找到 Swagger pipeline，切换为 fallback", "completed", t0)
+    t_load = time.perf_counter()
+    components = _resolve_swagger_components()
+    if components is None:
+        add_step("加载执行器", "未找到 Swagger pipeline，切换为 fallback", "completed", t_load)
         return {
             "ok": True,
             "answer": f"已收到命令：{command}（当前使用兜底流程，未接入 Swagger pipeline）",
@@ -107,13 +228,33 @@ def _run_control_pipeline(command: str) -> Dict[str, Any]:
             "raw": {"mode": "fallback", "steps": step_trace},
         }
 
-    add_step("加载执行器", "已加载 Swagger pipeline", "completed", t0)
+    add_step("加载执行器", "已加载 Swagger pipeline 组件", "completed", t_load)
 
-    t1 = time.perf_counter()
     try:
-        keywords, target_tools = greet(command)
+        return _run_swagger_step_pipeline(command, components, step_trace)
     except Exception as exc:  # noqa: BLE001
-        add_step("执行命令解析", f"执行失败：{exc}", "failed", t1)
+        add_step("执行异常", f"流水线失败：{exc}", "failed", time.perf_counter())
+
+        greet = components.get("greet")
+        if callable(greet):
+            t_fallback = time.perf_counter()
+            try:
+                keywords, target_tools = greet(command)
+                add_step("兼容回退（start.greet）", "已使用原始 greet 成功返回结果", "completed", t_fallback)
+                return {
+                    "ok": True,
+                    "answer": "步骤化执行失败，已回退到原始流程。",
+                    "keywords": keywords or [],
+                    "target_tools": target_tools or [],
+                    "raw": {
+                        "mode": "swagger_greet_fallback",
+                        "error": str(exc),
+                        "steps": step_trace,
+                    },
+                }
+            except Exception as greet_exc:  # noqa: BLE001
+                add_step("兼容回退（start.greet）", f"回退也失败：{greet_exc}", "failed", t_fallback)
+
         return {
             "ok": False,
             "answer": f"命令执行失败：{exc}",
@@ -121,31 +262,6 @@ def _run_control_pipeline(command: str) -> Dict[str, Any]:
             "target_tools": [],
             "raw": {"mode": "error", "error": str(exc), "steps": step_trace},
         }
-
-    add_step("执行命令解析", "命令解析与工具选择完成", "completed", t1)
-
-    t2 = time.perf_counter()
-    normalized_keywords = keywords or []
-    normalized_target_tools = target_tools or []
-    add_step(
-        "结果整理",
-        f"keywords={len(normalized_keywords)}, target_tools={len(normalized_target_tools)}",
-        "completed",
-        t2,
-    )
-
-    return {
-        "ok": True,
-        "answer": "命令已解析并执行，请查看步骤详情。",
-        "keywords": normalized_keywords,
-        "target_tools": normalized_target_tools,
-        "raw": {
-            "mode": "swagger_pipeline",
-            "keywords_count": len(normalized_keywords),
-            "target_tools_count": len(normalized_target_tools),
-            "steps": step_trace,
-        },
-    }
 
 
 @app.get("/health")
