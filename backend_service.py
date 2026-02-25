@@ -71,23 +71,11 @@ def _resolve_swagger_components() -> Dict[str, Any] | None:
     try:
         from start import DeviceTool, ToolSelector, greet, keywordSelector  # type: ignore
 
-        api_target_query_template = ""
-        api_target_json_output = ""
-        try:
-            from API_target_selector_4 import API_target_selector  # type: ignore
-
-            api_target_query_template = getattr(API_target_selector, "query_template", "")
-            api_target_json_output = getattr(API_target_selector, "json_output", "")
-        except Exception:
-            pass
-
         return {
             "greet": greet,
             "keyword_selector": keywordSelector,
             "tool_selector_cls": getattr(ToolSelector, "ToolSelector", None),
             "device_tool_cls": getattr(DeviceTool, "DeviceTool", None),
-            "api_target_query_template": api_target_query_template,
-            "api_target_json_output": api_target_json_output,
         }
     except Exception:
         return None
@@ -121,8 +109,6 @@ def _run_swagger_step_pipeline(command: str, components: Dict[str, Any], step_tr
     keyword_selector = components.get("keyword_selector")
     tool_selector_cls = components.get("tool_selector_cls")
     device_tool_cls = components.get("device_tool_cls")
-    api_target_query_template = _safe_text(components.get("api_target_query_template"))
-    api_target_json_output = _safe_text(components.get("api_target_json_output"))
 
     if keyword_selector is None or tool_selector_cls is None:
         raise RuntimeError("Swagger 组件不完整，缺少 keywordSelector/ToolSelector")
@@ -136,7 +122,7 @@ def _run_swagger_step_pipeline(command: str, components: Dict[str, Any], step_tr
     extract_think, extract_answer, raw_keywords = keyword_selector.select_keywords(command)
     keywords = raw_keywords or []
     add_step(
-        "抽槽（KeywordSelector）",
+        "步骤1: keywordSelector.select_keywords(command)",
         f"识别到 {len(keywords)} 个关键词槽位",
         "completed",
         t_extract,
@@ -176,12 +162,12 @@ def _run_swagger_step_pipeline(command: str, components: Dict[str, Any], step_tr
         keyword_map = {"deviceName": device_name, "KeyWord": key_word_value}
         t_tool = time.perf_counter()
         selector = tool_selector_cls(keyword_map)
-        tool_prompt = f"for device：{keyword_map['deviceName']}, the action is {action}"
+        tool_prompt = f"for device：{keyword_map['deviceName']}, the action is{action}"
         tool_think, tool_answer, target_tools = selector.select_tool(tool_prompt)
         selected_tools = target_tools or []
         all_target_tools.extend(selected_tools)
         add_step(
-            f"关键词#{index} 工具选择",
+            f"步骤2: toolSelector.select_tool(...) [关键词#{index}]",
             f"device={keyword_map['deviceName']}, action={action}, tools={len(selected_tools)}",
             "completed",
             t_tool,
@@ -190,21 +176,7 @@ def _run_swagger_step_pipeline(command: str, components: Dict[str, Any], step_tr
             ai_think=_safe_text(tool_think),
         )
 
-        api_selection_prompt = ""
-        if api_target_query_template:
-            api_selection_prompt = api_target_query_template.format(
-                original_command=command,
-                json_output=api_target_json_output,
-            )
-            add_step(
-                f"关键词#{index} API目标选择模板",
-                "展示 API_target_selector_4 的 query_template 与 json_output",
-                "completed",
-                time.perf_counter(),
-                prompt=api_selection_prompt,
-                ai_response=_safe_text(tool_answer),
-                ai_think=_safe_text(tool_think),
-            )
+
 
         for tool_idx, tool in enumerate(selected_tools, start=1):
             tool_name = _safe_text(tool.get("toolName")) or "unknown"
@@ -234,7 +206,7 @@ def _run_swagger_step_pipeline(command: str, components: Dict[str, Any], step_tr
             valid_targets = [item for item in device_targets if item]
             all_device_actions.extend(valid_targets)
             add_step(
-                f"关键词#{index} 设备控制",
+                f"步骤3: deviceTool.intention_recognition(...) [关键词#{index}]",
                 f"tool=DeviceTool, 执行结果条目={len(valid_targets)}",
                 "completed",
                 t_device,
@@ -242,13 +214,6 @@ def _run_swagger_step_pipeline(command: str, components: Dict[str, Any], step_tr
                 ai_response=_safe_text(device_answer),
                 ai_think=_safe_text(device_think),
             )
-
-    add_step(
-        "执行结束",
-        f"keywords={len(keywords)}, tools={len(all_target_tools)}, device_actions={len(all_device_actions)}",
-        "completed",
-        time.perf_counter(),
-    )
 
     return {
         "ok": True,
