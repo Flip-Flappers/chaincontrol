@@ -71,11 +71,23 @@ def _resolve_swagger_components() -> Dict[str, Any] | None:
     try:
         from start import DeviceTool, ToolSelector, greet, keywordSelector  # type: ignore
 
+        api_target_query_template = ""
+        api_target_json_output = ""
+        try:
+            from API_target_selector_4 import API_target_selector  # type: ignore
+
+            api_target_query_template = getattr(API_target_selector, "query_template", "")
+            api_target_json_output = getattr(API_target_selector, "json_output", "")
+        except Exception:
+            pass
+
         return {
             "greet": greet,
             "keyword_selector": keywordSelector,
             "tool_selector_cls": getattr(ToolSelector, "ToolSelector", None),
             "device_tool_cls": getattr(DeviceTool, "DeviceTool", None),
+            "api_target_query_template": api_target_query_template,
+            "api_target_json_output": api_target_json_output,
         }
     except Exception:
         return None
@@ -109,6 +121,8 @@ def _run_swagger_step_pipeline(command: str, components: Dict[str, Any], step_tr
     keyword_selector = components.get("keyword_selector")
     tool_selector_cls = components.get("tool_selector_cls")
     device_tool_cls = components.get("device_tool_cls")
+    api_target_query_template = _safe_text(components.get("api_target_query_template"))
+    api_target_json_output = _safe_text(components.get("api_target_json_output"))
 
     if keyword_selector is None or tool_selector_cls is None:
         raise RuntimeError("Swagger 组件不完整，缺少 keywordSelector/ToolSelector")
@@ -175,6 +189,22 @@ def _run_swagger_step_pipeline(command: str, components: Dict[str, Any], step_tr
             ai_response=_safe_text(tool_answer),
             ai_think=_safe_text(tool_think),
         )
+
+        api_selection_prompt = ""
+        if api_target_query_template:
+            api_selection_prompt = api_target_query_template.format(
+                original_command=command,
+                json_output=api_target_json_output,
+            )
+            add_step(
+                f"关键词#{index} API目标选择模板",
+                "展示 API_target_selector_4 的 query_template 与 json_output",
+                "completed",
+                time.perf_counter(),
+                prompt=api_selection_prompt,
+                ai_response=_safe_text(tool_answer),
+                ai_think=_safe_text(tool_think),
+            )
 
         for tool_idx, tool in enumerate(selected_tools, start=1):
             tool_name = _safe_text(tool.get("toolName")) or "unknown"
