@@ -51,7 +51,13 @@ python run_desktop_with_backend.py --host 127.0.0.1 --port 8001
 {
   "ok": true,
   "user_id": "alice",
-  "answer": "已为你打开客厅灯"
+  "answer": "已为你打开客厅灯",
+  "raw": {
+    "steps": [
+      {"name": "加载执行器", "status": "completed", "detail": "已加载 Swagger pipeline", "duration_ms": 10},
+      {"name": "执行命令解析", "status": "completed", "detail": "命令解析与工具选择完成", "duration_ms": 280}
+    ]
+  }
 }
 ```
 
@@ -60,3 +66,8 @@ python run_desktop_with_backend.py --host 127.0.0.1 --port 8001
 - 后端基于 `user_id` 做并发控制：同一 `user_id` 在一个命令处理完成前，新的 `/control` 请求会返回 `409`。
 - 不同 `user_id` 之间可以并行发送命令。
 - 桌面端会在本地请求处理中禁用“发送命令”按钮，避免重复提交。
+
+
+## 步骤可视化
+- 后端会在 `/control` 响应的 `raw.steps` 返回每一步的 `name/detail/status/duration_ms`。
+- 桌面端会在聊天窗口中按顺序显示“请求准备 -> 调用后端 -> 后端步骤详情 -> 最终结果”。

@@ -13,6 +13,7 @@ from __future__ import annotations
 import os
 import sys
 import threading
+import time
 from datetime import datetime
 from pathlib import Path
 from typing import Any, Dict, List
@@ -82,38 +83,69 @@ def _run_control_pipeline(command: str) -> Dict[str, Any]:
     优先复用现有 Swagger 流程（start.greet）。
     若加载失败，返回兜底响应，保证桌面客户端可用。
     """
-    greet = _resolve_swagger_greet()
+    step_trace: List[Dict[str, Any]] = []
 
+    def add_step(name: str, detail: str, status: str, started_at: float) -> None:
+        step_trace.append(
+            {
+                "name": name,
+                "detail": detail,
+                "status": status,
+                "duration_ms": int((time.perf_counter() - started_at) * 1000),
+            }
+        )
+
+    t0 = time.perf_counter()
+    greet = _resolve_swagger_greet()
     if greet is None:
+        add_step("加载执行器", "未找到 Swagger pipeline，切换为 fallback", "completed", t0)
         return {
             "ok": True,
             "answer": f"已收到命令：{command}（当前使用兜底流程，未接入 Swagger pipeline）",
             "keywords": [],
             "target_tools": [],
-            "raw": {"mode": "fallback"},
+            "raw": {"mode": "fallback", "steps": step_trace},
         }
 
+    add_step("加载执行器", "已加载 Swagger pipeline", "completed", t0)
+
+    t1 = time.perf_counter()
     try:
         keywords, target_tools = greet(command)
-        return {
-            "ok": True,
-            "answer": "命令已解析并执行，请查看 raw 字段获取详细结果。",
-            "keywords": keywords or [],
-            "target_tools": target_tools or [],
-            "raw": {
-                "mode": "swagger_pipeline",
-                "keywords_count": len(keywords or []),
-                "target_tools_count": len(target_tools or []),
-            },
-        }
     except Exception as exc:  # noqa: BLE001
+        add_step("执行命令解析", f"执行失败：{exc}", "failed", t1)
         return {
             "ok": False,
             "answer": f"命令执行失败：{exc}",
             "keywords": [],
             "target_tools": [],
-            "raw": {"mode": "error", "error": str(exc)},
+            "raw": {"mode": "error", "error": str(exc), "steps": step_trace},
         }
+
+    add_step("执行命令解析", "命令解析与工具选择完成", "completed", t1)
+
+    t2 = time.perf_counter()
+    normalized_keywords = keywords or []
+    normalized_target_tools = target_tools or []
+    add_step(
+        "结果整理",
+        f"keywords={len(normalized_keywords)}, target_tools={len(normalized_target_tools)}",
+        "completed",
+        t2,
+    )
+
+    return {
+        "ok": True,
+        "answer": "命令已解析并执行，请查看步骤详情。",
+        "keywords": normalized_keywords,
+        "target_tools": normalized_target_tools,
+        "raw": {
+            "mode": "swagger_pipeline",
+            "keywords_count": len(normalized_keywords),
+            "target_tools_count": len(normalized_target_tools),
+            "steps": step_trace,
+        },
+    }
 
 
 @app.get("/health")

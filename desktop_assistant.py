@@ -1,19 +1,4 @@
-"""桌面端物联网小助手（Tkinter 版）
-
-功能：
-1. 本地桌面聊天式交互
-2. 可配置后端服务地址（默认 http://127.0.0.1:8000）
-3. 发送控制命令到后端 /control
-4. 健康检查 /health
-5. 按 user_id 区分会话，并在单用户命令处理中禁用再次发送
-
-后端接口约定：
-- POST /control
-  request: {"command": "打开客厅灯", "user_id": "alice", "context": {}}
-  response: {"ok": true, "user_id": "alice", "answer": "已为你打开客厅灯", "raw": {...}}
-- GET /health
-  response: {"status": "ok"}
-"""
+"""桌面端物联网小助手（Tkinter 版）。"""
 
 from __future__ import annotations
 
@@ -22,7 +7,7 @@ import threading
 import tkinter as tk
 from dataclasses import dataclass, field
 from tkinter import messagebox, scrolledtext
-from typing import Any, Dict
+from typing import Any, Dict, Iterable
 
 import requests
 
@@ -112,11 +97,26 @@ class DesktopAssistantApp:
         self.chat_area.see(tk.END)
         self.chat_area.configure(state=tk.DISABLED)
 
+    def _append_async(self, role: str, content: str) -> None:
+        self.root.after(0, lambda: self._append(role, content))
+
     def _set_sending(self, sending: bool) -> None:
         self.sending = sending
         new_state = tk.DISABLED if sending else tk.NORMAL
         self.send_button.configure(state=new_state)
         self.command_input.configure(state=new_state)
+
+    def _set_sending_async(self, sending: bool) -> None:
+        self.root.after(0, lambda: self._set_sending(sending))
+
+    def _render_steps(self, user_id: str, steps: Iterable[Dict[str, Any]]) -> None:
+        for index, step in enumerate(steps, start=1):
+            name = step.get("name", f"步骤{index}")
+            detail = step.get("detail", "")
+            status = step.get("status", "unknown")
+            duration_ms = step.get("duration_ms")
+            cost = f"，耗时 {duration_ms}ms" if duration_ms is not None else ""
+            self._append_async("步骤", f"({user_id}) {index}. {name} [{status}] - {detail}{cost}")
 
     def on_update_url(self) -> None:
         base_url = self.base_url_entry.get().strip()
@@ -130,11 +130,11 @@ class DesktopAssistantApp:
     def on_health_check(self) -> None:
         def worker() -> None:
             try:
-                self.on_update_url()
+                self.root.after(0, self.on_update_url)
                 result = self.client.health()
-                self._append("助手", f"健康检查通过：{json.dumps(result, ensure_ascii=False)}")
+                self._append_async("助手", f"健康检查通过：{json.dumps(result, ensure_ascii=False)}")
             except Exception as exc:  # noqa: BLE001
-                self._append("助手", f"健康检查失败：{exc}")
+                self._append_async("助手", f"健康检查失败：{exc}")
 
         threading.Thread(target=worker, daemon=True).start()
 
@@ -155,19 +155,29 @@ class DesktopAssistantApp:
 
         def worker() -> None:
             try:
-                self.on_update_url()
+                self._append_async("步骤", f"({user_id}) 1/4 收到命令，准备请求后端")
+                self.root.after(0, self.on_update_url)
+                self._append_async("步骤", f"({user_id}) 2/4 正在调用 /control")
                 result = self.client.control(command, user_id)
+                self._append_async("步骤", f"({user_id}) 3/4 后端返回，正在整理步骤详情")
+
+                raw = result.get("raw") if isinstance(result, dict) else {}
+                steps = raw.get("steps", []) if isinstance(raw, dict) else []
+                if steps:
+                    self._render_steps(user_id, steps)
+
                 answer = result.get("answer") or result.get("message") or json.dumps(result, ensure_ascii=False)
-                self._append("助手", f"({user_id}) {answer}")
+                self._append_async("步骤", f"({user_id}) 4/4 展示最终结果")
+                self._append_async("助手", f"({user_id}) {answer}")
             except requests.HTTPError as exc:
                 if exc.response is not None and exc.response.status_code == 409:
-                    self._append("助手", f"({user_id}) 命令被拒绝：该用户已有命令在处理中")
+                    self._append_async("助手", f"({user_id}) 命令被拒绝：该用户已有命令在处理中")
                 else:
-                    self._append("助手", f"调用失败：{exc}")
+                    self._append_async("助手", f"调用失败：{exc}")
             except Exception as exc:  # noqa: BLE001
-                self._append("助手", f"调用失败：{exc}")
+                self._append_async("助手", f"调用失败：{exc}")
             finally:
-                self._set_sending(False)
+                self._set_sending_async(False)
 
         threading.Thread(target=worker, daemon=True).start()
 
