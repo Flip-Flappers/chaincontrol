@@ -115,8 +115,17 @@ class DesktopAssistantApp:
             detail = step.get("detail", "")
             status = step.get("status", "unknown")
             duration_ms = step.get("duration_ms")
+            prompt = step.get("prompt", "")
+            ai_response = step.get("ai_response", "")
+            ai_think = step.get("ai_think", "")
             cost = f"，耗时 {duration_ms}ms" if duration_ms is not None else ""
             self._append_async("步骤", f"({user_id}) {index}. {name} [{status}] - {detail}{cost}")
+            if prompt:
+                self._append_async("Prompt", f"({user_id}) {prompt}")
+            if ai_think:
+                self._append_async("AI思考", f"({user_id}) {ai_think}")
+            if ai_response:
+                self._append_async("AI返回", f"({user_id}) {ai_response}")
 
     def on_update_url(self) -> None:
         base_url = self.base_url_entry.get().strip()

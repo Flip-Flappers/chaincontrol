@@ -53,8 +53,15 @@ def _release_user_slot(user_id: str) -> None:
         _inflight_users.discard(user_id)
 
 
+def _safe_text(value: Any) -> str:
+    if value is None:
+        return ""
+    if isinstance(value, str):
+        return value
+    return str(value)
+
+
 def _resolve_swagger_components() -> Dict[str, Any] | None:
-    """动态加载 LangChain/Swagger/start.py 中的组件。"""
     base_dir = Path(__file__).resolve().parent
     swagger_dir = base_dir / "LangChain" / "Swagger"
     if not swagger_dir.exists():
@@ -77,13 +84,25 @@ def _resolve_swagger_components() -> Dict[str, Any] | None:
 def _run_swagger_step_pipeline(command: str, components: Dict[str, Any], step_trace: List[Dict[str, Any]]) -> Dict[str, Any]:
     """按显式步骤执行：抽槽 -> 工具选择 -> 设备控制意图识别。"""
 
-    def add_step(name: str, detail: str, status: str, started_at: float) -> None:
+    def add_step(
+        name: str,
+        detail: str,
+        status: str,
+        started_at: float,
+        *,
+        prompt: str = "",
+        ai_response: str = "",
+        ai_think: str = "",
+    ) -> None:
         step_trace.append(
             {
                 "name": name,
                 "detail": detail,
                 "status": status,
                 "duration_ms": int((time.perf_counter() - started_at) * 1000),
+                "prompt": prompt,
+                "ai_response": ai_response,
+                "ai_think": ai_think,
             }
         )
 
@@ -99,9 +118,18 @@ def _run_swagger_step_pipeline(command: str, components: Dict[str, Any], step_tr
     all_device_actions: List[Dict[str, Any]] = []
 
     t_extract = time.perf_counter()
-    _, _, raw_keywords = keyword_selector.select_keywords(command)
+    extract_prompt = f"command={command}"
+    extract_think, extract_answer, raw_keywords = keyword_selector.select_keywords(command)
     keywords = raw_keywords or []
-    add_step("抽槽（KeywordSelector）", f"识别到 {len(keywords)} 个关键词槽位", "completed", t_extract)
+    add_step(
+        "抽槽（KeywordSelector）",
+        f"识别到 {len(keywords)} 个关键词槽位",
+        "completed",
+        t_extract,
+        prompt=extract_prompt,
+        ai_response=_safe_text(extract_answer),
+        ai_think=_safe_text(extract_think),
+    )
 
     if not keywords:
         add_step("执行结束", "未识别到可执行关键词，跳过设备控制", "completed", time.perf_counter())
@@ -118,9 +146,9 @@ def _run_swagger_step_pipeline(command: str, components: Dict[str, Any], step_tr
         }
 
     for index, keyword in enumerate(keywords, start=1):
-        key_word_value = str(keyword.get("KeyWord", ""))
-        device_name = str(keyword.get("keyWordName", ""))
-        action = str(keyword.get("action", ""))
+        key_word_value = _safe_text(keyword.get("KeyWord"))
+        device_name = _safe_text(keyword.get("keyWordName"))
+        action = _safe_text(keyword.get("action"))
 
         if key_word_value == "null":
             add_step(
@@ -134,9 +162,8 @@ def _run_swagger_step_pipeline(command: str, components: Dict[str, Any], step_tr
         keyword_map = {"deviceName": device_name, "KeyWord": key_word_value}
         t_tool = time.perf_counter()
         selector = tool_selector_cls(keyword_map)
-        _, _, target_tools = selector.select_tool(
-            f"for device：{keyword_map['deviceName']}, the action is {action}"
-        )
+        tool_prompt = f"for device：{keyword_map['deviceName']}, the action is {action}"
+        tool_think, tool_answer, target_tools = selector.select_tool(tool_prompt)
         selected_tools = target_tools or []
         all_target_tools.extend(selected_tools)
         add_step(
@@ -144,10 +171,13 @@ def _run_swagger_step_pipeline(command: str, components: Dict[str, Any], step_tr
             f"device={keyword_map['deviceName']}, action={action}, tools={len(selected_tools)}",
             "completed",
             t_tool,
+            prompt=tool_prompt,
+            ai_response=_safe_text(tool_answer),
+            ai_think=_safe_text(tool_think),
         )
 
         for tool_idx, tool in enumerate(selected_tools, start=1):
-            tool_name = str(tool.get("toolName", "unknown"))
+            tool_name = _safe_text(tool.get("toolName")) or "unknown"
             if tool_name != "DeviceTool":
                 add_step(
                     f"关键词#{index} 工具#{tool_idx}",
@@ -166,17 +196,21 @@ def _run_swagger_step_pipeline(command: str, components: Dict[str, Any], step_tr
                 )
                 continue
 
-            instructions = str(tool.get("instructions", ""))
+            instructions = _safe_text(tool.get("instructions"))
             t_device = time.perf_counter()
             device_tool = device_tool_cls(keyword_map, keyword_map["deviceName"])
-            _, _, target_device_tool = device_tool.intention_recognition(instructions)
+            device_think, device_answer, target_device_tool = device_tool.intention_recognition(instructions)
             device_targets = target_device_tool if isinstance(target_device_tool, list) else [target_device_tool]
-            all_device_actions.extend([item for item in device_targets if item])
+            valid_targets = [item for item in device_targets if item]
+            all_device_actions.extend(valid_targets)
             add_step(
                 f"关键词#{index} 设备控制",
-                f"tool=DeviceTool, 执行结果条目={len([item for item in device_targets if item])}",
+                f"tool=DeviceTool, 执行结果条目={len(valid_targets)}",
                 "completed",
                 t_device,
+                prompt=instructions,
+                ai_response=_safe_text(device_answer),
+                ai_think=_safe_text(device_think),
             )
 
     add_step(
@@ -203,7 +237,6 @@ def _run_swagger_step_pipeline(command: str, components: Dict[str, Any], step_tr
 
 
 def _run_control_pipeline(command: str) -> Dict[str, Any]:
-    """执行控制流水线并返回每步执行轨迹。"""
     step_trace: List[Dict[str, Any]] = []
 
     def add_step(name: str, detail: str, status: str, started_at: float) -> None:
@@ -213,6 +246,9 @@ def _run_control_pipeline(command: str) -> Dict[str, Any]:
                 "detail": detail,
                 "status": status,
                 "duration_ms": int((time.perf_counter() - started_at) * 1000),
+                "prompt": "",
+                "ai_response": "",
+                "ai_think": "",
             }
         )
 
