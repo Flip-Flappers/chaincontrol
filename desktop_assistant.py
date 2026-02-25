@@ -5,11 +5,12 @@
 2. 可配置后端服务地址（默认 http://127.0.0.1:8000）
 3. 发送控制命令到后端 /control
 4. 健康检查 /health
+5. 按 user_id 区分会话，并在单用户命令处理中禁用再次发送
 
 后端接口约定：
 - POST /control
-  request: {"command": "打开客厅灯", "context": {}}
-  response: {"ok": true, "answer": "已为你打开客厅灯", "raw": {...}}
+  request: {"command": "打开客厅灯", "user_id": "alice", "context": {}}
+  response: {"ok": true, "user_id": "alice", "answer": "已为你打开客厅灯", "raw": {...}}
 - GET /health
   response: {"status": "ok"}
 """
@@ -19,8 +20,8 @@ from __future__ import annotations
 import json
 import threading
 import tkinter as tk
-from tkinter import messagebox, scrolledtext
 from dataclasses import dataclass, field
+from tkinter import messagebox, scrolledtext
 from typing import Any, Dict
 
 import requests
@@ -30,6 +31,7 @@ import requests
 class AssistantConfig:
     base_url: str = "http://127.0.0.1:8000"
     timeout_seconds: int = 20
+    default_user_id: str = "user-001"
     default_context: Dict[str, Any] = field(default_factory=dict)
 
 
@@ -43,10 +45,11 @@ class IoTAssistantClient:
         response.raise_for_status()
         return response.json()
 
-    def control(self, command: str) -> Dict[str, Any]:
+    def control(self, command: str, user_id: str) -> Dict[str, Any]:
         url = f"{self.config.base_url.rstrip('/')}/control"
         payload = {
             "command": command,
+            "user_id": user_id,
             "context": self.config.default_context,
         }
         response = requests.post(url, json=payload, timeout=self.config.timeout_seconds)
@@ -62,6 +65,7 @@ class DesktopAssistantApp:
 
         self.config = AssistantConfig()
         self.client = IoTAssistantClient(self.config)
+        self.sending = False
 
         self._build_ui()
 
@@ -70,12 +74,19 @@ class DesktopAssistantApp:
         top_frame.pack(fill=tk.X, padx=10, pady=8)
 
         tk.Label(top_frame, text="服务地址:").pack(side=tk.LEFT)
-        self.base_url_entry = tk.Entry(top_frame, width=50)
+        self.base_url_entry = tk.Entry(top_frame, width=44)
         self.base_url_entry.insert(0, self.config.base_url)
         self.base_url_entry.pack(side=tk.LEFT, padx=6)
 
         tk.Button(top_frame, text="健康检查", command=self.on_health_check).pack(side=tk.LEFT, padx=6)
         tk.Button(top_frame, text="更新地址", command=self.on_update_url).pack(side=tk.LEFT)
+
+        user_frame = tk.Frame(self.root)
+        user_frame.pack(fill=tk.X, padx=10, pady=(0, 8))
+        tk.Label(user_frame, text="用户ID:").pack(side=tk.LEFT)
+        self.user_id_entry = tk.Entry(user_frame, width=30)
+        self.user_id_entry.insert(0, self.config.default_user_id)
+        self.user_id_entry.pack(side=tk.LEFT, padx=6)
 
         self.chat_area = scrolledtext.ScrolledText(self.root, wrap=tk.WORD, state=tk.DISABLED)
         self.chat_area.pack(fill=tk.BOTH, expand=True, padx=10, pady=(0, 10))
@@ -89,7 +100,8 @@ class DesktopAssistantApp:
 
         action_frame = tk.Frame(bottom_frame)
         action_frame.pack(fill=tk.X)
-        tk.Button(action_frame, text="发送命令", command=self.on_send).pack(side=tk.LEFT)
+        self.send_button = tk.Button(action_frame, text="发送命令", command=self.on_send)
+        self.send_button.pack(side=tk.LEFT)
         tk.Button(action_frame, text="清空会话", command=self.on_clear).pack(side=tk.LEFT, padx=6)
 
         self._append("系统", "欢迎使用桌面小助手。先点“健康检查”，再发送设备控制命令。")
@@ -99,6 +111,12 @@ class DesktopAssistantApp:
         self.chat_area.insert(tk.END, f"[{role}] {content}\n\n")
         self.chat_area.see(tk.END)
         self.chat_area.configure(state=tk.DISABLED)
+
+    def _set_sending(self, sending: bool) -> None:
+        self.sending = sending
+        new_state = tk.DISABLED if sending else tk.NORMAL
+        self.send_button.configure(state=new_state)
+        self.command_input.configure(state=new_state)
 
     def on_update_url(self) -> None:
         base_url = self.base_url_entry.get().strip()
@@ -121,22 +139,35 @@ class DesktopAssistantApp:
         threading.Thread(target=worker, daemon=True).start()
 
     def on_send(self) -> None:
+        if self.sending:
+            messagebox.showinfo("提示", "当前用户命令正在处理中，请稍后再发")
+            return
+
+        user_id = self.user_id_entry.get().strip() or self.config.default_user_id
         command = self.command_input.get("1.0", tk.END).strip()
         if not command:
             messagebox.showwarning("提示", "请输入命令")
             return
 
-        self._append("你", command)
+        self._append("你", f"({user_id}) {command}")
         self.command_input.delete("1.0", tk.END)
+        self._set_sending(True)
 
         def worker() -> None:
             try:
                 self.on_update_url()
-                result = self.client.control(command)
+                result = self.client.control(command, user_id)
                 answer = result.get("answer") or result.get("message") or json.dumps(result, ensure_ascii=False)
-                self._append("助手", answer)
+                self._append("助手", f"({user_id}) {answer}")
+            except requests.HTTPError as exc:
+                if exc.response is not None and exc.response.status_code == 409:
+                    self._append("助手", f"({user_id}) 命令被拒绝：该用户已有命令在处理中")
+                else:
+                    self._append("助手", f"调用失败：{exc}")
             except Exception as exc:  # noqa: BLE001
                 self._append("助手", f"调用失败：{exc}")
+            finally:
+                self._set_sending(False)
 
         threading.Thread(target=worker, daemon=True).start()
 

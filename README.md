@@ -31,7 +31,7 @@ python run_desktop_with_backend.py --host 127.0.0.1 --port 8001
 3. 在桌面助手中：
    - 配置服务地址（默认 `http://127.0.0.1:8000`）
    - 点击“健康检查”验证连通性
-   - 输入控制命令并发送
+   - 设置用户ID并输入控制命令发送（同一用户并发请求会被后端拒绝）
 
 ## 接口约定
 - `GET /health`
@@ -41,6 +41,7 @@ python run_desktop_with_backend.py --host 127.0.0.1 --port 8001
 ```json
 {
   "command": "打开客厅灯",
+  "user_id": "alice",
   "context": {}
 }
 ```
@@ -49,6 +50,13 @@ python run_desktop_with_backend.py --host 127.0.0.1 --port 8001
 ```json
 {
   "ok": true,
+  "user_id": "alice",
   "answer": "已为你打开客厅灯"
 }
 ```
+
+
+## 并发约束（按用户隔离）
+- 后端基于 `user_id` 做并发控制：同一 `user_id` 在一个命令处理完成前，新的 `/control` 请求会返回 `409`。
+- 不同 `user_id` 之间可以并行发送命令。
+- 桌面端会在本地请求处理中禁用“发送命令”按钮，避免重复提交。

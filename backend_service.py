@@ -12,21 +12,29 @@ from __future__ import annotations
 
 import os
 import sys
+import threading
 from datetime import datetime
 from pathlib import Path
 from typing import Any, Dict, List
 
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, Field
 
 
 class ControlRequest(BaseModel):
     command: str = Field(..., min_length=1, description="用户控制命令")
+    user_id: str | None = Field(default=None, description="用户标识；为空时尝试从 context.user_id 读取")
     context: Dict[str, Any] = Field(default_factory=dict, description="上下文信息")
+
+    def resolved_user_id(self) -> str:
+        context_user_id = self.context.get("user_id") if isinstance(self.context, dict) else None
+        user_id = self.user_id or context_user_id or "default-user"
+        return str(user_id).strip() or "default-user"
 
 
 class ControlResponse(BaseModel):
     ok: bool
+    user_id: str
     answer: str
     keywords: List[Dict[str, Any]] = Field(default_factory=list)
     target_tools: List[Dict[str, Any]] = Field(default_factory=list)
@@ -34,6 +42,22 @@ class ControlResponse(BaseModel):
 
 
 app = FastAPI(title="ChainControl Backend Service", version="0.1.0")
+
+_inflight_users: set[str] = set()
+_inflight_users_lock = threading.Lock()
+
+
+def _acquire_user_slot(user_id: str) -> bool:
+    with _inflight_users_lock:
+        if user_id in _inflight_users:
+            return False
+        _inflight_users.add(user_id)
+        return True
+
+
+def _release_user_slot(user_id: str) -> None:
+    with _inflight_users_lock:
+        _inflight_users.discard(user_id)
 
 
 def _resolve_swagger_greet():
@@ -104,5 +128,13 @@ def health() -> Dict[str, Any]:
 
 @app.post("/control", response_model=ControlResponse)
 def control(request: ControlRequest) -> ControlResponse:
-    result = _run_control_pipeline(request.command)
-    return ControlResponse(**result)
+    user_id = request.resolved_user_id()
+    if not _acquire_user_slot(user_id):
+        raise HTTPException(status_code=409, detail=f"用户 {user_id} 有命令正在处理中，请稍后重试")
+
+    try:
+        result = _run_control_pipeline(request.command)
+        result["user_id"] = user_id
+        return ControlResponse(**result)
+    finally:
+        _release_user_slot(user_id)
