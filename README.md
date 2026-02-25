@@ -7,7 +7,19 @@
 - `desktop_assistant.py`：桌面端小助手（Tkinter），通过 HTTP 调用后端服务。
 - `PROJECT_ANALYSIS.md`：项目目标、差距与演进路线分析。
 
-## 快速开始（后端 + 桌面端）
+## 快速开始（单入口启动）
+```bash
+python run_desktop_with_backend.py
+```
+
+默认会自动启动后端（`http://127.0.0.1:8000`）并打开桌面助手。
+
+如需自定义端口：
+```bash
+python run_desktop_with_backend.py --host 127.0.0.1 --port 8001
+```
+
+## 快速开始（手动分开启动）
 1. 启动后端：
    ```bash
    uvicorn backend_service:app --host 0.0.0.0 --port 8000
