@@ -15,7 +15,7 @@ import requests
 @dataclass
 class AssistantConfig:
     base_url: str = "http://127.0.0.1:8000"
-    timeout_seconds: int = 20
+    timeout_seconds: int = 2000000
     default_user_id: str = "user-001"
     default_context: Dict[str, Any] = field(default_factory=dict)
 
