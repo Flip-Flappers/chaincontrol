@@ -24,120 +24,126 @@ class ThemeManager:
         QPushButton {
             border: none;
         }
+        
+        QPushButton#micBtn {
+            background-color: rgba(100,150,255,200);
+        }
         """
 
     # 🌞 暖色玻璃
     def light_theme(self):
         return """
         QWidget#container {
-            background-color: #FDF6EC;
+            background-color: #F6EFE6;   /* 更高级的奶油底色 */
         }
 
         QWidget {
-            color: #5E4631;
+            color: #4A3A2A;   /* 更柔和的深棕 */
             font-family: "Microsoft YaHei";
             font-size: 14px;
         }
 
         QFrame#GlassCard {
-            background-color: rgba(255,255,255,140);
+            background-color: rgba(255,255,255,160);
             border-radius: 20px;
         }
 
         QPushButton {
-            background-color: rgba(230,126,34,220);
+            background-color: rgba(219,122,55,210);   /* 柔和橙棕 */
             border-radius: 16px;
             padding: 6px 14px;
-            color: white;
+            color: #FFFFFF;
         }
 
         QPushButton:hover {
-            background-color: #D35400;
+            background-color: #C76A2E;   /* 更自然的hover */
         }
 
         QTextEdit {
-            background-color: rgba(255,255,255,180);
+            background-color: rgba(255,255,255,200);
             border-radius: 14px;
             padding: 8px;
+            color: #4A3A2A;
         }
-        
+
         QPushButton#closeBtn {
-            background-color: #E74C3C;
+            background-color: #D64541;   /* 不刺眼的红 */
             border-radius: 14px;
             color: white;
         }
-        
+
         QPushButton#closeBtn:hover {
-            background-color: #C0392B;
+            background-color: #B03A2E;
         }
-        
+
         QPushButton#minBtn {
-            background-color: #F1C40F;
+            background-color: #E0B326;   /* 柔黄 */
             border-radius: 14px;
             color: white;
         }
-        
+
         QPushButton#minBtn:hover {
-            background-color: #D4AC0D;
+            background-color: #C79E1D;
         }
-        
+
         QWidget#TitleBar {
-            background-color: #F5EBDD;   /* 浅色实体背景 */
+            background-color: #EFE5D8;   
             border-top-left-radius: 22px;
             border-top-right-radius: 22px;
-        }
+        } 
+         
+          
         """
 
-    # 🌙 深色玻璃
     def dark_theme(self):
         return """
         QWidget#container {
-            background-color: #1E1E2E;
+            background-color: #1B1F2B;   /* 蓝灰夜色 */
         }
 
         QWidget {
-            color: #F5E6D3;
+            color: #E8DCCD;   /* 柔和米白 */
             font-family: "Microsoft YaHei";
             font-size: 14px;
         }
 
         QFrame#GlassCard {
-            background-color: rgba(40,40,60,200);
+            background-color: rgba(38,42,58,210);
             border-radius: 20px;
         }
 
         QPushButton {
-            background-color: rgba(231,76,60,220);
+            background-color: rgba(176,58,46,220);   /* 酒红 */
             border-radius: 16px;
             padding: 6px 14px;
-            color: white;
+            color: #FFFFFF;
         }
 
         QPushButton:hover {
-            background-color: #C0392B;
+            background-color: #943126;
         }
 
         QTextEdit {
-            background-color: rgba(50,50,70,200);
+            background-color: rgba(45,50,70,220);
             border-radius: 14px;
             padding: 8px;
-            color: white;
+            color: #F2EDE6;
         }
-        
+
         QPushButton#closeBtn {
-            background-color: #C0392B;
+            background-color: #A93226;
             border-radius: 14px;
             color: white;
         }
-        
+
         QPushButton#minBtn {
-            background-color: #F39C12;
+            background-color: #D68910;
             border-radius: 14px;
             color: white;
         }
-        
+
         QWidget#TitleBar {
-            background-color: #2A2A3C;   /* 深色实体背景 */
+            background-color: #24283A;
             border-top-left-radius: 22px;
             border-top-right-radius: 22px;
         }

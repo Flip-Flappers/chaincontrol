@@ -7,6 +7,7 @@ from PyQt6.QtCore import Qt
 
 from core.assistant_worker import AssistantWorker
 from ui.components.message_item import MessageItem
+from core.voice_worker import VoiceWorker
 
 
 class ConsolePage(QWidget):
@@ -57,6 +58,10 @@ class ConsolePage(QWidget):
         self.input_box = QTextEdit()
         self.input_box.setFixedHeight(60)
 
+        self.mic_btn = QPushButton("🎤 语音输入")
+        self.mic_btn.clicked.connect(self.start_voice_input)
+        self.mic_btn.setObjectName("micBtn")
+        
         send_btn = QPushButton("发送")
         send_btn.clicked.connect(self.send_message)
 
@@ -64,9 +69,33 @@ class ConsolePage(QWidget):
         input_layout.addWidget(send_btn)
 
         layout.addWidget(input_card)
+        layout.addWidget(self.mic_btn)
 
         self.add_message("系统已连接到 127.0.0.1:8000", False)
 
+
+    # ======================
+    # 启动语音识别
+    # ======================
+
+    def start_voice_input(self):
+        self.mic_btn.setText("🎙 正在听...")
+        self.mic_btn.setEnabled(False)
+
+        self.worker = VoiceWorker()
+        self.worker.result_ready.connect(self.voice_result)
+        self.worker.error_occurred.connect(self.voice_error)
+        self.worker.start()
+
+    def voice_result(self, text):
+        self.input_box.setText(text)
+        self.mic_btn.setText("🎤 语音输入")
+        self.mic_btn.setEnabled(True)
+
+    def voice_error(self, error):
+        self.input_box.setText(f"识别失败: {error}")
+        self.mic_btn.setText("🎤 语音输入")
+        self.mic_btn.setEnabled(True)
     # =========================
     # 添加消息
     # =========================
