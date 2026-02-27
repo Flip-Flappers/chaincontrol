@@ -61,8 +61,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--wait-timeout",
         type=int,
-        default=200000000000000000,
-        help="等待后端健康检查通过的最大秒数，默认 20000",
+        default=20,
+        help="等待后端健康检查通过的最大秒数，默认 20",
     )
     return parser.parse_args()
 

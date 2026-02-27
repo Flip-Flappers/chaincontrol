@@ -4,7 +4,7 @@
 
 ## 当前可用能力
 - `backend_service.py`：后端 HTTP 服务，提供 `GET /health` 与 `POST /control`。
-- `desktop_assistant.py`：桌面端小助手（Tkinter），通过 HTTP 调用后端服务。
+- `desktop_assistant.py`：桌面端小助手（Tkinter），通过 HTTP 调用后端服务，采用 Discord 风格深色主题与动态状态动画。
 - `PROJECT_ANALYSIS.md`：项目目标、差距与演进路线分析。
 
 ## 快速开始（单入口启动）
@@ -74,3 +74,8 @@ python run_desktop_with_backend.py --host 127.0.0.1 --port 8001
 - 后端会在 `/control` 响应的 `raw.steps` 返回每一步的 `name/detail/status/duration_ms`，以及 AI 交互字段 `prompt/ai_response/ai_think`。
 - `/control` 默认按你定义的 3 步组织：`keywordSelector.select_keywords(command)` -> `toolSelector.select_tool("for device：" + keyword_map['deviceName'] + ", the action is" + action)` -> `deviceTool.intention_recognition(tool['instructions'])`。
 - 桌面端会在聊天窗口中按顺序显示“请求准备 -> 调用后端 -> 后端步骤详情 -> 最终结果”，并逐步显示每步的 Prompt 与 AI 返回。
+
+
+## 界面风格
+- 桌面端已调整为 Discord 风格的深色聊天布局。
+- 发送命令时会显示动态状态动画（processing...）与加载进度条。

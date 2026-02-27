@@ -151,18 +151,19 @@ def _run_swagger_step_pipeline(command: str, components: Dict[str, Any], step_tr
         if key_word_name != "deviceName":
             continue
 
+        device_name = _safe_text(keyword.get("keyWordName"))
         action = _safe_text(keyword.get("action"))
 
         if key_word_value == "null":
             add_step(
                 f"关键词#{index}",
-                f"device={key_word_value or 'unknown'} 命中空槽位，跳过",
+                f"device={device_name or 'unknown'} 命中空槽位，跳过",
                 "skipped",
                 time.perf_counter(),
             )
             continue
 
-        keyword_map = {"deviceName": key_word_value, "KeyWord": key_word_value}
+        keyword_map = {"deviceName": device_name, "KeyWord": key_word_value}
         t_tool = time.perf_counter()
         selector = tool_selector_cls(keyword_map)
         tool_prompt = f"for device：{keyword_map['deviceName']}, the action is{action}"
