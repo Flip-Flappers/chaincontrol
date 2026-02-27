@@ -1,4 +1,6 @@
 import sys
+
+from PyQt6.QtGui import QMouseEvent
 from PyQt6.QtWidgets import (
     QApplication, QMainWindow,
     QWidget, QHBoxLayout, QVBoxLayout,
@@ -12,14 +14,20 @@ from pages.device_page import DevicePage
 from pages.log_page import LogPage
 from theme.theme_manager import ThemeManager
 from ui.components.avatar_widget import AvatarWidget
+from ui.components.title_bar import TitleBar
 
 
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
-
+        self._drag_pos = None
+        self.setWindowFlags(self.windowFlags() | Qt.WindowType.FramelessWindowHint)
+        self.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
+        self.setAttribute(Qt.WidgetAttribute.WA_StyledBackground, True)
         self.setWindowTitle("玻璃拟态聊天系统")
         self.resize(1100, 700)
+
+
 
         self.theme_manager = ThemeManager()
         self.setStyleSheet(self.theme_manager.get_stylesheet())
@@ -38,22 +46,13 @@ class MainWindow(QMainWindow):
 
 
 
-        self.theme_btn = QPushButton("🌙")
-        self.theme_btn.setFixedSize(40, 40)
-        self.theme_btn.clicked.connect(self.toggle_theme)
+        self.title_bar = TitleBar()
 
-        top_bar.addWidget(self.theme_btn)
-        main_layout.addLayout(top_bar)
+        self.title_bar.close_clicked.connect(self.close)
+        self.title_bar.minimize_clicked.connect(self.showMinimized)
+        self.title_bar.theme_clicked.connect(self.toggle_theme)
 
-        # ===== 左上角头像 =====
-        self.avatar = AvatarWidget(
-            image_path="./assets/avatar.png",
-            size=40,
-            online=True  # 是否显示在线状态
-        )
-
-        top_bar.addWidget(self.avatar)
-
+        main_layout.addWidget(self.title_bar)
         # ===== 主体区域 =====
         content_layout = QHBoxLayout()
         content_layout.setSpacing(20)
@@ -77,15 +76,29 @@ class MainWindow(QMainWindow):
     def change_page(self, index):
         self.stack.setCurrentIndex(index)
 
-    # =========================
-    # 主题切换
-    # =========================
     def toggle_theme(self):
         self.theme_manager.toggle()
         self.setStyleSheet(self.theme_manager.get_stylesheet())
 
-        # 切换图标
-        if self.theme_btn.text() == "🌙":
-            self.theme_btn.setText("☀")
+        btn = self.title_bar.theme_btn
+
+        if btn.text() == "🌙":
+            btn.setText("☀")
         else:
-            self.theme_btn.setText("🌙")
+            btn.setText("🌙")
+
+    # =========================
+    # 允许拖动窗口
+    # =========================
+    def mousePressEvent(self, event: QMouseEvent):
+        if event.button() == Qt.MouseButton.LeftButton:
+            self._drag_pos = event.globalPosition().toPoint()
+
+    def mouseMoveEvent(self, event: QMouseEvent):
+        if self._drag_pos:
+            delta = event.globalPosition().toPoint() - self._drag_pos
+            self.move(self.pos() + delta)
+            self._drag_pos = event.globalPosition().toPoint()
+
+    def mouseReleaseEvent(self, event: QMouseEvent):
+        self._drag_pos = None

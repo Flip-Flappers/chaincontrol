@@ -7,6 +7,7 @@ class Sidebar(QFrame):
     def __init__(self):
         super().__init__()
         self.setFixedWidth(180)
+
         self.setObjectName("GlassCard")
 
         layout = QVBoxLayout(self)
