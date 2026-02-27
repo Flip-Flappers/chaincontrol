@@ -24,8 +24,8 @@ class KeyWordsSelector:
         self.productKey = None
         self.keyWords_list = \
             [
-                "deviceName: String, Unique identifier of the device.\n",
-                "productKey: String, Unique identifier of the product.\n",
+                "deviceName",
+                "productKey",
             ]
 
         self.prompt_template = PromptTemplate(
@@ -92,14 +92,14 @@ class KeyWordsSelector:
                 "results": [\n
                     {
                         "id": 1, // the first KeyWord,\n
-                        "keyWordName": string // the name of the first KeyWord in <<KeyWord List>>\n
-                        "KeyWord": string,  \n
+                        "keyWordName": deviceName \n
+                        "KeyWord": string,  Unique identifier of the device. \n
                         "action": string 1. 2. 3. // the corresponding action for the first keyword in << User Input >>.\
                     },
                     {
                         "id": 2, // the second KeyWord\n
-                        "keyWordName": string // the type of the second KeyWord in <<KeyWord List>>\n
-                        "KeyWord": string,  \n
+                        "keyWordName": productKey \n
+                        "KeyWord": Unique identifier of the product.  \n
                         "action": string 1. 2. 3.  // the corresponding action for the second keyword in << User Input >>\
                     },\n
                     ...\n

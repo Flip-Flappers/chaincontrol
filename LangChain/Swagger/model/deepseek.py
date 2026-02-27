@@ -52,7 +52,7 @@ class deepseek:
             model="deepseek-v3.2",
             messages=history,
             extra_body={"enable_thinking": False},
-            stream=False,
+            stream=True,
             stream_options={
                 "include_usage": True
             },
@@ -83,5 +83,5 @@ class deepseek:
                     is_answering = True
                 print(delta.content, end="", flush=True)
                 answer_content += delta.content
-
+        history.append({'role': 'assistant', 'content': answer_content})
         return reasoning_content, answer_content, history
