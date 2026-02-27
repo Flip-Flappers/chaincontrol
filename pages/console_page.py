@@ -7,7 +7,8 @@ from PyQt6.QtCore import Qt
 
 from core.assistant_worker import AssistantWorker
 from ui.components.message_item import MessageItem
-from core.voice_worker import VoiceWorker
+from ui.components.wave_widget import WaveWidget
+from core.press_voice_worker import PressVoiceWorker
 
 
 class ConsolePage(QWidget):
@@ -58,10 +59,18 @@ class ConsolePage(QWidget):
         self.input_box = QTextEdit()
         self.input_box.setFixedHeight(60)
 
-        self.mic_btn = QPushButton("🎤 语音输入")
-        self.mic_btn.clicked.connect(self.start_voice_input)
+        self.wave = WaveWidget()
+        self.wave.hide()
+
+        self.mic_btn = QPushButton("🎤 按住说话")
         self.mic_btn.setObjectName("micBtn")
-        
+
+        self.mic_btn.pressed.connect(self.start_recording)
+        self.mic_btn.released.connect(self.stop_recording)
+
+        layout.addWidget(self.wave)
+        layout.addWidget(self.mic_btn)
+
         send_btn = QPushButton("发送")
         send_btn.clicked.connect(self.send_message)
 
@@ -78,24 +87,24 @@ class ConsolePage(QWidget):
     # 启动语音识别
     # ======================
 
-    def start_voice_input(self):
-        self.mic_btn.setText("🎙 正在听...")
-        self.mic_btn.setEnabled(False)
+    def start_recording(self):
+        self.mic_btn.setText("🔴 录音中...")
+        self.wave.show()
 
-        self.worker = VoiceWorker()
-        self.worker.result_ready.connect(self.voice_result)
-        self.worker.error_occurred.connect(self.voice_error)
+        self.worker = PressVoiceWorker()
+        self.worker.audio_level.connect(self.wave.update_level)
+        self.worker.finished_text.connect(self.voice_result)
         self.worker.start()
+
+    def stop_recording(self):
+        self.mic_btn.setText("🎤 按住说话")
+        self.wave.hide()
+
+        if self.worker:
+            self.worker.stop()
 
     def voice_result(self, text):
         self.input_box.setText(text)
-        self.mic_btn.setText("🎤 语音输入")
-        self.mic_btn.setEnabled(True)
-
-    def voice_error(self, error):
-        self.input_box.setText(f"识别失败: {error}")
-        self.mic_btn.setText("🎤 语音输入")
-        self.mic_btn.setEnabled(True)
     # =========================
     # 添加消息
     # =========================
