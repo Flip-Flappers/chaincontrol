@@ -8,7 +8,7 @@ from PyQt6.QtCore import Qt
 from core.assistant_worker import AssistantWorker
 from ui.components.message_item import MessageItem
 from ui.components.wave_widget import WaveWidget
-from core.press_voice_worker import PressVoiceWorker
+from core.press_voice_worker import StreamingVoiceWorker
 
 
 class ConsolePage(QWidget):
@@ -17,6 +17,7 @@ class ConsolePage(QWidget):
 
         self.base_url = "http://127.0.0.1:8000"
         self.worker = None
+        self.asr_model = None
 
         self.init_ui()
 
@@ -68,43 +69,58 @@ class ConsolePage(QWidget):
         self.mic_btn.pressed.connect(self.start_recording)
         self.mic_btn.released.connect(self.stop_recording)
 
-        layout.addWidget(self.wave)
-        layout.addWidget(self.mic_btn)
-
         send_btn = QPushButton("发送")
         send_btn.clicked.connect(self.send_message)
 
         input_layout.addWidget(self.input_box)
         input_layout.addWidget(send_btn)
 
-        layout.addWidget(input_card)
+        layout.addWidget(self.wave)
         layout.addWidget(self.mic_btn)
+        layout.addWidget(input_card)
 
         self.add_message("系统已连接到 127.0.0.1:8000", False)
-
 
     # ======================
     # 启动语音识别
     # ======================
-
     def start_recording(self):
+        if self.worker and self.worker.isRunning():
+            return
+
+        if not self.asr_model:
+            return
+
         self.mic_btn.setText("🔴 录音中...")
         self.wave.show()
 
-        self.worker = PressVoiceWorker()
+        self.worker = StreamingVoiceWorker(self.asr_model)
+
         self.worker.audio_level.connect(self.wave.update_level)
-        self.worker.finished_text.connect(self.voice_result)
+        self.worker.partial_text.connect(self.update_partial_text)
+        self.worker.finished_text.connect(self.update_final_text)
+
         self.worker.start()
 
     def stop_recording(self):
         self.mic_btn.setText("🎤 按住说话")
         self.wave.hide()
 
-        if self.worker:
+        if self.worker and self.worker.isRunning():
             self.worker.stop()
 
-    def voice_result(self, text):
-        self.input_box.setText(text)
+    # ======================
+    # 语音识别回调
+    # ======================
+    def update_partial_text(self, text):
+        self.input_box.setPlainText(text)
+        cursor = self.input_box.textCursor()
+        cursor.movePosition(cursor.MoveOperation.End)
+        self.input_box.setTextCursor(cursor)
+
+    def update_final_text(self, text):
+        self.input_box.setPlainText(text)
+
     # =========================
     # 添加消息
     # =========================
@@ -124,11 +140,9 @@ class ConsolePage(QWidget):
         if not text:
             return
 
-        # 显示用户消息
         self.add_message(text, True)
         self.input_box.clear()
 
-        # 后台线程请求
         self.worker = AssistantWorker(self.base_url, text)
         self.worker.finished.connect(self.handle_result)
         self.worker.error.connect(self.handle_error)
@@ -142,31 +156,8 @@ class ConsolePage(QWidget):
             self.add_message("执行失败：" + result.get("answer", ""), False)
             return
 
-        # 显示最终结果
         answer = result.get("answer", "")
         self.add_message("结果：\n" + answer, False)
-
-        # 显示步骤日志
-        raw = result.get("raw", {})
-        steps = raw.get("steps", [])
-
-        if steps:
-            self.add_message("—— 执行步骤 ——", False)
-
-        for step in steps:
-            name = step.get("name", "")
-            detail = step.get("detail", "")
-            status = step.get("status", "")
-            duration = step.get("duration_ms", 0)
-
-            step_text = (
-                f"{name}\n"
-                f"状态: {status}\n"
-                f"耗时: {duration} ms\n"
-                f"{detail}"
-            )
-
-            self.add_message(step_text, False)
 
     # =========================
     # 错误处理

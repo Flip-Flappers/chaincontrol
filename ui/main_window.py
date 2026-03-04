@@ -8,6 +8,7 @@ from PyQt6.QtWidgets import (
 )
 from PyQt6.QtCore import Qt
 
+from core.ase_loader import ASRLoader
 from ui.components.sidebar import Sidebar
 from pages.console_page import ConsolePage
 from pages.device_page import DevicePage
@@ -27,7 +28,10 @@ class MainWindow(QMainWindow):
         self.setWindowTitle("玻璃拟态聊天系统")
         self.resize(1100, 700)
 
-
+        self.asr_model = None
+        self.loader = ASRLoader()
+        self.loader.finished.connect(self.on_model_loaded)
+        self.loader.start()
 
         self.theme_manager = ThemeManager()
         self.setStyleSheet(self.theme_manager.get_stylesheet())
@@ -61,7 +65,8 @@ class MainWindow(QMainWindow):
         self.sidebar.page_changed.connect(self.change_page)
 
         self.stack = QStackedWidget()
-        self.stack.addWidget(ConsolePage())
+        self.console_page = ConsolePage()
+        self.stack.addWidget(self.console_page)
         self.stack.addWidget(DevicePage())
         self.stack.addWidget(LogPage())
 
@@ -70,6 +75,10 @@ class MainWindow(QMainWindow):
 
         main_layout.addLayout(content_layout)
 
+    def on_model_loaded(self, model):
+        self.asr_model = model
+        print("ASR model ready")
+        self.console_page.asr_model = model
     # =========================
     # 页面切换
     # =========================
